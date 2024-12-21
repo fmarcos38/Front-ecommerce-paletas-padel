@@ -1,0 +1,19 @@
+/* styles.css */
+
+.cont-busca-producto {
+    width: 90%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 20px;
+    border-radius: 10px;
+    background-color: #f5f5f5;
+}
+
+.input-busca {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+}

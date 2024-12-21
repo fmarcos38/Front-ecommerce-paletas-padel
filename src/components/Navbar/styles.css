@@ -1,0 +1,112 @@
+.navbar{
+    width: 100%;
+    height: 120px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(30, 14, 139, 0.866);
+}
+/* estilos fila sup */
+.fila-sup{
+    width: 100%;
+    height: 20%;
+    display: flex;
+    justify-content: end;
+    align-items: center;
+}
+.fila-sup-der{
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    height: 100%;
+    width: 50%;
+}
+.direccion,
+.whatsapp,
+.intagram{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 33%;
+    height: 100%;
+    color: white;
+    border-left: solid 1px white;
+
+}
+.texto-fila-sup-der{
+    font-size: 14px;
+}
+/* estilos fila med */
+.fila-med{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 80%;
+    background-color: rgba(56, 32, 218, 0.866);
+}
+.col-1{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 33%;
+    height: 100%;
+}
+.logo-navbar{
+    width: 80px;
+    height: 80px;
+    border-radius: 10px;
+}
+.col-2{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 33%;
+    height: 100%;
+}
+.col-3{
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    width: 33%;
+    height: 100%;
+}
+.cont-registrate,
+.cont-login,
+.cont-carrito,
+.cont-favoritos{
+    width: 25%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+.link-navbar{
+    color: white;
+    font-size: 14px;
+    text-decoration: none;
+}
+.cont-carrito-fav{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    position: relative;
+}
+.items-carrito,
+.items-fav{
+    position: absolute;
+    top: -25px;
+    right: -14px;
+    background-color: white;
+    color: black;
+    border-radius: 50%;
+    width: 16px;
+    height: 16px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 10px;
+}
+
