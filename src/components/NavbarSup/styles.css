@@ -1,0 +1,38 @@
+/* estilos fila sup */
+.fila-sup{
+    width: 100%;
+    height: 15%;
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    background-color: rgba(30, 14, 139, 0.866);
+}
+.fila-sup-der{
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    height: 100%;
+    width: 50%;
+}
+.direccion,
+.whatsapp,
+.intagram{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 33%;
+    height: 100%;
+    color: white;
+    border-left: solid 1px white;
+
+}
+.texto-fila-sup-der{
+    font-size: 14px;
+}
+
+/* responsive */
+@media screen and (max-width:800px){
+    .fila-sup{
+        display: none;
+    }
+}
