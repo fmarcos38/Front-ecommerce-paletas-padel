@@ -116,7 +116,7 @@
 /* col-4 */
 .col-4{
     display: flex;
-    justify-content: start;
+    justify-content: center;
     align-items: center;
     width: 30%;
     height: 100%;
@@ -161,6 +161,17 @@
 
 
 /* responsive */
+@media screen and (max-width: 1170px){
+    .col-2{
+        width: 20%;
+    }
+    .col-3{
+        width: 35%;
+    }
+    .col-4{
+        width: 45%;
+    }
+}
 @media screen and (max-width: 800px){
     .fila-med{
         height: 70px;
@@ -169,6 +180,7 @@
     .col-1{
         width: 33%;
         height: 100%;
+        display: flex;
         display: flex;
         justify-content: start;
         align-items: center;
@@ -195,6 +207,7 @@
         display: none;
     }
     .col-4{
+        width: 33%;
         justify-content: end;
     }
     .cont-carrito-fav{
