@@ -95,7 +95,9 @@ function NavbarMed({isOpen, menuRef, menuItemsRef, toggleMenu, handleLogOut}) {
             </div>
 
             <div className='col-2'>
-                <img src={logo} alt='logo' className='logo-navbar' />
+                <NavLink to='/'>
+                    <img src={logo} alt='logo' className='logo-navbar' />
+                </NavLink>
             </div>
 
             <div className='col-3'>
@@ -104,7 +106,7 @@ function NavbarMed({isOpen, menuRef, menuItemsRef, toggleMenu, handleLogOut}) {
 
             <div className='col-4'>
                 <div className='cont-registrate'>
-                    <NavLink to='/registrate' className='link-navbar'>Registrate</NavLink>
+                    <NavLink to='/registrarse' className='link-navbar'>Registrate</NavLink>
                 </div>
                 <div className='cont-login'>
                     <NavLink to='/login' className='link-navbar'>Iniciar sesión</NavLink>

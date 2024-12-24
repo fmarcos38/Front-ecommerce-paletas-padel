@@ -1,0 +1,93 @@
+.cont-registrarse{
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+    width: 80%;
+    height: 100%;
+}
+.form-registrarse{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 80%;
+    height: 350px;
+    background-color: #f5f5f5;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+.cont-inputs{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 80%;
+    height: 100%;
+}
+.cont-nombre,
+.cont-apellido,
+.cont-email,
+.cont-contraseña,
+.cont-telefono,
+.cont-direccion {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: start;
+    width: 50%;
+    margin: 10px 0;
+}
+.cont-pass-viewPass{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin: 10px 0;
+}
+.label-input{
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #333;
+    margin: 5px 0;
+}
+.input-nombre,
+.input-apellido,
+.input-email,
+.input-contraseña,
+.input-telefono,
+.input-direccion{
+    width: 95%;
+    height: 25px;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    outline: none;
+}
+.btn-viewPass{
+    width: 30px;
+    height: 30px;
+    background-color: #f5f5f5;
+    border: none;
+    border-radius: 5px;
+    outline: none;
+    cursor: pointer;
+}
+.cont-btn-registrarse{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 80%;
+    height: 100%;
+}
+.btn-registrarse{
+    width: 50%;
+    height: 30px;
+    background-color: #333;
+    color: #fff;
+    font-size: 1.2rem;
+    font-weight: 600;
+    border: none;
+    border-radius: 5px;
+    outline: none;
+    cursor: pointer;
+}
