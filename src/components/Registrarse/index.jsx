@@ -1,8 +1,12 @@
 import React, { useState } from 'react';
 import VisibilityIcon from '@mui/icons-material/Visibility';
+import { useDispatch } from 'react-redux';
+import { registrarse } from '../../redux/actions/actions';
+import Swal from 'sweetalert2';
 import './styles.css';
 
-function Registrarse() {
+
+function Registrarse({operacion}) {
 
     const [nombre, setNombre] = useState('');
     const [apellido, setApellido] = useState('');
@@ -11,6 +15,7 @@ function Registrarse() {
     const [telefono, setTelefono] = useState('');
     const [direccion, setDireccion] = useState('');
     const [error, setError] = useState(null);
+    const dispatch = useDispatch();
 
     const onChangeNombre = (e) => {
         setNombre(e.target.value);
@@ -66,14 +71,57 @@ function Registrarse() {
         //actualizo el estado local de errors
         setError(newError);
 
-        //si el objeto newError esta vacio, retorna true
+        //si el objeto newError esta vacio, retorna false
         if(Object.keys(newError).length) return true;
         return false;
     }
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        
+    const handleSubmit = async(e) => {
+        e.preventDefault(); 
+        if(operacion === 'editar'){
+            return;
+        }else{ 
+            if(!validar()){ 
+                const data = {
+                    nombre,
+                    apellido,
+                    email,
+                    contraseña,
+                    telefono,
+                    direccion,
+                    isAdmin: false
+                };
+                dispatch(registrarse(data))
+    .then((response) => {
+        console.log("Response del backend:", response);
+        if (response?.data?.msg === 'success') {
+            Swal.fire({
+                icon: 'success',
+                title: 'Registrado correctamente',
+                showConfirmButton: false,
+                timer: 1500,
+            });
+        } else {
+            Swal.fire({
+                icon: 'error',
+                title: response?.data?.msg || 'Error desconocido',
+                showConfirmButton: false,
+                timer: 1500,
+            });
+        }
+    })
+    .catch((error) => {
+        console.error("Error del servidor:", error.response?.data || error.message);
+        Swal.fire({
+            icon: 'error',
+            title: error.response?.data?.msg || 'Error al conectar con el servidor',
+            showConfirmButton: false,
+            timer: 1500,
+        });
+    });
+
+            }
+        }
     }
 
 
