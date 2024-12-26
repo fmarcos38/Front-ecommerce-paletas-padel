@@ -1,0 +1,14 @@
+.cont-lista-prods-admin{
+    width: 90%;
+    min-height: 90vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+    margin: 0 auto;
+    box-sizing: border-box;
+    background-color: #f4f4f4;
+}
+.titulo-lista-prods-admin-page{
+    margin: 0;
+}

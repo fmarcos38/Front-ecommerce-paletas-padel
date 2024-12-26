@@ -37,7 +37,7 @@ function NavbarMed({isOpen, menuRef, menuItemsRef, toggleMenu, handleLogOut}) {
                                         <>
                                             <li className='items-pChica'>
                                                 <NavLink
-                                                    to='/admin/creaPropiedad'
+                                                    to='/admin/creaProd'
                                                     className='link-navbar'
                                                     ref={el => menuItemsRef.current[0] = el}
                                                 >

@@ -20,7 +20,8 @@ function NavbarInf() {
     return (
         <div className='fila-inf'>
             <ul className='ul-nav-inf'>
-                <li>Productos</li>
+                <li>Bullpadel</li>
+                <li>Nox</li>
                 {/* menú Admin */}
                 {
                     context.dataUser.admin && (
@@ -33,12 +34,12 @@ function NavbarInf() {
                             {/* menú admin */}
                             {
                                 muestraMenuAdmin && (
-                                    <ul className='dropdown-menu'>
-                                        <li className='dropdown-item'>
-                                            <NavLink to='/admin/creaPropiedad' className='link-navbar'>Crea Producto</NavLink>
+                                    <ul className='dropdown-menu-admin'>
+                                        <li className='dropdown-item-admin'>
+                                            <NavLink to='/admin/creaProd' className='link-navbar-admin'>Crea Producto</NavLink>
                                         </li>
                                         <li className='dropdown-item'>
-                                            <NavLink to='/admin/listaProductoAdmin' className='link-navbar'>Lista Propiedades</NavLink>
+                                            <NavLink to='/admin/listaProductoAdmin' className='link-navbar-admin'>Lista Propiedades</NavLink>
                                         </li>
                                     </ul>
                                 )

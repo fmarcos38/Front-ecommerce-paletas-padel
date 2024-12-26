@@ -1,9 +1,42 @@
 .cont-home {
     width: 100%;
-    height: 90vh;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+    background-color: #776de1;
+}
+.cont-msj-envio{
+    width: 100%;
+    height: auto;
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
-    background-color: violet;
+    background-color: #776de1;
+}
+.msj-envio{
+    margin: 0;
+    font-size: 22px;
+    color: white;
+}
+.cont-carrusel-home{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: black;
+}
+.lista-paletas{
+    width: 80%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    margin-bottom: 20px;
+    background-color: #0c0463;
+}
+.titulo-lista-paletas{
+    color: white;
 }

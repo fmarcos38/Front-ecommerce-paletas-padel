@@ -4,7 +4,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: rgba(27, 16, 105, 0.866);
+    background-color: rgba(238, 235, 255, 0.866);
 }
 .ul-nav-inf{
     display: flex;
@@ -15,19 +15,11 @@
 .ul-nav-inf > li{
     margin: 0 10px;
     font-size: 20px;
-    color: var(--color-blanco);
+    font-weight: 500;
+    color: black;
 }
 /* estilos menú ADMIN */
-.navbar-item-admin {
-    position: relative;
-    margin-left: 30px;
-    color: var(--color-blanco);
-    cursor: pointer;
-}
-.navbar-item-admin:hover {
-    color: #ddd;
-}
-.dropdown-menu {
+.dropdown-menu-admin {
     position: absolute;
     top: 115%;
     left: 0;    
@@ -35,21 +27,26 @@
     margin: 0;
     padding: 0;
     width: 130px;
-    background-color: rgba(27, 16, 105, 0.866);
+    color: black;
+    background-color: #f1f1f1;
     z-index: 1000;
 }
-.dropdown-item {
+.dropdown-item-admin {
     padding: 0.5rem;
-    color: var(--color-blanco);
+    color: black;
     cursor: pointer;
 }
-.dropdown-item:hover {
+.dropdown-item-admin:hover {
     background-color: #555;
 }
 .link-menu {
     text-decoration: none;
+    color: black;
 }
-
+.link-navbar-admin{
+    text-decoration: none;
+    color: black;
+}
 /* responsive */
 @media screen and (max-width: 800px){
     .fila-inf{
