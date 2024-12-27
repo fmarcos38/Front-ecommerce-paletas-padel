@@ -6,6 +6,7 @@ function FormCreaProducto({operacion}) {
     const [nombre, setNombre] = React.useState('');
     const [precio, setPrecio] = React.useState(null);
     const [imagenes, setImagenes] = React.useState([]);
+    const [descripcion, setDescripcion] = React.useState('');
     const [vistaPrevia, setVistaPrevia] = React.useState([]);//vista previa
     const [errors, setErrors] = React.useState({});
 
@@ -25,6 +26,9 @@ function FormCreaProducto({operacion}) {
             url: URL.createObjectURL(file),
         }));
         setVistaPrevia(previews);
+    };
+    const handleChangeDescripcion = (e) => {
+        setDescripcion(e.target.value);
     };
     //funcion validar datos
     const validarDatos = () => {
@@ -53,6 +57,27 @@ function FormCreaProducto({operacion}) {
 
     return (
         <form onSubmit={onsubmit} className='form-crea-prod'>
+            {/* imagen */}
+            <div className='cont-imagen'>
+                <label className='label-prod'>Imagen</label>
+                <input 
+                    type='file' 
+                    name='imagen'
+                    multiple
+                    accept="image/*"
+                    onChange={handleChangeImagen}
+                    className='input-crea-prod'
+                />
+                {errors.imagenes && <p className='error'>{errors.imagenes}</p>}
+                {/* vista previa */}
+                <div className='cont-vista-previa'>
+                    {
+                        vistaPrevia?.map((img) => (
+                            <img key={img.url} src={img.url} alt={img.file.name} className='img-vista-previa' />
+                        ))
+                    }
+                </div>
+            </div>
             <div className='cont-nombre'>
                 <label className='label-prod'>Nombre producto</label>
                 <input 
@@ -76,26 +101,15 @@ function FormCreaProducto({operacion}) {
                 />
                 {errors.precio && <p className='error'>{errors.precio}</p>}
             </div>
-            {/* imagen */}
-            <div className='cont-imagen'>
-                <label className='label-prod'>Imagen</label>
-                <input 
-                    type='file' 
-                    name='imagen'
-                    multiple
-                    accept="image/*"
-                    onChange={handleChangeImagen}
-                    className='input-crea-prod'
+            {/* descripción */}
+            <div className='cont-descripcion'>
+                <label className='label-prod'>Descripción</label>
+                <textarea 
+                    name='descripcion'
+                    value={descripcion}
+                    onChange={handleChangeDescripcion}
+                    className='input-crea-descrip'
                 />
-                {errors.imagenes && <p className='error'>{errors.imagenes}</p>}
-                {/* vista previa */}
-                <div className='cont-vista-previa'>
-                    {
-                        vistaPrevia?.map((img) => (
-                            <img key={img.url} src={img.url} alt={img.file.name} className='img-vista-previa' />
-                        ))
-                    }
-                </div>
             </div>
             {/* botón crear/modificar */}
             <button type='submit' className='btn-crea-prod'>
