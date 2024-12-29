@@ -1,7 +1,7 @@
 import React from 'react';
 import './styles.css';
 
-function FormCreaProducto({operacion}) {
+function FormCreaProducto({operacion, onsubmit}) {
 
     const [nombre, setNombre] = React.useState('');
     const [precio, setPrecio] = React.useState(null);
@@ -33,7 +33,7 @@ function FormCreaProducto({operacion}) {
     //funcion validar datos
     const validarDatos = () => {
         let errores = {};
-        if (!nombre.trim()) {
+        if (!nombre) {
             errores.nombre = 'El nombre es obligatorio';
         }
         if (!precio) {
@@ -49,14 +49,16 @@ function FormCreaProducto({operacion}) {
         }
         return true;
     };
-
-    const onSubmit = (e) => {
+    //igualmente a pesar de que recibo del padre la función onsubmit, la vuelvo a definir acá
+    const handleOnSubmit = (e) => {
         e.preventDefault();
-    };
-
+        if (validarDatos()) {
+            onsubmit({nombre, precio, descripcion, imagenes});
+        }
+    }
 
     return (
-        <form onSubmit={onsubmit} className='form-crea-prod'>
+        <form onSubmit={handleOnSubmit} className='form-crea-prod'>
             {/* imagen */}
             <div className='cont-imagen'>
                 <label className='label-prod'>Imagen</label>

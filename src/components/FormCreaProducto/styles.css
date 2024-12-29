@@ -65,7 +65,11 @@
     color: white;
     cursor: pointer;
 }
-
+.error{
+    color: red;
+    font-size: 15px;
+    margin: 0;
+}
 /* responsive */
 @media screen and (max-width: 768px){
     .form-crea-prod{

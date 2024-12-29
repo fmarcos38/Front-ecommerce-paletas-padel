@@ -1,6 +1,5 @@
 import React, { useEffect } from "react";
 import { createContext } from "react";
-import { userData } from "../localStorage";
 
 //creo contexto
 export const AppContext = createContext();
