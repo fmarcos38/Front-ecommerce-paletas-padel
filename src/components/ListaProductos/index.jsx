@@ -9,7 +9,17 @@ function ListaProductos({productos}) {
         <>
             {
                 productos?.map(p => (
-                    <Card key={p.id} nombre={p.nombre} precio={p.precio} imagenes={p.imagenes} />
+                    <Card key={p.id} 
+                        id={p.id}
+                        nombre={p.nombre} 
+                        precio={p.precio} 
+                        imagenes={p.imagenes}
+                        agotado={p.agotado}
+                        enPromo={p.enPromo}
+                        porcentajeDescuento={p.porcentajeDescuento}
+                        /* categoriaProducto={p.categoriaProducto} */
+                        /*categoriaMarca={p.categoriaMarca} */
+                    />
                 ))
             }
         </>

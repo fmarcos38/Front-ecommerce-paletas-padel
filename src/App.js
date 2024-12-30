@@ -9,6 +9,7 @@ import CreaProducto from './pages/CreaProducto/CreaProducto';
 import EditaProd from './pages/EditaProd';
 import ListaProdsAdminPage from './pages/ListaProdsAdminPage';
 import './App.css';
+import DetalleProdPage from './pages/DetalleProdPage';
 
 
 
@@ -24,7 +25,8 @@ function App() {
         <Routes>
             <Route path="/" element={<Home/>} />
             <Route path="/registrarse" element={<RegistrarsePage/>} />
-            <Route path = '/admin/creaProd' element={<CreaProducto />} />
+            <Route path='/admin/creaProd' element={<CreaProducto />} />
+            <Route path='/detalleProd/:id' element={<DetalleProdPage />} />
             <Route path='/admin/listaPropsAdmin' element={<ListaProdsAdminPage />} />
             <Route path='/admin/editaProd/:id' element={<EditaProd />} />
         </Routes>
