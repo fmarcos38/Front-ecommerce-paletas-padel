@@ -7,7 +7,7 @@
     justify-content: center;
     align-items: center;
     margin-bottom: 10px;
-    background-color: white;
+    background-color: rgb(124, 123, 123);
 }
 .cont-btn-fav-card{
     position: absolute;
@@ -21,4 +21,19 @@
     background-color: white;
     border: none;
     cursor: pointer;
+}
+.cont-carrusel-card{
+    width: 90%;
+    height: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.img-card{
+    width: 200px;
+    height: 200px;
+}
+.nombre-pala{
+    font-size: 20px;
+    font-weight: bold;
 }

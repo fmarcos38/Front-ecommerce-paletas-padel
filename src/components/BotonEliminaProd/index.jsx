@@ -1,14 +1,15 @@
 import React from 'react'
 import { useDispatch } from 'react-redux';
-//import { eliminaProp, getProps } from '../../redux/actions';
+
 import Swal from 'sweetalert2';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import './estilos.css';
+import { deleteProducto, getProductos } from '../../redux/actions/actions';
 
 
 function BotonEliminaProp({_id}) {
     
-    //const dispatch = useDispatch();
+    const dispatch = useDispatch();
     
     const handleOnClick = () => {
         Swal.fire({
@@ -21,9 +22,9 @@ function BotonEliminaProp({_id}) {
             confirmButtonText: 'Sí, elimina!'
         }).then((result) => {
             if (result.isConfirmed) {
-                //dispatch(eliminaProp(_id));
+                dispatch(deleteProducto(_id));
                 //actualizo la lista de props
-                //dispatch(getProps());
+                dispatch(getProductos());
                 Swal.fire(
                     'Eliminado!',
                     'El prod ha sido eliminado.',

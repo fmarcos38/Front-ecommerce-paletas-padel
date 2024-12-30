@@ -27,16 +27,57 @@
     align-items: center;
     background-color: black;
 }
+/* ofertas */
+.cont-ofertas-home{
+    width: 90%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+}
+/* cont-filt y prods */
 .lista-paletas{
+    width: 90%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+    margin-bottom: 20px;
+}
+.cont-filtros-lista-prods{
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: start;
+    align-items: start;
+}
+/* estilos filtros */
+.cont-filtros-home{
+    width: 20%;
+    background-color: #ec2b62;
+}
+/* estilos titulo y lista prods */
+.cont-lista-paletas-home{
     width: 80%;
     height: auto;
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
+    justify-content: start;
     align-items: center;
-    margin-bottom: 20px;
-    background-color: #0c0463;
+    background-color: #1fc757;
 }
 .titulo-lista-paletas{
     color: white;
+    margin: 0;
+}
+.cont-lista-productos{
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center;
 }

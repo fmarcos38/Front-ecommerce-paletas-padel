@@ -33,7 +33,7 @@ tr:hover {
 }
 
 .img-tabla-prod {
-    width: 100px;
-    height: auto;
+    width: 80px;
+    height: 80px;
     object-fit: cover;
 }

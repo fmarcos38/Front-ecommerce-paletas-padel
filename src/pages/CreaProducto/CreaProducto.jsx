@@ -1,34 +1,32 @@
 import React, { useContext } from 'react'
+import { AppContext } from '../../context';
 import FormCreaProducto from '../../components/FormCreaProducto';
 import Swal from 'sweetalert2';
 import './styles.css';
-import { AppContext } from '../../context';
 
-function CreaProducto() {
+
+function CreaProducto() { console.log('CreaProducto renderizado');
+
 
     const context = useContext(AppContext);
 
     const onSubmit = async(data) => {
         
         const formData = new FormData();
-        formData.append('data', JSON.stringify({
-            nombre: data.nombre, 
-            precio: data.precio, 
-            descripcion: data.descripcion,
-            imagenes: data.imagenes,
-        }));
+        formData.append('data', JSON.stringify(data));
+
         data.imagenes.forEach((imagen) => {
             formData.append('imagenes', imagen);
         });
         
         try{
-            const response = await fetch('http://localhost:3001/productos', {
+            const response = await fetch('http://localhost:3002/producto', {
                 method: 'POST',
                 body: formData,
             });
             if(response.ok){
                 Swal.fire({
-                    title: 'Propiedad creada con éxito',
+                    title: 'Producto creado con éxito',
                     icon: 'success',
                     confirmButtonText: 'Aceptar',
                     confirmButtonColor: '#3f51b5',

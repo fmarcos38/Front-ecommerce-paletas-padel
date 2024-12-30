@@ -1,19 +1,12 @@
 import React from 'react';
 import ArrowCircleLeftIcon from '@mui/icons-material/ArrowCircleLeft';
 import ArrowCircleRightIcon from '@mui/icons-material/ArrowCircleRight';
-import bolsoMasPaleta from '../../imagenes/bolso-mas-paleta.jpg';
-import paletasNox from '../../imagenes/paletas-nox.jpg';
-import bullNox from '../../imagenes/bull-nox.jpg';
+
 import './styles.css';
 
-function Carrusel() {
+function Carrusel({imagenes}) {
 
-    //array de imgs
-    const arrImgs = [
-        bolsoMasPaleta,
-        paletasNox,
-        bullNox
-    ];
+    
     //estado para guardar el index de la imagen actual
     const [index, setIndex] = React.useState(0);
 
@@ -24,7 +17,7 @@ function Carrusel() {
     };
     //funcion adelante
     const onClickAdelante = () => {
-        if(index === arrImgs.length - 1){
+        if(index === imagenes?.length - 1){
             setIndex(0);
         }else{
             setIndex(index + 1);
@@ -34,14 +27,14 @@ function Carrusel() {
     //efecto para pasar las imágenes automáticamente
     React.useEffect(() => {
         const interval = setInterval(() => {
-            if(index === arrImgs.length - 1){
+            if(index === imagenes?.length - 1){
                 setIndex(0);
             }else{
                 setIndex(index + 1);
             }
         }, 5000);
         return () => clearInterval(interval);
-    }, [arrImgs.length, index]);
+    }, [imagenes?.length, index]);
 
 
     return (
@@ -52,7 +45,7 @@ function Carrusel() {
             </button>
             {/* imágenes */}
             <div className='cont-imgs'>
-                <img src={arrImgs[index]} alt='' className='img-carrusel' />
+                <img src={imagenes[index]} alt='' className='img-carrusel' />
             </div>
             {/* botón sgt */}
             <button onClick={onClickAdelante} className='btn-sgt'>

@@ -39,7 +39,7 @@ function NavbarInf() {
                                             <NavLink to='/admin/creaProd' className='link-navbar-admin'>Crea Producto</NavLink>
                                         </li>
                                         <li className='dropdown-item'>
-                                            <NavLink to='/admin/listaProductoAdmin' className='link-navbar-admin'>Lista Propiedades</NavLink>
+                                            <NavLink to='/admin/listaPropsAdmin' className='link-navbar-admin'>Lista Propiedades</NavLink>
                                         </li>
                                     </ul>
                                 )

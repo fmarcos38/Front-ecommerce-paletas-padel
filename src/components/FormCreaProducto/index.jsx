@@ -1,7 +1,9 @@
 import React from 'react';
+import Quill from 'quill';
+import 'quill/dist/quill.snow.css'; // Estilos de Quill
 import './styles.css';
 
-function FormCreaProducto({operacion, onsubmit}) {
+function FormCreaProducto({operacion, onSubmit}) {
 
     const [nombre, setNombre] = React.useState('');
     const [precio, setPrecio] = React.useState(null);
@@ -9,6 +11,7 @@ function FormCreaProducto({operacion, onsubmit}) {
     const [descripcion, setDescripcion] = React.useState('');
     const [vistaPrevia, setVistaPrevia] = React.useState([]);//vista previa
     const [errors, setErrors] = React.useState({});
+    const quillRef = React.useRef(null);
 
     const handleChangeNombre = (e) => {
         setNombre(e.target.value);
@@ -26,9 +29,6 @@ function FormCreaProducto({operacion, onsubmit}) {
             url: URL.createObjectURL(file),
         }));
         setVistaPrevia(previews);
-    };
-    const handleChangeDescripcion = (e) => {
-        setDescripcion(e.target.value);
     };
     //funcion validar datos
     const validarDatos = () => {
@@ -53,9 +53,42 @@ function FormCreaProducto({operacion, onsubmit}) {
     const handleOnSubmit = (e) => {
         e.preventDefault();
         if (validarDatos()) {
-            onsubmit({nombre, precio, descripcion, imagenes});
+            const data = {
+                nombre,
+                precio,
+                descripcion,
+                imagenes,
+            };
+            onSubmit(data);
         }
     }
+
+    React.useEffect(() => {
+        if(!quillRef.current) return;
+
+        const quillInstance = new Quill(quillRef.current, {
+            theme: 'snow',
+            modules: {
+                toolbar: [
+                    ['bold', 'italic', 'underline'], // Formatos básicos
+                    [{ 'size': ['small', false, 'large', 'huge'] }], // Tamaño de texto
+                    [{ 'align': [] }], // Alineación
+                    ['link', 'image'], // Agregar links e imágenes
+                ],
+            },
+        });
+    
+        // Escuchar cambios en el contenido del editor
+        quillInstance.on('text-change', () => {
+            setDescripcion(quillInstance.root.innerHTML);
+        });
+    
+        return () => {
+            quillInstance.off('text-change'); // Limpia los listeners al desmontar
+        };
+    }, []);
+    
+
 
     return (
         <form onSubmit={handleOnSubmit} className='form-crea-prod'>
@@ -106,12 +139,8 @@ function FormCreaProducto({operacion, onsubmit}) {
             {/* descripción */}
             <div className='cont-descripcion'>
                 <label className='label-prod'>Descripción</label>
-                <textarea 
-                    name='descripcion'
-                    value={descripcion}
-                    onChange={handleChangeDescripcion}
-                    className='input-crea-descrip'
-                />
+                {/* cont para texto editable */}
+                <div ref={quillRef} className="input-crea-descrip"></div>
             </div>
             {/* botón crear/modificar */}
             <button type='submit' className='btn-crea-prod'>
