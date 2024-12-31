@@ -8,10 +8,9 @@ import Footbar from './components/Footbar';
 import CreaProducto from './pages/CreaProducto/CreaProducto';
 import EditaProd from './pages/EditaProd';
 import ListaProdsAdminPage from './pages/ListaProdsAdminPage';
-import './App.css';
 import DetalleProdPage from './pages/DetalleProdPage';
-
-
+import './App.css';
+import PoliticasDeCambioPage from './pages/PoliticasCambio';
 
 function App() {
   return (
@@ -27,6 +26,7 @@ function App() {
             <Route path="/registrarse" element={<RegistrarsePage/>} />
             <Route path='/admin/creaProd' element={<CreaProducto />} />
             <Route path='/detalleProd/:id' element={<DetalleProdPage />} />
+            <Route path='/policasDeCambio' element={<PoliticasDeCambioPage />} />
             <Route path='/admin/listaPropsAdmin' element={<ListaProdsAdminPage />} />
             <Route path='/admin/editaProd/:id' element={<EditaProd />} />
         </Routes>
