@@ -4,4 +4,5 @@ export const LOADING = "LOADING";
 export const GET_PRODUCTOS = "GET_PRODUCTOS";
 export const GET_PRODUCTO = "GET_PRODUCTO";
 export const GET_PRODUCTO_BY_ID = "GET_PRODUCTO_BY_ID";
+export const RESET_PRODUCTO = "RESET_PRODUCTO";
 export const ELIMINA_PRODUCTO = "ELIMINA_PRODUCTO";

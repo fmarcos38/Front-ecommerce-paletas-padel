@@ -4,7 +4,7 @@ import ArrowCircleRightIcon from '@mui/icons-material/ArrowCircleRight';
 
 import './styles.css';
 
-function Carrusel({imagenes}) {
+function CarruselTemporizador({imagenes}) {
 
     
     //estado para guardar el index de la imagen actual
@@ -55,4 +55,4 @@ function Carrusel({imagenes}) {
     )
 }
 
-export default Carrusel
+export default CarruselTemporizador

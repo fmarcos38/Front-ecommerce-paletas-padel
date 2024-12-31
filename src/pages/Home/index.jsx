@@ -1,7 +1,7 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getProductos } from '../../redux/actions/actions';
-import Carrusel from '../../components/Carrusel';
+import Carrusel from '../../components/CarruselTemporizador';
 import ListaProductos from '../../components/ListaProductos';
 import bolsoMasPaleta from '../../imagenes/bolso-mas-paleta.jpg';
 import paletasNox from '../../imagenes/paletas-nox.jpg';

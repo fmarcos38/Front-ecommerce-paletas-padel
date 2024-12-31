@@ -1,6 +1,6 @@
 import axios from "axios";
 import { URL } from "../../urls";
-import { LOADING, GET_PRODUCTOS, GET_PRODUCTO_BY_ID } from "./actionTypes";
+import { LOADING, GET_PRODUCTOS, GET_PRODUCTO_BY_ID, RESET_PRODUCTO } from "./actionTypes";
 
 //registrarse
 export const registrarse = (data) => {
@@ -22,10 +22,16 @@ export const getProductos = () => {
 
 //trae por ID
 export const getProductoById = (id) => {
-    return async function(dispatch) { 
-        dispatch({type: LOADING});
-        const resp = await axios.get(`${URL}/producto/${id}`);
+    return async function(dispatch) {
+        const resp = await axios.get(`${URL}/producto/${id}`); 
         dispatch({type: GET_PRODUCTO_BY_ID, payload: resp.data});
+    }
+}
+
+//reset producto
+export const resetProducto = () => {
+    return {
+        type: RESET_PRODUCTO,
     }
 }
 //elimina producto
