@@ -1,4 +1,7 @@
-import React from 'react'
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { getProductosRangoPrecio } from '../../redux/actions/actions';
+import ListaProductos from '../ListaProductos';
 import CarruselDetalle from '../CarruselDetalle';
 import StoreIcon from '@mui/icons-material/Store';
 import LocalShippingIcon from '@mui/icons-material/LocalShipping';
@@ -6,7 +9,25 @@ import CreditCardIcon from '@mui/icons-material/CreditCard';
 import './styles.css';
 
 
+
 function DetalleProd({producto}) {
+
+    //me traigo productos en un rango de precio +- $30.000 al prod seleccionado
+    const prodsPrecios = useSelector(state => state.productosRangoPrecio);
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, []);
+
+    //efecto para traer productos en un rango de precio +- $30.000 al prod seleccionado
+    useEffect(() => {
+        if(producto) {
+            const precioBase = producto.precio - 30000;
+            const precioTope = producto.precio + 30000;
+            dispatch(getProductosRangoPrecio(4, 0, precioBase, precioTope));//se puede variar la cant q trae con limit
+        }
+    }, [dispatch, producto]);
     
     return (
         <div className='cont-detalle-prod'>
@@ -79,7 +100,10 @@ function DetalleProd({producto}) {
             </div>
             {/* te puede interesar */}
             <div className='cont-te-puede-interesar'>
-                TE puede interesar
+                <h2>Otros productos que te pueden interesar</h2>
+                <div className='cont-prods-te-puede-interesar'>
+                    <ListaProductos productos={prodsPrecios}/>
+                </div>
             </div>
         </div>
     )
