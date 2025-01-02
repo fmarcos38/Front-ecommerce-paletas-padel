@@ -33,24 +33,15 @@ function DetalleProd({producto}) {
         <div className='cont-detalle-prod'>
             {/* prod y carrito */}
             <div className='cont-producto-Y-carrito'>
-                {/* col-1 */}
-                <div className='cont-producto-Y-carrito-col-1'>
+                {/* fila-1 */}
+                <div className='cont-fila-1'>
                     <div className='img-prod-detalle'>
-                        {producto?.imagenes && <CarruselDetalle imagenes={producto.imagenes} />}
+                        {
+                            producto?.imagenes && <CarruselDetalle imagenes={producto.imagenes} />
+                        }
                     </div>
-                    <div className='desc-prod-detalle'>
-                        <h2>Descripcion del producto</h2>
-                        {/* embeber código html en etiqta <p>*/}
-                        <p 
-                            dangerouslySetInnerHTML={{ __html: producto?.descripcion }}
-                            style={{padding: '0 10px'}}
-                        ></p>
-                    </div>
-                </div>
 
-                {/* col-2 */}
-                <div className='cont-col-2'>
-                    <div className='cont-producto-Y-carrito-col-2'>
+                    <div className='cont-carrito-fila-1'>
                         <div className='info-prod-detalle'>
                             <h2 className='nombre-prod-detalle'>{producto?.nombre}</h2>
                             <p className='precio-prod-detalle'>Precio: ${producto?.precio}</p>
@@ -74,39 +65,56 @@ function DetalleProd({producto}) {
                             <button className='btn-agrega-carrito-detalle'>Agregar al carrito</button>
                         </div>
                     </div>
-                    {/* medios de pagos */}
-                    <div className='con-medios-de-pago'>
-                        <h2>Medios de pago</h2>
-                        <div>
-                            <h4>Con tarjeta de crédito</h4>
-                            <img src='https://res.cloudinary.com/dyoyk3bwj/image/upload/v1735673153/tarjetas_n9jsg7.png' alt='logo-mercado-pago' />
+                </div>
+
+                {/* fila-2 */}
+                <div className='cont-fila-2'>
+                    {/* descripción */}
+                    <div className='desc-prod-detalle'>
+                        <h2 className='titulo-descrip'>Descripcion del producto</h2>
+                        {/* embeber código html en etiqta <p>*/}
+                        <p 
+                            dangerouslySetInnerHTML={{ __html: producto?.descripcion }}
+                            style={{padding: '0 10px'}}
+                        ></p>
+                    </div>
+                    {/* cont Medios de pago y Politicas */}
+                    <div className='cont-medios-pago-politicas'>
+                        {/* medios de pago */}
+                        <div className='con-medios-de-pago'>
+                            <h2>Medios de pago</h2>
+                            <div>
+                                <h4>Con tarjeta de crédito</h4>
+                                <img src='https://res.cloudinary.com/dyoyk3bwj/image/upload/v1735673153/tarjetas_n9jsg7.png' alt='logo-mercado-pago' className='img-medios-de-pago'/>
+                            </div>
+                            <div>
+                                <h4>Con tarjeta de débito</h4>
+                                <img src='https://res.cloudinary.com/dyoyk3bwj/image/upload/v1735673153/tarjetas_n9jsg7.png' alt='logo-mercado-pago' className='img-medios-de-pago'/>
+                            </div>
+                            <div>
+                                <h4>Transferencias</h4>
+                                <img src='https://res.cloudinary.com/dyoyk3bwj/image/upload/v1735673153/tarjetas_n9jsg7.png' alt='logo-mercado-pago' className='img-medios-de-pago'/>
+                            </div>
                         </div>
-                        <div>
-                            <h4>Con tarjeta de débito</h4>
-                            <img src='https://res.cloudinary.com/dyoyk3bwj/image/upload/v1735673153/tarjetas_n9jsg7.png' alt='logo-mercado-pago' />
-                        </div>
-                        <div>
-                            <h4>Transferencias</h4>
-                            <img src='https://res.cloudinary.com/dyoyk3bwj/image/upload/v1735673153/tarjetas_n9jsg7.png' alt='logo-mercado-pago' />
+                        {/* politicas de cambio/devolucion */}
+                        <div className='cont-politicas-cambio-devolucion'>
+                            <a href='/policasDeCambio' className='link-politicas'>
+                                Políticas de Garantías, Cambios y Devoluciones
+                            </a>
                         </div>
                     </div>
-                    {/* politicas de cambio/devolucion */}
-                    <div className='cont-politicas-cambio-devolucion'>
-                        <a href='/policasDeCambio' className='link-politicas'>
-                            Políticas de Garantías, Cambios y Devoluciones
-                        </a>
+                </div>
+
+                {/* fila 3 */}
+                <div className='cont-fila-3'>
+                    <h2 className='titulo-otros-prods'>Otros productos que te pueden interesar</h2>
+                    <div className='cont-prods-te-puede-interesar'>
+                        <ListaProductos productos={prodsPrecios} />
                     </div>
                 </div>
-            </div>
-            {/* te puede interesar */}
-            <div className='cont-te-puede-interesar'>
-                <h2>Otros productos que te pueden interesar</h2>
-                <div className='cont-prods-te-puede-interesar'>
-                    <ListaProductos productos={prodsPrecios}/>
-                </div>
-            </div>
+            </div>           
         </div>
     )
 }
 
-export default DetalleProd
+export default DetalleProd;

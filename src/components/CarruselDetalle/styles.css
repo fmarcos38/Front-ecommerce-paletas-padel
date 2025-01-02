@@ -8,3 +8,9 @@
 .img-carrusel-detalle{
     height: 500px;
 }
+
+@media screen and (max-width: 650px){
+    .img-carrusel-detalle{
+        height: 400px;
+    }
+}
