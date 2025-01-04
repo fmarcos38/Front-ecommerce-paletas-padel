@@ -1,10 +1,11 @@
-import { LOADING, GET_PRODUCTOS, GET_PRODUCTO_BY_ID, RESET_PRODUCTO, GET_PRODS_RANGO_PRECIO } from '../actions/actionTypes'
+import { LOADING, GET_PRODUCTOS, GET_PRODUCTO_BY_ID, RESET_PRODUCTO, GET_PRODS_RANGO_PRECIO, OPEN_CLOSE_MODAL } from '../actions/actionTypes'
 
 const initialStore = {
     productos: [],
     totProdos: 0,
     producto: {},
     productosRangoPrecio: [],
+    isModalOpen: false,
     loading: false,
 }
 
@@ -38,6 +39,12 @@ export default function rootReducer (state = initialStore, action) {
                 ...state,
                 productosRangoPrecio: action.payload,
                 loading: false
+            }
+        case OPEN_CLOSE_MODAL:
+            console.log('state:', state.isModalOpen);
+            return {
+                ...state,
+                isModalOpen: !state.isModalOpen,
             }
         default:
             return state

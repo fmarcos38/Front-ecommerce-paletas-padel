@@ -1,6 +1,6 @@
 import axios from "axios";
 import { URL } from "../../urls";
-import { LOADING, GET_PRODUCTOS, GET_PRODUCTO_BY_ID, RESET_PRODUCTO, GET_PRODS_RANGO_PRECIO } from "./actionTypes";
+import { LOADING, GET_PRODUCTOS, GET_PRODUCTO_BY_ID, RESET_PRODUCTO, GET_PRODS_RANGO_PRECIO, OPEN_CLOSE_MODAL } from "./actionTypes";
 
 //registrarse
 export const registrarse = (data) => {
@@ -51,7 +51,7 @@ export const getProductos = (limit, offset, categoria, marca, enPromo, precioMin
 
 //trae productos +- $30.000 al prod seleccionado
 export const getProductosRangoPrecio = (limit, offset, precioBase, precioTope) => {
-    return async function(dispatch) { console.log('limit', limit, 'offset', offset, 'precioBase', precioBase, 'precioTope', precioTope);
+    return async function(dispatch) { 
         dispatch({type: LOADING});
         const resp = await axios.get(`${URL}/producto/rangoPrecio?limit=${limit}&offset=${offset}&precioMin=${precioBase}&precioMax=${precioTope}`);
         dispatch({type: GET_PRODS_RANGO_PRECIO, payload: resp.data});
@@ -78,5 +78,13 @@ export const deleteProducto = (id) => {
     return async function(dispatch){
         await axios.delete(`${URL}/producto/${id}`);
         dispatch({type: 'DELETE_PRODUCTO', payload: id});
+    }
+}
+
+//------MODAL IMGs GRANDES---------------------
+//abre y cierra el modal
+export const openCloseModal = () => { 
+    return {
+        type: OPEN_CLOSE_MODAL,
     }
 }

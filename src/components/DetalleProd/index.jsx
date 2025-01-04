@@ -1,19 +1,22 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getProductosRangoPrecio } from '../../redux/actions/actions';
+import { formatMoney } from '../../utils';
 import ListaProductos from '../ListaProductos';
 import CarruselDetalle from '../CarruselDetalle';
 import StoreIcon from '@mui/icons-material/Store';
 import LocalShippingIcon from '@mui/icons-material/LocalShipping';
 import CreditCardIcon from '@mui/icons-material/CreditCard';
+import BotonFavorito from '../BotonFavorito';
 import './styles.css';
-
+import ModalImgGrande from '../ModalImgGrande';
 
 
 function DetalleProd({producto}) {
 
     //me traigo productos en un rango de precio +- $30.000 al prod seleccionado
     const prodsPrecios = useSelector(state => state.productosRangoPrecio);
+    const isModalOpen = useSelector(state => state.isModalOpen);
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -42,17 +45,25 @@ function DetalleProd({producto}) {
                     </div>
 
                     <div className='cont-carrito-fila-1'>
-                        <div className='info-prod-detalle'>
-                            <h2 className='nombre-prod-detalle'>{producto?.nombre}</h2>
-                            <p className='precio-prod-detalle'>Precio: ${producto?.precio}</p>
+                        <div className='cont-fav-prod-detalle'>
+                            <BotonFavorito producto={producto} />
+                        </div>
+                        <div className='info-prod-detalle'>                            
+                            <div className='cont-nombre-y-precio-prod-detalle'>
+                                <h2 className='nombre-prod-detalle'>{producto?.nombre}</h2>
+                                <p className='precio-prod-detalle'>${formatMoney(producto?.precio)}</p>
+                            </div>
+
                             <div className='cont-retira-prod-detalle'>
                                 <StoreIcon />
                                 <p className='retira-prod-detalle'>Retira gratis por nuestro domicilio</p>
                             </div>
+
                             <div className='cont-envio-prod-detalle'>
                                 <LocalShippingIcon />
                                 <p className='envio-prod-detalle'>Envio a todo el pais</p>
                             </div>
+
                             <div className='cont-medios-pago-prod-detalle'>
                                 <CreditCardIcon />
                                 <p className='medios-pago-prod-detalle'>Medios de pago</p>
@@ -112,6 +123,15 @@ function DetalleProd({producto}) {
                         <ListaProductos productos={prodsPrecios} />
                     </div>
                 </div>
+
+                {/* Modal imagen grande */}
+                {
+                    isModalOpen && 
+                    <div className='cont-modal-img-grande'>
+                        <ModalImgGrande imagenes={producto?.imagenes} />
+                    </div>
+                }
+                
             </div>           
         </div>
     )

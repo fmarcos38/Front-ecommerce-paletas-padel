@@ -1,13 +1,14 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
+import { openCloseModal } from '../../redux/actions/actions';
 import ArrowCircleLeftIcon from '@mui/icons-material/ArrowCircleLeft';
 import ArrowCircleRightIcon from '@mui/icons-material/ArrowCircleRight';
 import './styles.css';
 
 function CarruselDetalle({imagenes}) {
 
-    
-    //estado para guardar el index de la imagen actual
-    const [index, setIndex] = React.useState(0);
+    const [index, setIndex] = React.useState(0); //estado para guardar el index de la imagen actual
+    const dispatch = useDispatch();
 
     //función atrás	
     const onClickAtras = () => {
@@ -22,6 +23,11 @@ function CarruselDetalle({imagenes}) {
             setIndex(index + 1);
         }
     }
+    //función para abrir y cerrar el modal
+    const onClickModal = () => {
+        dispatch(openCloseModal());
+    }
+
 
     return (
         <div className='cont-carrusel'>
@@ -31,7 +37,7 @@ function CarruselDetalle({imagenes}) {
             </button>
             {/* imágenes */}
             <div className='cont-imgs-detalle'>
-                <img src={imagenes[index]} alt='' className='img-carrusel-detalle' />
+                <img src={imagenes[index]} alt='' className='img-carrusel-detalle' onClick={()=>onClickModal()}/>
             </div>
             {/* botón sgt */}
             <button onClick={onClickAdelante} className='btn-sgt'>
