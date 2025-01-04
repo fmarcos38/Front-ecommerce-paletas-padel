@@ -5,7 +5,7 @@ import Swal from 'sweetalert2';
 import './styles.css';
 
 
-function CreaProducto() { console.log('CreaProducto renderizado');
+function CreaProducto() { 
 
 
     const context = useContext(AppContext);

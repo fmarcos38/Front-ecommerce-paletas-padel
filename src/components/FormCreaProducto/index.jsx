@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import Quill from 'quill';
 import 'quill/dist/quill.snow.css'; // Estilos de Quill
 import './styles.css';
@@ -10,6 +10,10 @@ function FormCreaProducto({operacion, onSubmit}) {
     const [imagenes, setImagenes] = React.useState([]);
     const [descripcion, setDescripcion] = React.useState('');
     const [vistaPrevia, setVistaPrevia] = React.useState([]);//vista previa
+    const [categoria, setCategoria] = React.useState('');
+    //tipo de categorías
+    const cat = ['Paletas', 'Bolsos', 'Zapatillas'];
+    const [stock, setStock] = React.useState(null);
     const [errors, setErrors] = React.useState({});
     const quillRef = React.useRef(null);
 
@@ -30,6 +34,12 @@ function FormCreaProducto({operacion, onSubmit}) {
         }));
         setVistaPrevia(previews);
     };
+    const handleChangeCategoria = (e) => {
+        setCategoria(e.target.value);
+    };
+    const handleChangeStock = (e) => {
+        setStock(e.target.value);
+    };
     //funcion validar datos
     const validarDatos = () => {
         let errores = {};
@@ -41,6 +51,12 @@ function FormCreaProducto({operacion, onSubmit}) {
         }
         if (imagenes.length === 0) {
             errores.imagenes = 'La imagen es obligatoria';
+        }
+        if(!categoria){
+            errores.categoria = 'La categoría es obligatoria';
+        }
+        if(!stock){
+            errores.stock = 'El stock es obligatorio';
         }
         //si hay errores
         if (Object.keys(errores).length > 0) {
@@ -58,36 +74,34 @@ function FormCreaProducto({operacion, onSubmit}) {
                 precio,
                 descripcion,
                 imagenes,
+                categoria,
+                stock
             };
             onSubmit(data);
         }
     }
+    //useEffect para inicializar el editor de texto
+    useEffect(() => {
+        if (quillRef.current && !quillRef.current.__quillInstance) {
+            const quillInstance = new Quill(quillRef.current, {
+                theme: 'snow',
+                modules: {
+                    toolbar: [
+                        ['bold', 'italic', 'underline'], // Formatos básicos
+                        [{ 'size': ['small', false, 'large', 'huge'] }], // Tamaño de texto
+                        [{ 'align': [] }], // Alineación
+                        ['link', 'image'], // Agregar links e imágenes
+                    ],
+                },
+            });
 
-    React.useEffect(() => {
-        if(!quillRef.current) return;
+            quillInstance.on('text-change', () => {
+                setDescripcion(quillInstance.root.innerHTML);
+            });
 
-        const quillInstance = new Quill(quillRef.current, {
-            theme: 'snow',
-            modules: {
-                toolbar: [
-                    ['bold', 'italic', 'underline'], // Formatos básicos
-                    [{ 'size': ['small', false, 'large', 'huge'] }], // Tamaño de texto
-                    [{ 'align': [] }], // Alineación
-                    ['link', 'image'], // Agregar links e imágenes
-                ],
-            },
-        });
-    
-        // Escuchar cambios en el contenido del editor
-        quillInstance.on('text-change', () => {
-            setDescripcion(quillInstance.root.innerHTML);
-        });
-    
-        return () => {
-            quillInstance.off('text-change'); // Limpia los listeners al desmontar
-        };
+            quillRef.current.__quillInstance = quillInstance;
+        }
     }, []);
-    
 
 
     return (
@@ -124,17 +138,48 @@ function FormCreaProducto({operacion, onSubmit}) {
                 />
                 {errors.nombre && <p className='error'>{errors.nombre}</p>}
             </div>
-            {/* precio */}
-            <div className='cont-precio'>
-                <label className='label-prod'>Precio</label>
-                <input 
-                    type='text' 
-                    name='precio'
-                    value={precio}
-                    onChange={handleChangePrecio}
-                    className='input-crea-prod'
-                />
-                {errors.precio && <p className='error'>{errors.precio}</p>}
+            {/* precio - categoría - stock*/}
+            <div className='cont-precio-cat-stock'>
+                <div className='cont-precio-cat'>
+                    <label className='label-prod'>Precio</label>
+                    <input
+                        type='text'
+                        name='precio'
+                        value={precio}
+                        onChange={handleChangePrecio}
+                        className='input-crea-precio'
+                    />
+                    {errors.precio && <p className='error'>{errors.precio}</p>}
+                </div>
+                <div className='cont-precio-cat'>
+                    <label className='label-prod'>Categoría</label>
+                    <select
+                        name='categoria'
+                        value={categoria}
+                        onChange={handleChangeCategoria}
+                        className='input-crea-cat'
+                    >
+                        <option value=''></option>
+                        {
+                            cat.map((c) => (
+                                <option key={c} value={c}>{c}</option>
+                            ))
+                        }
+                    </select>
+                    {errors.categoria && <p className='error'>{errors.categoria}</p>}
+                </div>
+                <div className='cont-precio-cat'>
+                    <label className='label-prod'>Stock</label>
+                    <input
+                        type='number'
+                        min='1'
+                        name='stock'
+                        value={stock}
+                        onChange={handleChangeStock}
+                        className='input-crea-stock'
+                    />
+                    {errors.stock && <p className='error'>{errors.stock}</p>}
+                </div>
             </div>
             {/* descripción */}
             <div className='cont-descripcion'>
