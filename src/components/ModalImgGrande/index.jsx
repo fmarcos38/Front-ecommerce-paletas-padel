@@ -1,6 +1,8 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import { openCloseModal } from '../../redux/actions/actions';
+import './styles.css';
+import CarruselModal from '../CarruselModal';
 
 function ModalImgGrande({imagenes}) {
     
@@ -14,7 +16,7 @@ function ModalImgGrande({imagenes}) {
         <div className='cont-modal-img-grande'>
             <button className='btn-cerrar-modal' onClick={onClickModal}>X</button>
             <div className='cont-img-grande'>
-                HOLA
+                <CarruselModal imagenes={imagenes} />
             </div>
         </div>
     )

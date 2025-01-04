@@ -2,3 +2,23 @@
   --color-azul: rgba(56, 32, 218, 0.866);
   --color-blanco: #ffffff;
 }
+
+/* botnes para los Carruseles */
+.btn-atras{
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+.btn-sgt{
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}

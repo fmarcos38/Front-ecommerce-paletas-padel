@@ -30,15 +30,15 @@ function CarruselDetalle({imagenes}) {
 
 
     return (
-        <div className='cont-carrusel'>
+        <div className='cont-carrusel-detalle'>
             {/* botón atrás */}
             <button onClick={onClickAtras} className='btn-atras'>
                 <ArrowCircleLeftIcon />
             </button>
             {/* imágenes */}
-            <div className='cont-imgs-detalle'>
+            {/* <div className='cont-imgs-detalle'> */}
                 <img src={imagenes[index]} alt='' className='img-carrusel-detalle' onClick={()=>onClickModal()}/>
-            </div>
+            {/* </div> */}
             {/* botón sgt */}
             <button onClick={onClickAdelante} className='btn-sgt'>
                 <ArrowCircleRightIcon />

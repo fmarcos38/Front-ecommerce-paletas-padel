@@ -1,6 +1,6 @@
 .cont-carrusel-detalle{
     position: relative;
-    max-width: 100%;
+    width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -9,6 +9,7 @@
     height: 500px;
     cursor: pointer;
 }
+
 
 @media screen and (max-width: 650px){
     .img-carrusel-detalle{
