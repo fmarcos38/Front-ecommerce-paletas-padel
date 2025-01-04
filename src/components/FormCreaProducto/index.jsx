@@ -2,20 +2,25 @@ import React, {useEffect} from 'react';
 import Quill from 'quill';
 import 'quill/dist/quill.snow.css'; // Estilos de Quill
 import './styles.css';
+import { useParams } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { getProductoById } from '../../redux/actions/actions';
 
 function FormCreaProducto({operacion, onSubmit}) {
 
+    const cat = ['Paletas', 'Bolsos', 'Zapatillas'];  //tipo de categorías
+    const {id} = useParams();
     const [nombre, setNombre] = React.useState('');
     const [precio, setPrecio] = React.useState(null);
     const [imagenes, setImagenes] = React.useState([]);
     const [descripcion, setDescripcion] = React.useState('');
-    const [vistaPrevia, setVistaPrevia] = React.useState([]);//vista previa
+    const [vistaPrevia, setVistaPrevia] = React.useState([]); //vista previa
     const [categoria, setCategoria] = React.useState('');
-    //tipo de categorías
-    const cat = ['Paletas', 'Bolsos', 'Zapatillas'];
     const [stock, setStock] = React.useState(null);
     const [errors, setErrors] = React.useState({});
     const quillRef = React.useRef(null);
+    const prod = useSelector((state) => state.producto);
+    const dispatch = useDispatch();
 
     const handleChangeNombre = (e) => {
         setNombre(e.target.value);
@@ -103,6 +108,21 @@ function FormCreaProducto({operacion, onSubmit}) {
         }
     }, []);
 
+    //efecto para iniciar los inputs en caso de editar
+    useEffect(()=>{
+        if(operacion === 'editar'){
+            dispatch(getProductoById(id));
+            if(prod){
+                setNombre(prod.nombre);
+                setPrecio(prod.precio);
+                setDescripcion(prod.descripcion);
+                setCategoria(prod.categoria);
+                setStock(prod.stock);
+                setVistaPrevia(prod.imagenes?.map((img) => ({url: img})));
+            }
+        }
+    }, [operacion, dispatch, id, prod]);
+
 
     return (
         <form onSubmit={handleOnSubmit} className='form-crea-prod'>
@@ -122,7 +142,7 @@ function FormCreaProducto({operacion, onSubmit}) {
                 <div className='cont-vista-previa'>
                     {
                         vistaPrevia?.map((img) => (
-                            <img key={img.url} src={img.url} alt={img.file.name} className='img-vista-previa' />
+                            <img key={img.url} src={img.url} alt={img.file} className='img-vista-previa' />
                         ))
                     }
                 </div>
