@@ -6,17 +6,23 @@ import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { getProductoById } from '../../redux/actions/actions';
 
-function FormCreaProducto({operacion, onSubmit}) {
+function FormCreaProducto({onSubmit, operacion}) {
 
     const cat = ['Paletas', 'Bolsos', 'Zapatillas'];  //tipo de categorías
     const {id} = useParams();
     const [nombre, setNombre] = React.useState('');
     const [precio, setPrecio] = React.useState(null);
-    const [imagenes, setImagenes] = React.useState([]);
-    const [descripcion, setDescripcion] = React.useState('');
+    const [imagenes, setImagenes] = React.useState([]); console.log('imgs:', imagenes);
+    const [imgsExistentes, setImgsExistentes] = React.useState([]); console.log('imgsExistentes:', imgsExistentes);//se guardan las existentes(url en string) SI es editar
+    //const [imgsEliminar, setImgsEliminar] = React.useState([]); //imágenes a eliminar SI es editar
     const [vistaPrevia, setVistaPrevia] = React.useState([]); //vista previa
-    const [categoria, setCategoria] = React.useState('');
-    const [stock, setStock] = React.useState(null);
+    const [vistaPreviaExistentes, setVistaPreviaExistentes] = React.useState([]); //vista previa de las imágenes existentes SI es editar
+    const [categoria, setCategoria] = React.useState(''); 
+    const [stock, setStock] = React.useState(1);
+    const [promo, setPromo] = React.useState(false);
+    const [descuento, setDescuento] = React.useState(0);
+    const [agotado, setAgotado] = React.useState(false);
+    const [descripcion, setDescripcion] = React.useState('');
     const [errors, setErrors] = React.useState({});
     const quillRef = React.useRef(null);
     const prod = useSelector((state) => state.producto);
@@ -45,6 +51,34 @@ function FormCreaProducto({operacion, onSubmit}) {
     const handleChangeStock = (e) => {
         setStock(e.target.value);
     };
+    const handleChangePromo = (e) => {
+        if(e.target.checked){
+            setPromo(true);
+        }else{
+            setPromo(false);
+        }
+    };
+    const handleChangeDescuento = (e) => {
+        setDescuento(e.target.value);
+    };
+    const handleChangeAgotado = (e) => {
+        if(e.target.checked){
+            setAgotado(true);
+        }else{
+            setAgotado(false);
+        }
+    };
+    //elimina imagen del array de imágenes
+    const handleEliminaImg = (index) => {
+        const nuevasImagenes = [...imagenes];
+        nuevasImagenes.splice(index, 1);
+        setImagenes(nuevasImagenes);
+        //eliminar la imagen en 
+        const nuevasVistas = [...vistaPrevia];
+        nuevasVistas.splice(index, 1);
+        setVistaPrevia(nuevasVistas);
+    };
+
     //funcion validar datos
     const validarDatos = () => {
         let errores = {};
@@ -71,20 +105,70 @@ function FormCreaProducto({operacion, onSubmit}) {
         return true;
     };
     //igualmente a pesar de que recibo del padre la función onsubmit, la vuelvo a definir acá
-    const handleOnSubmit = (e) => {
+    const handleOnSubmit = (e) => { 
         e.preventDefault();
-        if (validarDatos()) {
+        if(operacion === 'editar'){
             const data = {
+                id: prod._id,
                 nombre,
                 precio,
                 descripcion,
                 imagenes,
+                imgsExistentes,
+                //imgsEliminar,
                 categoria,
-                stock
+                stock,
+                promo,
+                porcentajeDescuento: descuento,
+                agotado,
             };
             onSubmit(data);
+        }else{
+            if (validarDatos()) { 
+                const data = {
+                    id: prod._id,
+                    nombre,
+                    precio,
+                    descripcion,
+                    imagenes,
+                    imgsExistentes,
+                    categoria,
+                    stock,
+                    promo,
+                    porcentajeDescuento: descuento,
+                    agotado,
+                };
+                onSubmit(data);
+            }
         }
     }
+    
+    //efecto para disparar la acción de traer el producto por id SI operación = editar
+    useEffect(() => {
+        if (operacion === 'editar') {
+            dispatch(getProductoById(id));
+        }
+    }, [dispatch, id, operacion]);
+    //efecto para iniciar los inputs en caso de editar
+    useEffect(() => {
+        if (operacion === 'editar' && prod) {
+            setNombre(prod.nombre || '');
+            setPrecio(prod.precio || '');
+            setDescripcion(prod.descripcion || '');
+            setCategoria(prod.categoria || '');
+            setStock(prod.stock || 1);
+            setImgsExistentes(prod?.imagenes || []);            
+            setVistaPreviaExistentes(prod.imagenes?.map((img) => ({ url: img })) || []);
+            setPromo(prod.promo || false);
+            setDescuento(prod.descuento || 0);
+            setAgotado(prod.agotado || false);
+
+            // Inicializar el contenido del editor de Quill
+            if (quillRef.current && quillRef.current.__quillInstance) {
+                quillRef.current.__quillInstance.root.innerHTML = prod.descripcion || '';
+            }
+        }
+    }, [prod, operacion]);
     //useEffect para inicializar el editor de texto
     useEffect(() => {
         if (quillRef.current && !quillRef.current.__quillInstance) {
@@ -92,36 +176,22 @@ function FormCreaProducto({operacion, onSubmit}) {
                 theme: 'snow',
                 modules: {
                     toolbar: [
-                        ['bold', 'italic', 'underline'], // Formatos básicos
-                        [{ 'size': ['small', false, 'large', 'huge'] }], // Tamaño de texto
-                        [{ 'align': [] }], // Alineación
-                        ['link', 'image'], // Agregar links e imágenes
+                        ['bold', 'italic', 'underline'],
+                        [{ 'size': ['small', false, 'large', 'huge'] }],
+                        [{ 'align': [] }],
+                        ['link', 'image'],
                     ],
                 },
             });
-
+    
             quillInstance.on('text-change', () => {
                 setDescripcion(quillInstance.root.innerHTML);
             });
-
+    
             quillRef.current.__quillInstance = quillInstance;
         }
     }, []);
-
-    //efecto para iniciar los inputs en caso de editar
-    useEffect(()=>{
-        if(operacion === 'editar'){
-            dispatch(getProductoById(id));
-            if(prod){
-                setNombre(prod.nombre);
-                setPrecio(prod.precio);
-                setDescripcion(prod.descripcion);
-                setCategoria(prod.categoria);
-                setStock(prod.stock);
-                setVistaPrevia(prod.imagenes?.map((img) => ({url: img})));
-            }
-        }
-    }, [operacion, dispatch, id, prod]);
+    
 
 
     return (
@@ -141,8 +211,19 @@ function FormCreaProducto({operacion, onSubmit}) {
                 {/* vista previa */}
                 <div className='cont-vista-previa'>
                     {
-                        vistaPrevia?.map((img) => (
-                            <img key={img.url} src={img.url} alt={img.file} className='img-vista-previa' />
+                        vistaPreviaExistentes?.map((img, index) => (
+                            <div className='cont-img-vista-previa' key={index}>
+                                <button className='btn-elimina-img' onClick={(index)=>handleEliminaImg(index)}>X</button>
+                                <img key={img.url} src={img.url} alt={img.file} className='img-vista-previa' />
+                            </div>
+                        ))
+                    }
+                    {
+                        vistaPrevia?.map((img, index) => (
+                            <div className='cont-img-vista-previa' key={index}>
+                                <button className='btn-elimina-img' onClick={(index)=>handleEliminaImg(index)}>X</button>
+                                <img key={img.url} src={img.url} alt={img.file} className='img-vista-previa' />
+                            </div>
                         ))
                     }
                 </div>
@@ -154,7 +235,7 @@ function FormCreaProducto({operacion, onSubmit}) {
                     name='nombre'
                     value={nombre}
                     onChange={handleChangeNombre}
-                    className='input-crea-prod'
+                    className='input-nombre-prod'
                 />
                 {errors.nombre && <p className='error'>{errors.nombre}</p>}
             </div>
@@ -179,6 +260,7 @@ function FormCreaProducto({operacion, onSubmit}) {
                         onChange={handleChangeCategoria}
                         className='input-crea-cat'
                     >
+                        {prod.categoria && <option value={prod.categoria}>{prod.categoria}</option>}
                         <option value=''></option>
                         {
                             cat.map((c) => (
@@ -200,6 +282,40 @@ function FormCreaProducto({operacion, onSubmit}) {
                     />
                     {errors.stock && <p className='error'>{errors.stock}</p>}
                 </div>
+            </div>
+            {/* está en Promo */}
+            <div className='cont-promo-desc'>
+                <div className='cont-promo'>
+                    <label className='label-prod'>¿Está en promoción?</label>
+                    <input 
+                        type='checkbox' 
+                        name='promo'
+                        value={promo}
+                        onChange={handleChangePromo}
+                        className='check-crea-promo' 
+                    />
+                </div>
+                <div className='cont-desc'>
+                    <label className='label-prod'>Porcentaje del descuento:</label>
+                    <input 
+                        type='number'
+                        name='descuento'
+                        value={descuento}
+                        onChange={handleChangeDescuento}
+                        className='input-crea-desc' 
+                    />
+                </div>
+            </div>
+            {/* Agotado */}
+            <div className='cont-agotado'>
+                <label className='label-prod'>¿Producto agotado?</label>
+                <input 
+                    type='checkbox' 
+                    name='agotado'
+                    value={agotado}
+                    onChange={handleChangeAgotado}
+                    className='check-crea-promo' 
+                />
             </div>
             {/* descripción */}
             <div className='cont-descripcion'>

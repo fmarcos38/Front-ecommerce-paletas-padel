@@ -7,18 +7,16 @@ import './styles.css';
 
 function CreaProducto() { 
 
-
     const context = useContext(AppContext);
 
-    const onSubmit = async(data) => {
-        
+    const onSubmit = async(data) => {        
         const formData = new FormData();
         formData.append('data', JSON.stringify(data));
 
         data.imagenes.forEach((imagen) => {
             formData.append('imagenes', imagen);
         });
-        
+        console.log('formData:', formData);
         try{
             const response = await fetch('http://localhost:3002/producto', {
                 method: 'POST',
@@ -32,10 +30,10 @@ function CreaProducto() {
                     confirmButtonColor: '#3f51b5',
                 });
                 //redirijo a la lista de propiedades
-                window.location.href = '/admin/listaPropsAdmin';
+                window.location.href = '/admin/listaProdsAdmin';
                 }else{
                     Swal.fire({
-                        title: 'Error al crear la propiedad',
+                        title: 'Error al crear el producto',
                         icon: 'error',
                         confirmButtonText: 'Aceptar',
                         confirmButtonColor: '#3f51b5',
@@ -45,7 +43,6 @@ function CreaProducto() {
             console.error('Error al crear producto:', error);
         }
     }
-
 
     return context.userLog &&
     (
