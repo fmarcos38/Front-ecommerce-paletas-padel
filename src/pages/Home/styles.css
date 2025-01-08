@@ -20,12 +20,12 @@
     font-size: 22px;
     color: white;
 }
-.cont-carrusel-home{
-    width: 100%;
+.cont-lista-ofertas{
+    width: 80%;
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: black;
+    background-color: rgb(159, 158, 158);
 }
 /* ofertas */
 .cont-ofertas-home{

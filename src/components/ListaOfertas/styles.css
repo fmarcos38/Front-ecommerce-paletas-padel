@@ -1,0 +1,44 @@
+.lista-ofertas-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+}
+
+.lista-ofertas {
+    width: 90%;
+    display: flex;
+    justify-content: space-between;
+    transition: transform 0.3s ease-in-out;
+}
+
+.arrow-button {
+    background-color: transparent;
+    border: none;
+    font-size: 2rem;
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 1;
+}
+
+.arrow-button:focus {
+    outline: none;
+}
+
+.arrow-button:first-of-type {
+    left: 10px;
+}
+
+.arrow-button:last-of-type {
+    right: 10px;
+}
+
+.card {
+    flex: 0 0 25%; /* Mostrar 4 cards en una fila */
+    box-sizing: border-box;
+    padding: 10px;
+}

@@ -9,11 +9,13 @@ import bolsoMasPaleta from '../../imagenes/bolso-mas-paleta.jpg';
 import paletasNox from '../../imagenes/paletas-nox.jpg';
 import bullNox from '../../imagenes/bull-nox.jpg';
 import './styles.css';
+import ListaOfertas from '../../components/ListaOfertas';
 
 function Home() {
 
   const data = userData();//JSON.parse(localStorage.getItem('favoritos'));
   const productos = useSelector((state) => state.productos);
+  const productosEnOferta = productos?.filter(prod => prod.enPromo);
   //array de imgs para la publicidad
   const arrImgs = [
     bolsoMasPaleta,
@@ -46,11 +48,11 @@ function Home() {
         <Carrusel imagenes={arrImgs} />
       </div>
       
-      {/* titulo ofertas */}
+      {/* titulo ofertas y Lista prods en oferta*/}
       <div className='cont-ofertas-home'>
-        <h2 className='titulo-ofertas'>OFERTAS</h2>
-        <div className='cont-carrusel-home'>
-          <Carrusel imagenes={arrImgs} />
+        <h2 className='titulo-ofertas'>APROVECHA NUESTRAS OFERTAS</h2>
+        <div className='cont-lista-ofertas'>
+          <ListaOfertas productos={productosEnOferta}/>
         </div>
       </div>
       
