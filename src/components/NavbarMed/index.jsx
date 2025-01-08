@@ -114,7 +114,7 @@ function NavbarMed({usuario, isOpen, menuRef, menuItemsRef, toggleMenu, handleLo
                 <div className='cont-registrate'>
                     {
                         usuario?.nombre ? 
-                        <p>Hola usuario.nombre</p> :
+                        <p>Hola {usuario.nombre}</p> :
                         <NavLink to='/registrarse' className='link-navbar'>Registrate</NavLink>
                     }
                 </div>
