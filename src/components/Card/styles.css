@@ -74,15 +74,39 @@
     align-items: center;
     background-color: rgba(243, 242, 240, 0.797);
 }
+.prod-agotado{
+    position: absolute;
+    top: 50%;
+    right: 0;
+    width: 40%;
+    height: auto;
+    text-align: center;
+    margin-right: 5px;
+    background-color: rgba(0, 0, 0, 0.877);
+    color: #fff;
+    border-radius: 10px;
+}
 .nombre-pala{
     font-size: 20px;
     text-align: center;
     margin: 0;
 }
+.cont-precio-desc{
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
 .precio-pala{
     font-size: 20px;
     font-weight: bolder;
     text-align: center;
+}
+.descuento-pala{
+    font-size: 20px;
+    font-weight: bolder;
+    text-align: center;
+    color: red;
 }
 .btn-agrega-carrito{
     width: 200px;

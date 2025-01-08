@@ -31,10 +31,16 @@ function Card({id, nombre, precio, imagenes, agotado, enPromo, porcentajeDescuen
                     </div>
                 </div>
             </NavLink>
+            {
+                agotado && <p className='prod-agotado'>Agotado</p>
+            }
             {/* data */}
             <div className='cont-info-card'>
             <p className='nombre-pala'>{nombre}</p>
-            <p className='precio-pala'>${precio}</p>
+            <div className='cont-precio-desc'>
+                <p className='precio-pala'>${precio}</p>
+                {enPromo && <p className='descuento-pala'>Desc. -{porcentajeDescuento}%</p>}
+            </div>
             <button className='btn-agrega-carrito'>Agregar al carrito</button>
             </div>
         </div>

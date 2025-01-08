@@ -44,7 +44,7 @@ function CreaProducto() {
         }
     }
 
-    return context.userLog &&
+    return context.dataUser &&
     (
         <div className='cont-crea-prod-page'>
             <h1 className='title-crea-prod'>Crea un nuevo producto</h1>

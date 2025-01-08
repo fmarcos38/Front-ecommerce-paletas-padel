@@ -42,7 +42,7 @@ function EditaProd() {
         }
     }
 
-    return context.userLog && (
+    return context.dataUser && (
         <div className='cont-crea-prod-page'>
             <h1>Editar Producto</h1>
             <FormCreaProducto onSubmit={onSubmit} operacion={'editar'} />

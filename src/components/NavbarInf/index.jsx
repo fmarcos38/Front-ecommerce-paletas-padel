@@ -22,7 +22,7 @@ function NavbarInf({usuario}) {
                 <li>Nox</li>
                 {/* menú Admin */}
                 {
-                    usuario?.admin && (
+                    usuario?.isAdmin && (
                         <li
                             className='navbar-item-admin'
                             onMouseEnter={handleMouseEnterAdmin}

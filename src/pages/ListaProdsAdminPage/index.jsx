@@ -16,7 +16,7 @@ function ListaProdsAdminPage() {
         dispatch(getProductos());
     },[dispatch, productos]);
 
-    return context.userLog &&
+    return context.dataUser &&
     (
         <div className='cont-lista-prods-admin'>
             <h1 className='titulo-lista-prods-admin-page'>Lista de productos</h1>

@@ -1,6 +1,8 @@
 import React from 'react';
+import { userData } from '../../localStorage';
 import { useDispatch, useSelector } from 'react-redux';
 import { getProductos } from '../../redux/actions/actions';
+import { getUsuarioById } from '../../redux/actions/actions';
 import Carrusel from '../../components/CarruselTemporizador';
 import ListaProductos from '../../components/ListaProductos';
 import bolsoMasPaleta from '../../imagenes/bolso-mas-paleta.jpg';
@@ -10,6 +12,7 @@ import './styles.css';
 
 function Home() {
 
+  const data = userData();//JSON.parse(localStorage.getItem('favoritos'));
   const productos = useSelector((state) => state.productos);
   //array de imgs para la publicidad
   const arrImgs = [
@@ -23,6 +26,13 @@ function Home() {
   React.useEffect(() => {
     dispatch(getProductos());
   }, [dispatch]);
+
+  //efecto para traer los datos del usuario SI hay usuario logueado
+  React.useEffect(() => {
+    if (data) {
+      dispatch(getUsuarioById(data.user.id));
+    }
+  }, [data, dispatch]);
 
 
   return (

@@ -19,7 +19,7 @@ function FormCreaProducto({onSubmit, operacion}) {
     const [vistaPreviaExistentes, setVistaPreviaExistentes] = React.useState([]); //vista previa de las imágenes existentes SI es editar
     const [categoria, setCategoria] = React.useState(''); 
     const [stock, setStock] = React.useState(1);
-    const [promo, setPromo] = React.useState(false);
+    const [enPromo, setEnPromo] = React.useState(false);
     const [descuento, setDescuento] = React.useState(0);
     const [agotado, setAgotado] = React.useState(false);
     const [descripcion, setDescripcion] = React.useState('');
@@ -53,9 +53,9 @@ function FormCreaProducto({onSubmit, operacion}) {
     };
     const handleChangePromo = (e) => {
         if(e.target.checked){
-            setPromo(true);
+            setEnPromo(true);
         }else{
-            setPromo(false);
+            setEnPromo(false);
         }
     };
     const handleChangeDescuento = (e) => {
@@ -118,11 +118,12 @@ function FormCreaProducto({onSubmit, operacion}) {
                 //imgsEliminar,
                 categoria,
                 stock,
-                promo,
+                enPromo,
                 porcentajeDescuento: descuento,
                 agotado,
             };
             onSubmit(data);
+            window.location.href = '/admin/listaProdsAdmin';
         }else{
             if (validarDatos()) { 
                 const data = {
@@ -134,11 +135,12 @@ function FormCreaProducto({onSubmit, operacion}) {
                     imgsExistentes,
                     categoria,
                     stock,
-                    promo,
+                    enPromo,
                     porcentajeDescuento: descuento,
                     agotado,
                 };
                 onSubmit(data);
+                window.location.href = '/admin/listaProdsAdmin';
             }
         }
     }
@@ -159,8 +161,8 @@ function FormCreaProducto({onSubmit, operacion}) {
             setStock(prod.stock || 1);
             setImgsExistentes(prod?.imagenes || []);            
             setVistaPreviaExistentes(prod.imagenes?.map((img) => ({ url: img })) || []);
-            setPromo(prod.promo || false);
-            setDescuento(prod.descuento || 0);
+            setEnPromo(prod.enPromo || false);
+            setDescuento(prod.porcentajeDescuento || 0);
             setAgotado(prod.agotado || false);
 
             // Inicializar el contenido del editor de Quill
@@ -289,8 +291,9 @@ function FormCreaProducto({onSubmit, operacion}) {
                     <label className='label-prod'>¿Está en promoción?</label>
                     <input 
                         type='checkbox' 
-                        name='promo'
-                        value={promo}
+                        name='enPromo'
+                        value={enPromo}
+                        checked={enPromo}
                         onChange={handleChangePromo}
                         className='check-crea-promo' 
                     />
@@ -313,6 +316,7 @@ function FormCreaProducto({onSubmit, operacion}) {
                     type='checkbox' 
                     name='agotado'
                     value={agotado}
+                    checked={agotado}
                     onChange={handleChangeAgotado}
                     className='check-crea-promo' 
                 />
