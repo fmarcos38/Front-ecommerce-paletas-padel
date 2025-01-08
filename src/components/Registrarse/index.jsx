@@ -76,51 +76,45 @@ function Registrarse({operacion}) {
         return false;
     }
 
-    const handleSubmit = async(e) => {
-        e.preventDefault(); 
-        if(operacion === 'editar'){
-            return;
-        }else{ 
-            if(!validar()){ 
-                const data = {
-                    nombre,
-                    apellido,
-                    email,
-                    contraseña,
-                    telefono,
-                    direccion,
-                    isAdmin: false
-                };
-                dispatch(registrarse(data))
-    .then((response) => {
-        console.log("Response del backend:", response);
-        if (response?.data?.msg === 'success') {
-            Swal.fire({
-                icon: 'success',
-                title: 'Registrado correctamente',
-                showConfirmButton: false,
-                timer: 1500,
-            });
-        } else {
-            Swal.fire({
-                icon: 'error',
-                title: response?.data?.msg || 'Error desconocido',
-                showConfirmButton: false,
-                timer: 1500,
-            });
-        }
-    })
-    .catch((error) => {
-        console.error("Error del servidor:", error.response?.data || error.message);
-        Swal.fire({
-            icon: 'error',
-            title: error.response?.data?.msg || 'Error al conectar con el servidor',
-            showConfirmButton: false,
-            timer: 1500,
-        });
-    });
-
-            }
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        if (!validar()) {
+            const data = {
+                nombre,
+                apellido,
+                email,
+                contraseña,
+                telefono,
+                direccion,
+                isAdmin: false
+            };
+            dispatch(registrarse(data))
+                .then((response) => {
+                    if (response?.data?.msg === 'success') {
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Registrado correctamente',
+                            showConfirmButton: false,
+                            timer: 1500,
+                        });
+                    } else {
+                        Swal.fire({
+                            icon: 'error',
+                            title: response?.data?.msg || 'Error desconocido',
+                            showConfirmButton: false,
+                            timer: 1500,
+                        });
+                    }
+                })
+                .catch((error) => {
+                    console.error("Error del servidor:", error.response?.data || error.message);
+                    Swal.fire({
+                        icon: 'error',
+                        title: error.response?.data?.msg || 'Error al conectar con el servidor',
+                        showConfirmButton: false,
+                        timer: 1500,
+                    });
+                });
         }
     }
 
@@ -129,7 +123,7 @@ function Registrarse({operacion}) {
         <div className='cont-registrarse'>
             <form onSubmit={handleSubmit} className='form-registrarse'>
                 <div className='cont-inputs'>
-                    <div className='cont-nombre'>
+                    <div className='cont-email'>
                         <label className='label-input'>Nombre</label>
                         <input 
                             type="text" 
@@ -139,7 +133,7 @@ function Registrarse({operacion}) {
                         />
                         {error?.nombre && <p className='error'>{error.nombre}</p>}
                     </div>
-                    <div className='cont-apellido'>
+                    <div className='cont-email'>
                         <label className='label-input'>Apellido</label>
                         <input 
                             type="text" 
@@ -165,19 +159,19 @@ function Registrarse({operacion}) {
                     <div className='cont-contraseña'>
                         <label className='label-input'>Contraseña</label>
                         <div className='cont-pass-viewPass'>
-                        <input 
-                            type="password"
-                            value={contraseña}
-                            onChange={(e) => {onChangeContraseña(e)}}
-                            className='input-contraseña'
-                        />
-                        <button
-                            type='button'
-                            className='btn-viewPass'
-                            onClick={() => {onClickVerContraseña()}}
-                        >
-                            <VisibilityIcon />
-                        </button>
+                            <input
+                                type="password"
+                                value={contraseña}
+                                onChange={(e) => { onChangeContraseña(e) }}
+                                className='input-contraseña'
+                            />
+                            <button
+                                type='button'
+                                className='btn-viewPass'
+                                onClick={() => { onClickVerContraseña() }}
+                            >
+                                <VisibilityIcon />
+                            </button>
                         </div>
                         {error?.contraseña && <p className='error'>{error.contraseña}</p>}
                     </div>

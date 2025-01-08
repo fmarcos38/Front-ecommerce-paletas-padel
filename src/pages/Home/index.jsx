@@ -12,11 +12,11 @@ function Home() {
 
   const productos = useSelector((state) => state.productos);
   //array de imgs para la publicidad
-      const arrImgs = [
-          bolsoMasPaleta,
-          paletasNox,
-          bullNox
-      ];
+  const arrImgs = [
+    bolsoMasPaleta,
+    paletasNox,
+    bullNox
+  ];
   const dispatch = useDispatch();
 
   //efecto para traer los productos

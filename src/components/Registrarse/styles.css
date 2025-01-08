@@ -63,6 +63,18 @@
     border-radius: 5px;
     outline: none;
 }
+.cont-pass-viewPass{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 98%;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    background-color: white;
+}
+.input-contraseña{
+    border: none;
+}
 .btn-viewPass{
     width: 30px;
     height: 30px;
@@ -90,4 +102,34 @@
     border-radius: 5px;
     outline: none;
     cursor: pointer;
+}
+
+/* responsive */
+@media screen and (max-width: 900px){
+    .cont-registrarse{
+        width: 98%;
+        height: auto;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 40px;
+    }
+    .form-registrarse{
+        width: 98%;
+        height: auto;
+    }
+    .cont-inputs{
+        width: 95%;
+        height: auto;
+        flex-direction: column;
+    }
+    .cont-nombre,
+    .cont-apellido,
+    .cont-email,
+    .cont-contraseña,
+    .cont-telefono,
+    .cont-direccion {
+        width: 100%;
+    }
 }

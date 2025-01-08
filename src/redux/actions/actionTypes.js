@@ -1,6 +1,8 @@
 export const LOGIN = "LOGIN";
-export const LOADING = "LOADING";
+export const RESET_LOGIN = "RESET_LOGIN";
+export const REGISTRARSE = "REGISTRARSE";
 //productos
+export const LOADING = "LOADING";
 export const GET_PRODUCTOS = "GET_PRODUCTOS";
 export const GET_PRODUCTO = "GET_PRODUCTO";
 export const GET_PRODUCTO_BY_ID = "GET_PRODUCTO_BY_ID";

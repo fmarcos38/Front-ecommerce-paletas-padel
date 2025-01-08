@@ -8,36 +8,26 @@ export const AppContext = createContext();
 export const AppProvider = ({ children }) => {
     
     //estado user log
-    const [userLog, setUserLog] = React.useState(true); //jarcodeado en true para que no se muestre el login
+    //const [userLog, setUserLog] = React.useState(false);
     //estado data user
-    const [dataUser, setDataUser] = React.useState({});
+    //const [dataUser, setDataUser] = React.useState({}); console.log("dataUser:",dataUser);
 
-    const login = () => {
+    /* /const login = () => {
         setUserLog(true);
     };
     const logout = () => {
         setUserLog(false);
-    };
+    }; */
 
     //efecto para verificar si hay usuario logueado
     useEffect(() => {
-        const user = {
-            nombre: "marcos",
-            admin: true,
-        };//userData();
-        if(user){
-            setDataUser(user);
-            setUserLog(true);
-        }
+        
     }, []);
 
 
     return (
         <AppContext.Provider value={{
-            userLog,
-            login,
-            logout,
-            dataUser
+            
         }}>
             {children}
         </AppContext.Provider>

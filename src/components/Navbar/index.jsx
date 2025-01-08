@@ -1,16 +1,20 @@
 import React, { useEffect } from 'react';
+import { useSelector } from 'react-redux';
+import { logOut } from '../../localStorage';
 import Swal from 'sweetalert2';
 import NavbarInf from '../NavbarInf';
-import './styles.css';
 import NavbarMed from '../NavbarMed';
 import NavbarSup from '../NavbarSup';
+import './styles.css';
+
 
 function Navbar() {
 
+  const usuario = useSelector(state => state.dataUsuario); //datos del usuario
   const [isOpen, setIsOpen] = React.useState(false); //menu hamburguesa  
   const menuRef = React.useRef(null); //referencia menu hamburguesa
   const menuItemsRef = React.useRef([]); //referencia items menu hamburguesa  
-
+  
   //funcion para abrir y cerrar menu hamburguesa
   const toggleMenu = () => {
     setIsOpen(!isOpen);
@@ -26,12 +30,13 @@ function Navbar() {
         confirmButtonText: "Si!"
     }).then((result) => {
         if (result.isConfirmed) {
-            
+          logOut();
         }
         //redirijo a home
         window.location.href = '/';
     });        
-};
+  };
+  
   
   //cierra el menú hamburguesa si se hace click fuera de él
   useEffect(() => {
@@ -51,7 +56,7 @@ function Navbar() {
         // Limpiar el evento cuando el componente se desmonta
         document.removeEventListener('pointerdown', handleClickOutside);
     };
-}, []);
+  }, []);
 
   return (
     <div className='navbar'>
@@ -59,6 +64,7 @@ function Navbar() {
       <NavbarSup />
       {/* nav med */}
       <NavbarMed 
+        usuario={usuario}
         isOpen={isOpen}
         menuRef={menuRef} 
         menuItemsRef={menuItemsRef} 
@@ -66,7 +72,7 @@ function Navbar() {
         handleLogOut={handleLogOut}
       />
       {/* nav inf */}
-      <NavbarInf/>
+      <NavbarInf usuario={usuario}/>
     </div>
   )
 }

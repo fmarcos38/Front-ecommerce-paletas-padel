@@ -11,6 +11,7 @@ import ListaProdsAdminPage from './pages/ListaProdsAdminPage';
 import DetalleProdPage from './pages/DetalleProdPage';
 import './App.css';
 import PoliticasDeCambioPage from './pages/PoliticasCambio';
+import LoginPage from './pages/Login';
 
 function App() {
   return (
@@ -23,7 +24,8 @@ function App() {
       <main>
         <Routes>
             <Route path="/" element={<Home/>} />
-            <Route path="/registrarse" element={<RegistrarsePage/>} />
+            <Route path='/registrarse' element={<RegistrarsePage/>} />
+            <Route path='/login' element={<LoginPage/>} />
             <Route path='/detalleProd/:id' element={<DetalleProdPage />} />
             <Route path='/policasDeCambio' element={<PoliticasDeCambioPage />} />
             <Route path='/admin/creaProd' element={<CreaProducto />} />

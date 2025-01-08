@@ -1,6 +1,7 @@
-import { LOADING, GET_PRODUCTOS, GET_PRODUCTO_BY_ID, RESET_PRODUCTO, GET_PRODS_RANGO_PRECIO, OPEN_CLOSE_MODAL } from '../actions/actionTypes'
+import { LOADING, GET_PRODUCTOS, GET_PRODUCTO_BY_ID, RESET_PRODUCTO, GET_PRODS_RANGO_PRECIO, OPEN_CLOSE_MODAL, LOGIN, RESET_LOGIN } from '../actions/actionTypes'
 
 const initialStore = {
+    dataUsuario: null,
     productos: [],
     totProdos: 0,
     producto: {},
@@ -11,6 +12,16 @@ const initialStore = {
 
 export default function rootReducer (state = initialStore, action) {
     switch (action.type) {
+        case LOGIN:
+            return {
+                ...state,
+                dataUsuario: action.payload,
+            }
+        case RESET_LOGIN:
+            return {
+                ...state,
+                dataUsuario: null,
+            }
         case LOADING:
             return {
                 ...state,

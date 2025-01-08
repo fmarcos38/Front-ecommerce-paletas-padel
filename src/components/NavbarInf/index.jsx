@@ -1,12 +1,10 @@
 import React from 'react'
-import { AppContext } from '../../context';
 import { NavLink } from 'react-router-dom';
 import './styles.css';
 
-function NavbarInf() {
+function NavbarInf({usuario}) {
 
     const [muestraMenuAdmin, setMuestraMenuAdmin] = React.useState(false); //menu admin
-    const context = React.useContext(AppContext); //contexto
 
     //función para posar sobre el menú admin y mostrarlo
     const handleMouseEnterAdmin = () => {
@@ -24,7 +22,7 @@ function NavbarInf() {
                 <li>Nox</li>
                 {/* menú Admin */}
                 {
-                    context.dataUser.admin && (
+                    usuario?.admin && (
                         <li
                             className='navbar-item-admin'
                             onMouseEnter={handleMouseEnterAdmin}

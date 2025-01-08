@@ -1,17 +1,13 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom';
-import { AppContext } from '../../context';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import logo from '../../imagenes/logo.jpg';
 import BuscaProducto from '../BuscaProducto';
-import LoginIcon from '@mui/icons-material/Login';
 import LogoutIcon from '@mui/icons-material/Logout';
 import './styles.css';
 
-function NavbarMed({isOpen, menuRef, menuItemsRef, toggleMenu, handleLogOut}) {
-
-    const context = React.useContext(AppContext); //contexto
+function NavbarMed({usuario, isOpen, menuRef, menuItemsRef, toggleMenu, handleLogOut}) {
     
     return (
         <div className='fila-med'>
@@ -32,8 +28,9 @@ function NavbarMed({isOpen, menuRef, menuItemsRef, toggleMenu, handleLogOut}) {
                     {
                         isOpen && (
                             <ul className='ul-lista-pChica'>
+                                {/* opc ADMIN */}
                                 {
-                                    context.dataUser.admin && (
+                                    usuario.dataUser.admin && (
                                         <>
                                             <li className='items-pChica'>
                                                 <NavLink
@@ -46,7 +43,7 @@ function NavbarMed({isOpen, menuRef, menuItemsRef, toggleMenu, handleLogOut}) {
                                             </li>
                                             <li className='items-pChica'>
                                                 <NavLink
-                                                    to='/admin/listaProductoAdmin'
+                                                    to='/admin/listaProdsAdmin'
                                                     className='link-navbar'
                                                     ref={el => menuItemsRef.current[1] = el}
                                                 >
@@ -67,7 +64,7 @@ function NavbarMed({isOpen, menuRef, menuItemsRef, toggleMenu, handleLogOut}) {
                                 </li>
                                 {/* login/logout */}
                                 {
-                                    context.dataUser.nombre ? (
+                                    usuario.dataUser.nombre ? (
                                         <li className='items-pChica'>
                                             <button
                                                 onClick={() => { handleLogOut() }}
@@ -88,6 +85,15 @@ function NavbarMed({isOpen, menuRef, menuItemsRef, toggleMenu, handleLogOut}) {
                                         </li>
                                     )
                                 }
+                                <li className='items-pChica'>
+                                    <NavLink
+                                        to='/registrarse'
+                                        className='link-navbar'
+                                        ref={el => menuItemsRef.current[4] = el}
+                                    >
+                                        Registrarse
+                                    </NavLink>
+                                </li>
                             </ul>
                         )
                     }
@@ -106,10 +112,23 @@ function NavbarMed({isOpen, menuRef, menuItemsRef, toggleMenu, handleLogOut}) {
 
             <div className='col-4'>
                 <div className='cont-registrate'>
-                    <NavLink to='/registrarse' className='link-navbar'>Registrate</NavLink>
+                    {
+                        usuario?.nombre ? 
+                        <p>Hola usuario.nombre</p> :
+                        <NavLink to='/registrarse' className='link-navbar'>Registrate</NavLink>
+                    }
                 </div>
                 <div className='cont-login'>
-                    <NavLink to='/login' className='link-navbar'>Iniciar sesión</NavLink>
+                    {
+                        usuario?.nombre ? 
+                        <button
+                            onClick={() => { handleLogOut() }}
+                            style={{ border: 'none', backgroundColor: 'transparent' }}
+                        >
+                            <LogoutIcon sx={{ 'fontSize': '30px' }} />
+                        </button> :
+                        <NavLink to='/login' className='link-navbar'>Iniciar sesión</NavLink>
+                    }
                 </div>
                 <div className='cont-carrito-fav'>
                     <div className='cont-carrito'>

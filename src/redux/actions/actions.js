@@ -1,15 +1,38 @@
 import axios from "axios";
 import { URL } from "../../urls";
-import { LOADING, GET_PRODUCTOS, GET_PRODUCTO_BY_ID, RESET_PRODUCTO, GET_PRODS_RANGO_PRECIO, OPEN_CLOSE_MODAL } from "./actionTypes";
+import { 
+    LOADING, GET_PRODUCTOS, GET_PRODUCTO_BY_ID, RESET_PRODUCTO, GET_PRODS_RANGO_PRECIO, 
+    OPEN_CLOSE_MODAL, LOGIN,
+} from "./actionTypes";
 
+//-------usuario-----------------------------
 //registrarse
 export const registrarse = (data) => {
     return async function() { 
-        const resp = await axios.post(`${URL}/usuario/registrarse`, data);
-        return resp;
+        await axios.post(`${URL}/usuario/registrarse`, data);        
+    }
+}
+//confirma email
+export const confirmarEmail = (email) => {
+    return async function() { 
+        await axios.get(`${URL}/usuario/confirmar?email=${email}`);
     }
 }
 
+//login clasico
+export const login = (data) => {
+    return async function(dispatch) {
+        const resp = await axios.post(`${URL}/auth/login`, data); 
+        localStorage.setItem('dataUser', JSON.stringify(resp.data));
+        dispatch({type: LOGIN, payload: resp.data});
+    }
+}
+
+export const resetLogin = () => {
+    return {
+        type: 'RESET_LOGIN',
+    }
+}
 //-------producto-----------------------------
 //trae productos
 export const getProductos = (limit, offset, categoria, marca, enPromo, precioMin, precioMax) => {
