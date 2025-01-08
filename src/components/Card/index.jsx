@@ -1,7 +1,8 @@
 import React from 'react'
+import { NavLink } from 'react-router-dom';
 import BotonFavorito from '../BotonFavorito';
 import './styles.css';
-import { NavLink } from 'react-router-dom';
+
 
 function Card({id, nombre, precio, imagenes, agotado, enPromo, porcentajeDescuento}) {
 
@@ -11,7 +12,7 @@ function Card({id, nombre, precio, imagenes, agotado, enPromo, porcentajeDescuen
     return (
         <div className='cont-card'>
             <div className='cont-btn-fav-card'>
-                <BotonFavorito />
+                <BotonFavorito idProducto={id} />
             </div>
             {/* carrusel de imagenes */}
             <NavLink to={`/detalleProd/${id}`} className='navLink-car'>

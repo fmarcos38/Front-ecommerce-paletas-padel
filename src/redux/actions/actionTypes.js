@@ -11,3 +11,5 @@ export const GET_PRODS_RANGO_PRECIO = "GET_PRODS_RANGO_PRECIO";
 export const ELIMINA_PRODUCTO = "ELIMINA_PRODUCTO";
 //modal imgs grande
 export const OPEN_CLOSE_MODAL = "OPEN_CLOSE_MODAL";
+//usuario
+export const GET_USER = "GET_USER";

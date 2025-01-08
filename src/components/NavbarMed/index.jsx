@@ -7,7 +7,7 @@ import BuscaProducto from '../BuscaProducto';
 import LogoutIcon from '@mui/icons-material/Logout';
 import './styles.css';
 
-function NavbarMed({usuario, isOpen, menuRef, menuItemsRef, toggleMenu, handleLogOut}) {
+function NavbarMed({usuario, isOpen, menuRef, menuItemsRef, toggleMenu, handleLogOut, contCarrito=0, contFav=0}) {
     
     return (
         <div className='fila-med'>
@@ -99,17 +99,17 @@ function NavbarMed({usuario, isOpen, menuRef, menuItemsRef, toggleMenu, handleLo
                     }
                 </div>
             </div>
-
+            {/* logo */}
             <div className='col-2'>
                 <NavLink to='/'>
                     <img src={logo} alt='logo' className='logo-navbar' />
                 </NavLink>
             </div>
-
+            {/* busca prod */}
             <div className='col-3'>
                 <BuscaProducto />
             </div>
-
+            {/* regist, log, carrito, fav */}
             <div className='col-4'>
                 <div className='cont-registrate'>
                     {
@@ -132,11 +132,11 @@ function NavbarMed({usuario, isOpen, menuRef, menuItemsRef, toggleMenu, handleLo
                 </div>
                 <div className='cont-carrito-fav'>
                     <div className='cont-carrito'>
-                        <p className='items-carrito'>1</p>
+                        <p className='items-carrito'>{contCarrito}</p>
                         <ShoppingCartIcon sx={{ 'fontSize': '30px' }} />
                     </div>
                     <div className='cont-favoritos'>
-                        <p className='items-fav'>1</p>
+                        <p className='items-fav'>{contFav}</p>
                         <FavoriteIcon sx={{ 'fontSize': '30px' }} />
                     </div>
                 </div>

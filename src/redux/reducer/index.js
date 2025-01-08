@@ -1,4 +1,4 @@
-import { LOADING, GET_PRODUCTOS, GET_PRODUCTO_BY_ID, RESET_PRODUCTO, GET_PRODS_RANGO_PRECIO, OPEN_CLOSE_MODAL, LOGIN, RESET_LOGIN } from '../actions/actionTypes'
+import { LOADING, GET_PRODUCTOS, GET_PRODUCTO_BY_ID, RESET_PRODUCTO, GET_PRODS_RANGO_PRECIO, OPEN_CLOSE_MODAL, LOGIN, RESET_LOGIN, GET_USER } from '../actions/actionTypes'
 
 const initialStore = {
     dataUsuario: null,
@@ -56,6 +56,11 @@ export default function rootReducer (state = initialStore, action) {
             return {
                 ...state,
                 isModalOpen: !state.isModalOpen,
+            }
+        case GET_USER:
+            return {
+                ...state,
+                dataUsuario: action.payload,
             }
         default:
             return state

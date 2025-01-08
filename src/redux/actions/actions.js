@@ -3,7 +3,24 @@ import { URL } from "../../urls";
 import { 
     LOADING, GET_PRODUCTOS, GET_PRODUCTO_BY_ID, RESET_PRODUCTO, GET_PRODS_RANGO_PRECIO, 
     OPEN_CLOSE_MODAL, LOGIN,
+    GET_USER,
 } from "./actionTypes";
+
+//-------login-----------------------------
+//login clasico
+export const login = (data) => {
+    return async function(dispatch) {
+        const resp = await axios.post(`${URL}/auth/login`, data); 
+        localStorage.setItem('dataUser', JSON.stringify(resp.data));
+        dispatch({type: LOGIN, payload: resp.data});
+    }
+}
+
+export const resetLogin = () => {
+    return {
+        type: 'RESET_LOGIN',
+    }
+}
 
 //-------usuario-----------------------------
 //registrarse
@@ -19,20 +36,14 @@ export const confirmarEmail = (email) => {
     }
 }
 
-//login clasico
-export const login = (data) => {
-    return async function(dispatch) {
-        const resp = await axios.post(`${URL}/auth/login`, data); 
-        localStorage.setItem('dataUser', JSON.stringify(resp.data));
-        dispatch({type: LOGIN, payload: resp.data});
+//trae usuario por id
+export const getUsuarioById = (id) => {
+    return async function(dispatch) {  console.log('id:', id);
+        const resp = await axios.get(`${URL}/usuario/${id}`);
+        dispatch({type: GET_USER, payload: resp.data});
     }
 }
 
-export const resetLogin = () => {
-    return {
-        type: 'RESET_LOGIN',
-    }
-}
 //-------producto-----------------------------
 //trae productos
 export const getProductos = (limit, offset, categoria, marca, enPromo, precioMin, precioMax) => {
