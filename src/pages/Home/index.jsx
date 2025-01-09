@@ -6,9 +6,6 @@ import { getUsuarioById } from '../../redux/actions/actions';
 import Carrusel from '../../components/CarruselTemporizador';
 import ListaOfertas from '../../components/ListaOfertas';
 import ListaProductos from '../../components/ListaProductos';
-import bolsoMasPaleta from '../../imagenes/bolso-mas-paleta.jpg';
-import paletasNox from '../../imagenes/paletas-nox.jpg';
-import bullNox from '../../imagenes/bull-nox.jpg';
 import imgPChica1 from '../../imagenes/img-pChica/ScreenShot001.jpg';
 import imgPChica2 from '../../imagenes/img-pChica/ScreenShot002.jpg';
 import imgPChica3 from '../../imagenes/img-pChica/ScreenShot003.jpg';
@@ -19,8 +16,7 @@ import './styles.css';
 function Home() {
 
   const data = userData();//JSON.parse(localStorage.getItem('favoritos'));
-  const pantalla = window.innerWidth; //estado para el tamaño de la pantalla
-  const [arrImgsMostrar, setArrImgsMostrar] = React.useState([]); //estado para las imágenes a mostrar en el carrusel
+  const arrImgsMostrar = [imgPChica1, imgPChica2, imgPChica3, imgPChica4];
   const productos = useSelector((state) => state.productos);
   const productosEnOferta = productos?.filter(prod => prod.enPromo);
   //asigno el array de imgs a mostrar según el tamaño de la pantalla
@@ -39,14 +35,6 @@ function Home() {
     }
   }, [data, dispatch]);
 
-  //efecto para asignar las imágenes a mostrar en el carrusel según el tamaño de la pantalla
-  React.useEffect(() => {
-    if(pantalla < 900){
-      setArrImgsMostrar([imgPChica1, imgPChica2, imgPChica3, imgPChica4]);
-    }else{
-      setArrImgsMostrar([bolsoMasPaleta, paletasNox, bullNox]);
-    }
-  }, [pantalla]);
 
   return (
     <div className='cont-home'>

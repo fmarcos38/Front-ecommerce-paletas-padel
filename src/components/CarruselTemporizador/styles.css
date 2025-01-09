@@ -12,20 +12,15 @@
     justify-content: center;
     align-items: center;
 }
+
 /* responsive */
-@media screen and (max-width: 1200px){
-    .img-carrusel{
+@media screen and (max-width: 1050px){
+    .cont-imgs{
         width: 80%;
     }
-}
-@media screen and (max-width: 900px){
-    .cont-carrusel{
-        width: 100%;
-    }
     .img-carrusel{
-        width: 80%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
+        width: 300px;
+        height: 250px;
     }
 }
+
