@@ -1,7 +1,6 @@
 import React from 'react';
 import ArrowCircleLeftIcon from '@mui/icons-material/ArrowCircleLeft';
 import ArrowCircleRightIcon from '@mui/icons-material/ArrowCircleRight';
-
 import './styles.css';
 
 function CarruselTemporizador({imagenes}) {
@@ -41,7 +40,7 @@ function CarruselTemporizador({imagenes}) {
         <div className='cont-carrusel'>
             {/* botón atrás */}
             <button onClick={onClickAtras} className='btn-atras'>
-                <ArrowCircleLeftIcon />
+                <ArrowCircleLeftIcon sx={{'color':'white'}}/>
             </button>
             {/* imágenes */}
             <div className='cont-imgs'>
@@ -49,7 +48,7 @@ function CarruselTemporizador({imagenes}) {
             </div>
             {/* botón sgt */}
             <button onClick={onClickAdelante} className='btn-sgt'>
-                <ArrowCircleRightIcon />
+                <ArrowCircleRightIcon sx={{'color':'white'}}/>
             </button>
         </div>
     )

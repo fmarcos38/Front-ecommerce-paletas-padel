@@ -1,19 +1,44 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Card from '../Card'; // Asegúrate de importar el componente Card
 import './styles.css';
 
 function ListaOfertas({ productos }) {
     const [currentIndex, setCurrentIndex] = useState(0);
+    const [visibleProducts, setVisibleProducts] = useState([]);
+    const [productsPerPage, setProductsPerPage] = useState(4);
 
     const handlePrevClick = () => {
-        setCurrentIndex((prevIndex) => (prevIndex === 0 ? productos.length - 1 : prevIndex - 1));
+        setCurrentIndex((prevIndex) => (prevIndex === 0 ? productos.length - productsPerPage : prevIndex - productsPerPage));
     };
 
     const handleNextClick = () => {
-        setCurrentIndex((prevIndex) => (prevIndex === productos.length - 1 ? 0 : prevIndex + 1));
+        setCurrentIndex((prevIndex) => (prevIndex + productsPerPage >= productos.length ? 0 : prevIndex + productsPerPage));
     };
 
-    const visibleProducts = productos.slice(currentIndex, currentIndex + 3);
+    useEffect(() => {
+        const updateProductsPerPage = () => {
+            const width = window.innerWidth;
+            if (width < 700) {
+                setProductsPerPage(1);
+            } else if (width < 1122) {
+                setProductsPerPage(2);
+            } else {
+                setProductsPerPage(4);
+            }
+        };
+
+        updateProductsPerPage(); // Inicializa el valor al cargar el componente
+        window.addEventListener('resize', updateProductsPerPage); // Actualiza el valor al cambiar el tamaño de la ventana
+
+        return () => {
+            window.removeEventListener('resize', updateProductsPerPage); // Limpia el evento al desmontar el componente
+        };
+    }, []);
+
+    useEffect(() => {
+        setVisibleProducts(productos.slice(currentIndex, currentIndex + productsPerPage));
+    }, [currentIndex, productsPerPage, productos]);
+    
 
     return (
         <div className="lista-ofertas-container">

@@ -5,5 +5,27 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: white;
+    background-color: rgb(0, 0, 0);
+}
+.cont-imgs{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+/* responsive */
+@media screen and (max-width: 1200px){
+    .img-carrusel{
+        width: 80%;
+    }
+}
+@media screen and (max-width: 900px){
+    .cont-carrusel{
+        width: 100%;
+    }
+    .img-carrusel{
+        width: 80%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
 }
