@@ -12,7 +12,7 @@ function Card({id, nombre, precio, imagenes, agotado, enPromo, porcentajeDescuen
     return (
         <div className='cont-card'>
             <div className='cont-btn-fav-card'>
-                <BotonFavorito idProducto={id} />
+                <BotonFavorito id={id} />
             </div>
             {/* carrusel de imagenes */}
             <NavLink to={`/detalleProd/${id}`} className='navLink-car'>
@@ -36,12 +36,12 @@ function Card({id, nombre, precio, imagenes, agotado, enPromo, porcentajeDescuen
             }
             {/* data */}
             <div className='cont-info-card'>
-            <p className='nombre-pala'>{nombre}</p>
-            <div className='cont-precio-desc'>
-                <p className='precio-pala'>${precio}</p>
-                {enPromo && <p className='descuento-pala'>Desc. -{porcentajeDescuento}%</p>}
-            </div>
-            <button className='btn-agrega-carrito'>Agregar al carrito</button>
+                <p className='nombre-pala'>{nombre}</p>
+                <div className='cont-precio-desc'>
+                    <p className='precio-pala'>${precio}</p>
+                    {enPromo && <p className='descuento-pala'>Desc. -{porcentajeDescuento}%</p>}
+                </div>
+                <button className='btn-agrega-carrito'>Agregar al carrito</button>
             </div>
         </div>
     )

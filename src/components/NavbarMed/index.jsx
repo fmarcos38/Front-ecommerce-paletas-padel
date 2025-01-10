@@ -50,6 +50,15 @@ function NavbarMed({usuario, isOpen, menuRef, menuItemsRef, toggleMenu, handleLo
                                                     Lista Propiedades
                                                 </NavLink>
                                             </li>
+                                            <li className='items-pChica'>
+                                                <NavLink
+                                                    to='/favoritos'
+                                                    className='link-navbar'
+                                                    ref={el => menuItemsRef.current[2] = el}
+                                                >
+                                                    Tus Favoritos
+                                                </NavLink>
+                                            </li>
                                         </>
                                     )
                                 }

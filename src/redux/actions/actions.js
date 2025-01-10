@@ -2,8 +2,7 @@ import axios from "axios";
 import { URL } from "../../urls";
 import { 
     LOADING, GET_PRODUCTOS, GET_PRODUCTO_BY_ID, RESET_PRODUCTO, GET_PRODS_RANGO_PRECIO, 
-    OPEN_CLOSE_MODAL, LOGIN,
-    GET_USER,
+    OPEN_CLOSE_MODAL, LOGIN, GET_FAVORITOS, GET_USER,
 } from "./actionTypes";
 
 //-------login-----------------------------
@@ -44,6 +43,13 @@ export const getUsuarioById = (id) => {
     }
 }
 
+//-----------------favoritos---------------------
+export const getFavoritos = (id) => {
+    return async function(dispatch) { 
+        const resp = await axios.get(`${URL}/usuario/favoritos/${id}`);
+        dispatch({type: GET_FAVORITOS, payload: resp.data});
+    }
+}
 //-------producto-----------------------------
 //trae productos
 export const getProductos = (limit, offset, categoria, marca, enPromo, precioMin, precioMax) => {
