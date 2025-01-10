@@ -37,7 +37,7 @@ export const confirmarEmail = (email) => {
 
 //trae usuario por id
 export const getUsuarioById = (id) => {
-    return async function(dispatch) {  console.log('id:', id);
+    return async function(dispatch) {  
         const resp = await axios.get(`${URL}/usuario/${id}`);
         dispatch({type: GET_USER, payload: resp.data});
     }
@@ -48,6 +48,20 @@ export const getFavoritos = (id) => {
     return async function(dispatch) { 
         const resp = await axios.get(`${URL}/usuario/favoritos/${id}`);
         dispatch({type: GET_FAVORITOS, payload: resp.data});
+    }
+}
+
+//agrega favorito
+export const agregaFavorito = (id, idProd) => { console.log('idU:', id); console.log('idP:', idProd);
+    return async function() { 
+        await axios.put(`${URL}/usuario/favorito/agregar/${id}`, {idProd});
+    }
+}
+
+//elimina favorito
+export const eliminaFavorito = (id, idProd) => {
+    return async function() { 
+        await axios.put(`${URL}/usuario/favorito/eliminar/${id}`, {idProd});
     }
 }
 //-------producto-----------------------------

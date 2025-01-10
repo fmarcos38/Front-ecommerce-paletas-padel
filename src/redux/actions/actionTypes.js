@@ -13,4 +13,7 @@ export const ELIMINA_PRODUCTO = "ELIMINA_PRODUCTO";
 export const OPEN_CLOSE_MODAL = "OPEN_CLOSE_MODAL";
 //usuario
 export const GET_USER = "GET_USER";
+//favoritos
 export const GET_FAVORITOS = "GET_FAVORITOS";
+export const AGREGA_FAVORITO = "AGREGA_FAVORITO";
+export const ELIMINA_FAVORITO = "ELIMINA_FAVORITO";

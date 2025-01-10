@@ -2,26 +2,27 @@ import React from 'react'
 import { useSelector } from 'react-redux';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import { useDispatch } from 'react-redux';
+import { agregaFavorito, eliminaFavorito, getFavoritos } from '../../redux/actions/actions';
 import './styles.css'
 
 
-function BotonFavorito({id}) {
+function BotonFavorito({idProd}) {
 
     const usuario = useSelector(state => state.dataUsuario); //datos del usuario
     const [favoritos, setFavoritos] = React.useState([]); //array de favoritos del usuario
     const dispatch = useDispatch();
 
-    const handleOnClickFavorito = (id) => {
+    const handleOnClickFavorito = () => {
+        const id = usuario?._id;
         if(usuario){
             //si el producto ya esta en favoritos, lo elimina
-            if(favoritos.includes(id)){
-                const newFavoritos = favoritos.filter(fav => fav !== id);
-                setFavoritos(newFavoritos);
-                dispatch({type: 'SET_FAVORITOS', payload: newFavoritos});
+            if(favoritos.includes(idProd)){
+                dispatch(eliminaFavorito(id, idProd));
+                dispatch(getFavoritos(id));
             }else{
                 //si no esta en favoritos, lo agrega
-                setFavoritos([...favoritos, id]);
-                dispatch({type: 'SET_FAVORITOS', payload: [...favoritos, id]});
+                dispatch(agregaFavorito(id, idProd));
+                dispatch(getFavoritos(id));
             }
         }else{
             alert('Debes iniciar sesión para agregar productos a favoritos');
@@ -37,9 +38,9 @@ function BotonFavorito({id}) {
 
     return (
         <button
-            onClick={() => handleOnClickFavorito(id)}
+            onClick={handleOnClickFavorito}
             className='btn-fav'>
-            <FavoriteIcon sx={favoritos?.includes(id) ? {'color':'red'} : {'color':'black'}} />
+            <FavoriteIcon sx={favoritos?.includes(idProd) ? {'color':'red'} : {'color':'black'}} />
         </button>
     )
 }

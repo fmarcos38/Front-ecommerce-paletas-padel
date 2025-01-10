@@ -5,6 +5,7 @@
     border: none;
     border-radius: 50%;
     background-color: white;
+    cursor: pointer;
     z-index: 2000;
 }
 .siFav{

@@ -9,10 +9,10 @@ import CreaProducto from './pages/CreaProducto/CreaProducto';
 import EditaProd from './pages/EditaProd';
 import ListaProdsAdminPage from './pages/ListaProdsAdminPage';
 import DetalleProdPage from './pages/DetalleProdPage';
-import './App.css';
 import PoliticasDeCambioPage from './pages/PoliticasCambio';
 import LoginPage from './pages/Login';
 import FavoritosPage from './pages/Favoritos';
+import './App.css';
 
 function App() {
   return (

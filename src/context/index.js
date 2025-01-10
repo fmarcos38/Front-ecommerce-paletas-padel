@@ -8,7 +8,7 @@ export const AppContext = createContext();
 export const AppProvider = ({ children }) => {
 
     //estado data user
-    const [dataUser, setDataUser] = React.useState({}); console.log("dataUser", dataUser);
+    const [dataUser, setDataUser] = React.useState({}); 
 
     //efecto para verificar si hay usuario logueado
     useEffect(() => {

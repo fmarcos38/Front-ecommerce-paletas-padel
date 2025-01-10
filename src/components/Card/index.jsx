@@ -12,7 +12,7 @@ function Card({id, nombre, precio, imagenes, agotado, enPromo, porcentajeDescuen
     return (
         <div className='cont-card'>
             <div className='cont-btn-fav-card'>
-                <BotonFavorito id={id} />
+                <BotonFavorito idProd={id} />
             </div>
             {/* carrusel de imagenes */}
             <NavLink to={`/detalleProd/${id}`} className='navLink-car'>
