@@ -8,7 +8,12 @@ export const AppContext = createContext();
 export const AppProvider = ({ children }) => {
 
     //estado data user
-    const [dataUser, setDataUser] = React.useState({}); 
+    const [dataUser, setDataUser] = React.useState({});
+
+    //arreglo de marcas
+    const marcas = ['Nox', 'Bullpadel'];
+    //arreglo de categorías
+    const categorias = ['Paletas', 'Pelotas', 'Zapatilla', 'Indumentaria'];
 
     //efecto para verificar si hay usuario logueado
     useEffect(() => {
@@ -22,6 +27,8 @@ export const AppProvider = ({ children }) => {
     return (
         <AppContext.Provider value={{
             dataUser,
+            marcas,
+            categorias,
         }}>
             {children}
         </AppContext.Provider>

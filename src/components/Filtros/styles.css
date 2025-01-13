@@ -1,0 +1,53 @@
+.cont-filtros{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.cont-filtro-marca,
+.cont-filtro-categoria,
+.cont-filtro-rango-precio{
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+}
+.cont-titulo-filtros{
+    width: 80%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 13px;
+    border-bottom: 1px solid black;
+}
+.titulo-filtro{
+    margin: 0 0 10px 0;
+}
+.cont-check-Y-label-marca,
+.cont-check-Y-label-categoria{
+    width: 80%;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    background-color: aquamarine;
+}
+.check-marca,
+.check-categoria{
+    width: 20px;
+    height: 20px;
+    margin-right: 5px;
+}
+.label-check-marca,
+.label-check-categoria{
+    font-size: 25px;
+    font-weight: 500px;
+}
+.cont-filtro-rango-precio{
+    margin-top: 20px;
+}
+/* respoonsive */
+@media screen and (max-width: 1200px){
+    
+}

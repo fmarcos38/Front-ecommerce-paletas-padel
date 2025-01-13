@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { userData } from '../../localStorage';
 import { useDispatch, useSelector } from 'react-redux';
 import { getProductos } from '../../redux/actions/actions';
@@ -10,6 +10,7 @@ import imgPChica1 from '../../imagenes/img-pChica/ScreenShot001.jpg';
 import imgPChica2 from '../../imagenes/img-pChica/ScreenShot002.jpg';
 import imgPChica3 from '../../imagenes/img-pChica/ScreenShot003.jpg';
 import imgPChica4 from '../../imagenes/img-pChica/ScreenShot004.jpg';
+import Filtros from '../../components/Filtros';
 import './styles.css';
 
 
@@ -23,13 +24,19 @@ function Home() {
   //const arrImgsMostrar = window.innerWidth < 900 ? arrImgsChica : arrImgs;
   const dispatch = useDispatch();
 
+  //efecto para iniciar la pagina desde la parte SUPERIOR
+  useEffect(() => {
+    // Desplaza la página hacia la parte superior cuando el componente se monta
+    window.scrollTo(0, 0);
+  }, []); // El array vacío asegura que se ejecute solo al montar el componente
+
   //efecto para traer los productos
-  React.useEffect(() => {
+  useEffect(() => {
     dispatch(getProductos());
   }, [dispatch]);
 
   //efecto para traer los datos del usuario SI hay usuario logueado
-  React.useEffect(() => {
+  useEffect(() => {
     if (data) {
       dispatch(getUsuarioById(data.user.id));
     }
@@ -56,17 +63,18 @@ function Home() {
       </div>
       
       {/* filtros y lista prods */}
-      <div className='lista-paletas'>
-        <h2>Productos</h2>
+      <div className='lista-productos-home'>
+        <div className='cont-titulo-lista-prods'>
+          <h2>Productos</h2>
+        </div>
         <div className='cont-filtros-lista-prods'>
           {/* filtros */}
-          <div className='cont-filtros-home'>FILTROS</div>
+          <div className='cont-filtros-home'>
+            <Filtros />
+          </div>
           {/* lista productos */}
-          <div className='cont-lista-paletas-home'>
-            <h3 className='titulo-lista-paletas'>Palas / Paletas</h3>
-            <div className='cont-lista-productos'>
-              <ListaProductos productos={productos} />
-            </div>
+          <div className='cont-lista-productos-home'>
+            <ListaProductos productos={productos} />
           </div>
         </div>
       </div>

@@ -24,8 +24,8 @@ function FavoritosPage() {
                 favoritos.length === 0 ? 
                 <p>No tienes productos en favoritos</p> :
                 /* filtros y prods */
-                    <div className='cont-filtros-prods'>
-                        <div className='cont-filtros'>
+                    <div className='cont-filtros-prods-fav'>
+                        <div className='cont-filtros-fav'>
                             filtros
                         </div>
                         <div className='cont-fav'>

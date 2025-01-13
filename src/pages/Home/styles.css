@@ -46,7 +46,7 @@
     margin-bottom: 20px;
 }
 /* cont-filt y prods */
-.lista-paletas{
+.lista-productos-home{
     width: 90%;
     height: auto;
     display: flex;
@@ -65,38 +65,35 @@
 /* estilos filtros */
 .cont-filtros-home{
     width: 20%;
-    background-color: #ec2b62;
+    position: sticky;
+    top: 10%; /* La distancia desde la parte superior de la ventana */
+    max-height: calc(100vh - 20px); /* Ajusta la altura máxima para evitar que salga del contenedor */
+    overflow-y: auto; /* Permite el desplazamiento dentro de la barra lateral si el contenido es más largo */
+    background-color: chartreuse;
 }
 /* estilos titulo y lista prods */
-.cont-lista-paletas-home{
+.cont-lista-productos-home{
     width: 80%;
-    height: auto;
-    display: flex;
-    flex-direction: column;
-    justify-content: start;
-    align-items: center;
-}
-.titulo-lista-paletas{
-    color: white;
-    margin: 0;
-}
-.cont-lista-productos{
-    width: 100%;
     height: auto;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
     align-items: center;
 }
+.titulo-lista-paletas{
+    color: white;
+    margin: 0;
+}
 
 /* responsie */
-@media screen and (max-width: 1200px){
+@media screen and (max-width: 1300px){
     .cont-ofertas-home{
         width: 95%;
     }
     .cont-lista-ofertas{
         width: 95%;
     }
+    /* estilos filtros */
 }
 @media screen and (max-width: 900px){
     .cont-carrusel-home{
