@@ -3,7 +3,7 @@ import Card from '../Card';
 import './styles.css'
 
 
-function ListaProductos({productos}) {
+function ListaProductos({productos,usuario, favoritos}) {
 
     return (
         <>

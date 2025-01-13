@@ -1,6 +1,6 @@
 import { 
     LOADING, GET_PRODUCTOS, GET_PRODUCTO_BY_ID, RESET_PRODUCTO, GET_PRODS_RANGO_PRECIO, 
-    OPEN_CLOSE_MODAL, LOGIN, RESET_LOGIN, GET_USER, GET_FAVORITOS 
+    OPEN_CLOSE_MODAL, LOGIN, RESET_LOGIN, GET_USER, GET_FAVORITOS, RESET_USER
 } from '../actions/actionTypes'
 
 const initialStore = {
@@ -65,6 +65,11 @@ export default function rootReducer (state = initialStore, action) {
             return {
                 ...state,
                 dataUsuario: action.payload,
+            }
+        case RESET_USER:
+            return {
+                ...state,
+                dataUsuario: null,
             }
         case GET_FAVORITOS:
             return {

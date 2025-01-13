@@ -2,7 +2,7 @@ import axios from "axios";
 import { URL } from "../../urls";
 import { 
     LOADING, GET_PRODUCTOS, GET_PRODUCTO_BY_ID, RESET_PRODUCTO, GET_PRODS_RANGO_PRECIO, 
-    OPEN_CLOSE_MODAL, LOGIN, GET_FAVORITOS, GET_USER,
+    OPEN_CLOSE_MODAL, LOGIN, GET_FAVORITOS, GET_USER, RESET_USER
 } from "./actionTypes";
 
 //-------login-----------------------------
@@ -43,6 +43,12 @@ export const getUsuarioById = (id) => {
     }
 }
 
+//reset usuario
+export const resetUsuario = () => {
+    return {
+        type: RESET_USER,
+    }
+}
 //-----------------favoritos---------------------
 export const getFavoritos = (id) => {
     return async function(dispatch) { 

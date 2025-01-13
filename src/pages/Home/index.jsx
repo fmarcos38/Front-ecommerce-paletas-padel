@@ -15,7 +15,7 @@ import './styles.css';
 
 function Home() {
 
-  const data = userData();//JSON.parse(localStorage.getItem('favoritos'));
+  const data = userData();
   const arrImgsMostrar = [imgPChica1, imgPChica2, imgPChica3, imgPChica4];
   const productos = useSelector((state) => state.productos);
   const productosEnOferta = productos?.filter(prod => prod.enPromo);

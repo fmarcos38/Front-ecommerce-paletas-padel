@@ -1,18 +1,58 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import { getFavoritos, eliminaFavorito, agregaFavorito,  } from '../../redux/actions/actions';
 import { NavLink } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
 import BotonFavorito from '../BotonFavorito';
 import './styles.css';
 
-
 function Card({id, nombre, precio, imagenes, agotado, enPromo, porcentajeDescuento}) {
 
-    //estado para hover de la imgn - mostrando detalle
-    const [showDetail, setShowDetail] = React.useState(false);
+    const usuario = useSelector(state => state.dataUsuario); 
+    const favoritos = useSelector(state => state.favoritos);
+    const [showDetail, setShowDetail] = React.useState(false); //estado para hover de la imgn - mostrando detalle
+    const [esFavorito, setEsFavorito] = useState(false); //estado para saber si el producto es favorito
+    const dispatch = useDispatch();
+
+    // Manejar el cambio de estado de favorito
+    const handleOnClickFavorito = async () => {
+        try {
+            if(esFavorito) { 
+                dispatch(eliminaFavorito(usuario._id, id));
+                setEsFavorito(!esFavorito);
+                return;
+            }else{
+                dispatch(agregaFavorito(usuario._id, id));
+                setEsFavorito(!esFavorito);
+            }
+        } catch (error) {
+            console.error("Error al cambiar estado de favorito:", error);
+        }
+    };
     
+
+    // Cargar favoritos al montar el componente
+    useEffect(() => {
+        const obtenerFavoritos = async () => {
+            if (usuario?._id) {
+                const usuarioId = usuario._id;
+                try {
+                    dispatch(getFavoritos(usuarioId)); 
+                    setEsFavorito(favoritos.some(fav => fav.id === id));
+                } catch (error) {
+                    console.error("Error al obtener favoritos:", error);
+                }
+            }
+        };
+    
+        obtenerFavoritos();
+    }, [usuario, id, dispatch]);
+
+
     return (
         <div className='cont-card'>
+            {/* btn favorito */}
             <div className='cont-btn-fav-card'>
-                <BotonFavorito idProd={id} />
+                <BotonFavorito esFavorito={esFavorito} handleOnClickFavorito={handleOnClickFavorito} />
             </div>
             {/* carrusel de imagenes */}
             <NavLink to={`/detalleProd/${id}`} className='navLink-car'>
