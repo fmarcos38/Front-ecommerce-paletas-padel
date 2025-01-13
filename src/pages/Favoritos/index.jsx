@@ -1,5 +1,4 @@
 import React, { useEffect} from 'react'
-import { userData } from '../../localStorage';
 import { useDispatch, useSelector } from 'react-redux';
 import { getFavoritos } from '../../redux/actions/actions';
 import ListaProductos from '../../components/ListaProductos';
@@ -8,14 +7,15 @@ import './styles.css';
 
 function FavoritosPage() {
 
-    const usuario = userData();
-    const favoritos = useSelector(state => state.favoritos);
+    const usuario = useSelector((state) => state.usuario);
+    const favoritos = useSelector((state) => state.favoritos);
     const dispatch = useDispatch();
 
-
     useEffect(() => {
-        dispatch(getFavoritos(usuario.user.id));        
-    }, [dispatch, usuario.user.id]);
+        if (usuario) {
+            dispatch(getFavoritos(usuario.id));
+        }
+    }, [dispatch, usuario]);
 
     return (
         <div className='cont-fav-page'>

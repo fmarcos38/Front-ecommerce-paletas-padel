@@ -58,7 +58,7 @@ export const getFavoritos = (id) => {
 }
 
 //agrega favorito
-export const agregaFavorito = (id, idProd) => { console.log('idU:', id); console.log('idP:', idProd);
+export const agregaFavorito = (id, idProd) => { 
     return async function() { 
         await axios.put(`${URL}/usuario/favorito/agregar/${id}`, {idProd});
     }
