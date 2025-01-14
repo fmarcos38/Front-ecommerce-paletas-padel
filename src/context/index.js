@@ -11,9 +11,9 @@ export const AppProvider = ({ children }) => {
     const [dataUser, setDataUser] = React.useState({});
 
     //arreglo de marcas
-    const marcas = ['Nox', 'Bullpadel'];
+    const marcas = ['Nox', 'Bullpadel', 'Wilson', 'Head',];
     //arreglo de categorías
-    const categorias = ['Paletas', 'Pelotas', 'Zapatilla', 'Indumentaria'];
+    const categorias = ['Paletas', 'Pelotas', 'Zapatillas', 'Bolsos'];
 
     //efecto para verificar si hay usuario logueado
     useEffect(() => {

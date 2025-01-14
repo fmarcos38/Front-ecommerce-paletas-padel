@@ -1,18 +1,23 @@
 import React, { useEffect, useState } from 'react';
-import Card from '../Card'; // Asegúrate de importar el componente Card
+import Card from '../Card';
 import './styles.css';
 
 function ListaOfertas({ productos }) {
+
     const [currentIndex, setCurrentIndex] = useState(0);
     const [visibleProducts, setVisibleProducts] = useState([]);
-    const [productsPerPage, setProductsPerPage] = useState(4);
+    const [productsPerPage, setProductsPerPage] = useState(productos.total < 3 ? productos.total : 3);
 
     const handlePrevClick = () => {
-        setCurrentIndex((prevIndex) => (prevIndex === 0 ? productos.length - productsPerPage : prevIndex - productsPerPage));
+        // No hacer nada si ya estamos en el primer conjunto de productos
+        if (currentIndex === 0) return;
+        setCurrentIndex((prevIndex) => prevIndex - productsPerPage);
     };
 
     const handleNextClick = () => {
-        setCurrentIndex((prevIndex) => (prevIndex + productsPerPage >= productos.length ? 0 : prevIndex + productsPerPage));
+        setCurrentIndex((prevIndex) =>
+            prevIndex + productsPerPage >= productos.prodsNormalizados.length ? 0 : prevIndex + productsPerPage
+        );
     };
 
     useEffect(() => {
@@ -23,36 +28,35 @@ function ListaOfertas({ productos }) {
             } else if (width < 1122) {
                 setProductsPerPage(2);
             } else {
-                setProductsPerPage(4);
+                setProductsPerPage(3);
             }
         };
 
-        updateProductsPerPage(); // Inicializa el valor al cargar el componente
-        window.addEventListener('resize', updateProductsPerPage); // Actualiza el valor al cambiar el tamaño de la ventana
+        updateProductsPerPage();
+        window.addEventListener('resize', updateProductsPerPage);
 
         return () => {
-            window.removeEventListener('resize', updateProductsPerPage); // Limpia el evento al desmontar el componente
+            window.removeEventListener('resize', updateProductsPerPage);
         };
     }, []);
 
     useEffect(() => {
-        setVisibleProducts(productos.slice(currentIndex, currentIndex + productsPerPage));
+        setVisibleProducts(productos.prodsNormalizados?.slice(currentIndex, currentIndex + productsPerPage));
     }, [currentIndex, productsPerPage, productos]);
-    
 
     return (
         <div className="lista-ofertas-container">
-            <button className="arrow-button" onClick={handlePrevClick}>←</button>
+            <button className="arrow-button" onClick={handlePrevClick} disabled={currentIndex === 0}>←</button>
             <div className="lista-ofertas">
-                {visibleProducts.map((producto, index) => (
-                    <Card 
+                {visibleProducts?.map((producto, index) => (
+                    <Card
                         key={index}
-                        id={producto.id} 
+                        id={producto.id}
                         nombre={producto.nombre}
-                        precio={producto.precio} 
-                        imagenes={producto.imagenes} 
-                        agotado={producto.agotado} 
-                        enPromo={producto.enPromo} 
+                        precio={producto.precio}
+                        imagenes={producto.imagenes}
+                        agotado={producto.agotado}
+                        enPromo={producto.enPromo}
                         porcentajeDescuento={producto.porcentajeDescuento}
                     />
                 ))}

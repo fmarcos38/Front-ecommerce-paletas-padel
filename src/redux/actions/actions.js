@@ -2,7 +2,8 @@ import axios from "axios";
 import { URL } from "../../urls";
 import { 
     LOADING, GET_PRODUCTOS, GET_PRODUCTO_BY_ID, RESET_PRODUCTO, GET_PRODS_RANGO_PRECIO, 
-    OPEN_CLOSE_MODAL, LOGIN, GET_FAVORITOS, GET_USER, RESET_USER
+    OPEN_CLOSE_MODAL, LOGIN, GET_FAVORITOS, GET_USER, RESET_USER,
+    GET_PRODUTOS_OFERTA
 } from "./actionTypes";
 
 //-------login-----------------------------
@@ -106,6 +107,14 @@ export const getProductos = (limit, offset, categoria, marca, enPromo, precioMin
             console.error('Error fetching properties:', error);
             // se pueden manejar el error aquí si lo necesitas
         }
+    }
+}
+
+//trae productos en oferta
+export const getProductosEnOferta = () => {
+    return async function(dispatch) { 
+        const resp = await axios.get(`${URL}/producto?&enPromo=${true}`);
+        dispatch({type: GET_PRODUTOS_OFERTA, payload: resp.data});
     }
 }
 

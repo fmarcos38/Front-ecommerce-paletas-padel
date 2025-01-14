@@ -1,13 +1,15 @@
 import React from 'react'
 import Card from '../Card';
-import './styles.css'
+import NoHayProds from '../NoHayProps';
+import './styles.css';
 
 
-function ListaProductos({productos,usuario, favoritos}) {
+function ListaProductos({productos}) {
 
     return (
-        <>
+        <div className='cont-lista-prods'>
             {
+                productos.length > 0 ?
                 productos?.map(p => (
                     <Card key={p.id} 
                         id={p.id}
@@ -17,12 +19,10 @@ function ListaProductos({productos,usuario, favoritos}) {
                         agotado={p.agotado}
                         enPromo={p.enPromo}
                         porcentajeDescuento={p.porcentajeDescuento}
-                        /* categoriaProducto={p.categoriaProducto} */
-                        /*categoriaMarca={p.categoriaMarca} */
                     />
-                ))
+                )) : <NoHayProds />
             }
-        </>
+        </div>
     )
 }
 

@@ -3,12 +3,47 @@ import { AppContext } from '../../context';
 import FiltroRangoPrecio from '../FiltroRangoPrecio';
 import './styles.css';
 
-function Filtros() {
+function Filtros({
+    marca,
+    setMarca,
+    categoria,
+    setCategoria,
+    promo,
+    setPromo,
+    precioMin,
+    setPrecioMin,
+    precioMax,
+    setPrecioMax,
+    setPaginaActual,
+}) {
 
-    const [precioMin, setPrecioMin] = React.useState(1000);
-    const [precioMax, setPrecioMax] = React.useState(1000000);
+    
     const context = useContext(AppContext);
 
+    const handleChangeMarca = (e) => {
+        const { checked, value } = e.target;
+        if (checked) {
+            setMarca(value);
+        } else {
+            setMarca('');
+        }
+    }
+    const handleChangeCategoria = (e) => {
+        const { checked, value } = e.target;
+        if (checked) {
+            setCategoria(value);
+        } else {
+            setCategoria('');
+        }
+    }
+    const handleChangePromo = (e) => {
+        const { checked } = e.target;
+        if (checked) {
+            setPromo(true);
+        } else {
+            setPromo(false);
+        }
+    }
 
     return (
         <div className='cont-filtros'>
@@ -19,26 +54,58 @@ function Filtros() {
             {/* por marca */}
             <div className='cont-filtro-marca'>
                 <h2 className='titulo-filtro'>Marca</h2>
+                <div className='cont-map-marca'>
                 {
-                    context.marcas.map((marca) => (
-                        <div key={marca} className='cont-check-Y-label-marca'>
-                            <input type="checkbox" id={marca} name={marca} value={marca} className='check-marca'/>
-                            <label htmlFor={marca} className='label-check-marca'>{marca}</label>
+                    context.marcas.map((m) => (
+                        <div key={m} className='cont-check-Y-label-marca'>
+                            <input 
+                                type="checkbox" 
+                                id={marca}
+                                value={m}
+                                onChange={handleChangeMarca}
+                                checked={marca === m} 
+                                className='check-marca'
+                            />
+                            <label className='label-check-marca'>{m}</label>
                         </div>
                     ))
                 }
+                </div>
             </div>
             {/* por categoría */}
             <div className='cont-filtro-categoria'>
                 <h2 className='titulo-filtro'>Categoría</h2>
+                <div className='cont-map-marca'>
                 {
-                    context.categorias.map((categoria) => (
-                        <div key={categoria} className='cont-check-Y-label-categoria'>
-                            <input type="checkbox" id={categoria} name={categoria} value={categoria} className='check-categoria'/>
-                            <label htmlFor={categoria} className='label-check-categoria'>{categoria}</label>
+                    context.categorias.map((c) => (
+                        <div key={c} className='cont-check-Y-label-categoria'>
+                            <input 
+                                type="checkbox" 
+                                id={categoria} 
+                                value={c}
+                                onChange={handleChangeCategoria} 
+                                checked={categoria === c}
+                                className='check-categoria'
+                            />
+                            <label  className='label-check-categoria'>{c}</label>
                         </div>
                     ))
                 }
+                </div>
+            </div>
+            {/* en Promo */}
+            <div className='cont-filtro-en-promo'>
+                <h2 className='titulo-filtro'>En promoción</h2>
+                <div className='cont-check-Y-label-promo'>
+                    <input 
+                        type="checkbox" 
+                        id='promo'
+                        value={promo}
+                        onChange={handleChangePromo}
+                        className='check-categoria'
+                    />
+                    <label className='label-check-categoria'>Ofertas</label>
+                </div>
             </div>
             {/* por rango precio */}
             <div className='cont-filtro-rango-precio'>
@@ -48,7 +115,7 @@ function Filtros() {
                     setPrecioMin={setPrecioMin} 
                     precioMax={precioMax} 
                     setPrecioMax={setPrecioMax} 
-                    setCurrentPage={null}
+                    setCurrentPage={setPaginaActual}
                 />
             </div>
 

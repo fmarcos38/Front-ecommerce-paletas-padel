@@ -1,14 +1,16 @@
 import { 
     LOADING, GET_PRODUCTOS, GET_PRODUCTO_BY_ID, RESET_PRODUCTO, GET_PRODS_RANGO_PRECIO, 
-    OPEN_CLOSE_MODAL, LOGIN, RESET_LOGIN, GET_USER, GET_FAVORITOS, RESET_USER
+    OPEN_CLOSE_MODAL, LOGIN, RESET_LOGIN, GET_USER, GET_FAVORITOS, RESET_USER,
+    GET_PRODUTOS_OFERTA
 } from '../actions/actionTypes'
 
 const initialStore = {
     dataUsuario: null,
     favoritos: [],
     productos: [],
-    totProdos: 0,
+    totProds: 0,
     producto: {},
+    enPromo: [],
     productosRangoPrecio: [],
     isModalOpen: false,
     loading: false,
@@ -35,7 +37,7 @@ export default function rootReducer (state = initialStore, action) {
             return {
                 ...state,
                 productos: action.payload.prodsNormalizados,
-                totProdos: action.payload.total,
+                totProds: action.payload.total,
                 loading: false
             }
         case GET_PRODUCTO_BY_ID:
@@ -48,6 +50,11 @@ export default function rootReducer (state = initialStore, action) {
             return {
                 ...state,
                 producto: {},
+            }
+        case GET_PRODUTOS_OFERTA:
+            return {
+                ...state,
+                enPromo: action.payload,
             }
         case GET_PRODS_RANGO_PRECIO:
             return {

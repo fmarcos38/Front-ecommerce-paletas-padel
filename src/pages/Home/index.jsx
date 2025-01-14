@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { userData } from '../../localStorage';
 import { useDispatch, useSelector } from 'react-redux';
-import { getProductos } from '../../redux/actions/actions';
+import { getProductos, getProductosEnOferta } from '../../redux/actions/actions';
 import { getUsuarioById } from '../../redux/actions/actions';
 import Carrusel from '../../components/CarruselTemporizador';
 import ListaOfertas from '../../components/ListaOfertas';
@@ -11,18 +11,29 @@ import imgPChica2 from '../../imagenes/img-pChica/ScreenShot002.jpg';
 import imgPChica3 from '../../imagenes/img-pChica/ScreenShot003.jpg';
 import imgPChica4 from '../../imagenes/img-pChica/ScreenShot004.jpg';
 import Filtros from '../../components/Filtros';
+import Paginacion from '../../components/Paginacion';
 import './styles.css';
 
 
 function Home() {
 
   const data = userData();
-  const arrImgsMostrar = [imgPChica1, imgPChica2, imgPChica3, imgPChica4];
+  const [marca, setMarca] = React.useState(''); console.log(marca); 
+  const [categoria, setCategoria] = React.useState('');
+  const [promo, setPromo] = React.useState(false);
+  const [precioMin, setPrecioMin] = React.useState(1000);
+  const [precioMax, setPrecioMax] = React.useState(1000000);
+  const arrImgsMostrar = [imgPChica1, imgPChica2, imgPChica3, imgPChica4]; //array de imagenes a mostrar en el carrusel
   const productos = useSelector((state) => state.productos);
-  const productosEnOferta = productos?.filter(prod => prod.enPromo);
-  //asigno el array de imgs a mostrar según el tamaño de la pantalla
-  //const arrImgsMostrar = window.innerWidth < 900 ? arrImgsChica : arrImgs;
+  const totalProductos = useSelector((state) => state.totProds);
+  const productosEnOferta = useSelector(state => state.enPromo); //productos en oferta
   const dispatch = useDispatch();
+  //paginación
+  const [paginaActual, setPaginaActual] = React.useState(1);
+  const prooductosPorPagina = 4;
+  const limit = prooductosPorPagina;
+  const offset = (paginaActual - 1) * prooductosPorPagina;
+
 
   //efecto para iniciar la pagina desde la parte SUPERIOR
   useEffect(() => {
@@ -30,10 +41,15 @@ function Home() {
     window.scrollTo(0, 0);
   }, []); // El array vacío asegura que se ejecute solo al montar el componente
 
+  //efecto para traer los productos en oferta
+  useEffect(() => {
+    dispatch(getProductosEnOferta());
+  }, [dispatch]);
+
   //efecto para traer los productos
   useEffect(() => {
-    dispatch(getProductos());
-  }, [dispatch]);
+    dispatch(getProductos(limit, offset, categoria, marca, promo, precioMin, precioMax));
+  }, [categoria, dispatch, limit, marca, offset, precioMax, precioMin, promo]);
 
   //efecto para traer los datos del usuario SI hay usuario logueado
   useEffect(() => {
@@ -70,11 +86,30 @@ function Home() {
         <div className='cont-filtros-lista-prods'>
           {/* filtros */}
           <div className='cont-filtros-home'>
-            <Filtros />
+            <Filtros
+              marca={marca}
+              setMarca={setMarca}
+              categoria={categoria}
+              setCategoria={setCategoria}
+              promo={promo}
+              setPromo={setPromo}
+              precioMin={precioMin}
+              setPrecioMin={setPrecioMin}
+              precioMax={precioMax}
+              setPrecioMax={setPrecioMax}
+              setPaginaActual={setPaginaActual}
+            />
           </div>
           {/* lista productos */}
           <div className='cont-lista-productos-home'>
             <ListaProductos productos={productos} />
+            {/* paginación */}
+            <Paginacion              
+              paginaActual={paginaActual}
+              onChangePagina={setPaginaActual}
+              totalProductos={totalProductos}
+              prooductosPorPagina={prooductosPorPagina}
+            />
           </div>
         </div>
       </div>
