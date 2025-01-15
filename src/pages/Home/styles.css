@@ -84,6 +84,62 @@
     color: white;
     margin: 0;
 }
+/* estilos Modal-carrito */
+.modal-carrito-compras-open {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 40%;
+    height: 100vh;
+    background-color: white;
+    box-shadow: -5px 0 15px rgba(0, 0, 0, 0.3);
+    opacity: 0; /* Inicialmente, ocultamos los textos */
+    animation-duration: 1.5s;
+    animation-fill-mode: forwards;
+    z-index: 1000;
+}
+.left-slide {
+    animation-name: slideFromLeft;
+}
+@keyframes slideFromLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-100%);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+/* Estilos para cuando el modal está cerrado */
+/* .modal-carrito-compras-closed {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 40%;
+    height: 100vh;
+    background-color: white;
+    box-shadow: -5px 0 15px rgba(0, 0, 0, 0.3);
+    opacity: 1; 
+    animation-duration: 1.5s;
+    animation-fill-mode: forwards;
+    z-index: 1000;
+}
+.right-slide {
+    animation-name: slideToRight;
+}
+@keyframes slideToRight {
+    from {
+        opacity: 1;
+        transform: translateX(0);
+    }
+    to {
+        opacity: 0;
+        transform: translateX(100%);
+    }
+} */
+
 
 /* responsie */
 @media screen and (max-width: 1200px){

@@ -158,8 +158,12 @@
     align-items: center;
     font-size: 10px;
 }
-
-
+/* btn-carrito */
+.btn-carrito{
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}
 /* responsive */
 @media screen and (max-width: 1170px){
     .col-2{

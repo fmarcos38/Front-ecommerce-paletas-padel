@@ -7,13 +7,15 @@ export const AppContext = createContext();
 //creo provider
 export const AppProvider = ({ children }) => {
 
-    //estado data user
-    const [dataUser, setDataUser] = React.useState({});
+    const [dataUser, setDataUser] = React.useState({}); //estado data user
+    const [carritoModal, setCarritoModal] = React.useState(false); console.log("modal:", carritoModal) //estado modal carrito
+    
+    const marcas = ['Nox', 'Bullpadel', 'Wilson', 'Head',]; //arreglo de marcas
+    const categorias = ['Paletas', 'Pelotas', 'Zapatillas', 'Bolsos']; //arreglo de categorías
 
-    //arreglo de marcas
-    const marcas = ['Nox', 'Bullpadel', 'Wilson', 'Head',];
-    //arreglo de categorías
-    const categorias = ['Paletas', 'Pelotas', 'Zapatillas', 'Bolsos'];
+    const onClickCarrito = () => {
+        setCarritoModal(!carritoModal);
+    };
 
     //efecto para verificar si hay usuario logueado
     useEffect(() => {
@@ -29,6 +31,8 @@ export const AppProvider = ({ children }) => {
             dataUser,
             marcas,
             categorias,
+            carritoModal,
+            onClickCarrito,
         }}>
             {children}
         </AppContext.Provider>

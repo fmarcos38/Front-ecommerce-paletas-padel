@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { NavLink } from 'react-router-dom';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import FavoriteIcon from '@mui/icons-material/Favorite';
@@ -6,9 +6,15 @@ import logo from '../../imagenes/logo.jpg';
 import BuscaProducto from '../BuscaProducto';
 import LogoutIcon from '@mui/icons-material/Logout';
 import './styles.css';
+import { AppContext } from '../../context';
 
 function NavbarMed({usuario, isOpen, menuRef, menuItemsRef, toggleMenu, handleLogOut, contCarrito=0, contFav=0}) {
     
+    const context = useContext(AppContext);
+    const handleOnClickCarrito = () => {
+        context.onClickCarrito();
+    }
+
     return (
         <div className='fila-med'>
             {/* menu hambur y desplegable P.Chica */}
@@ -142,11 +148,15 @@ function NavbarMed({usuario, isOpen, menuRef, menuItemsRef, toggleMenu, handleLo
                 <div className='cont-carrito-fav'>
                     <div className='cont-carrito'>
                         <p className='items-carrito'>{contCarrito}</p>
-                        <ShoppingCartIcon sx={{ 'fontSize': '30px' }} />
+                        <button type='button' onClick={handleOnClickCarrito} className='btn-carrito'>
+                            <ShoppingCartIcon sx={{ 'fontSize': '30px' }} />
+                        </button>
                     </div>
                     <div className='cont-favoritos'>
                         <p className='items-fav'>{contFav}</p>
-                        <FavoriteIcon sx={{ 'fontSize': '30px' }} />
+                        <NavLink to='/favoritos' className='link-navbar-inf'>
+                            <FavoriteIcon sx={{ 'fontSize': '30px' }} />
+                        </NavLink>
                     </div>
                 </div>
             </div>

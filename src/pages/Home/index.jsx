@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { userData } from '../../localStorage';
 import { useDispatch, useSelector } from 'react-redux';
 import { getProductos, getProductosEnOferta } from '../../redux/actions/actions';
@@ -13,12 +13,14 @@ import imgPChica4 from '../../imagenes/img-pChica/ScreenShot004.jpg';
 import Filtros from '../../components/Filtros';
 import Paginacion from '../../components/Paginacion';
 import './styles.css';
+import { AppContext } from '../../context';
+import CarritoCompras from '../../components/CarritoCompras';
 
 
 function Home() {
 
   const data = userData();
-  const [marca, setMarca] = React.useState(''); console.log(marca); 
+  const [marca, setMarca] = React.useState('');
   const [categoria, setCategoria] = React.useState('');
   const [promo, setPromo] = React.useState(false);
   const [precioMin, setPrecioMin] = React.useState(1000);
@@ -28,6 +30,7 @@ function Home() {
   const totalProductos = useSelector((state) => state.totProds);
   const productosEnOferta = useSelector(state => state.enPromo); //productos en oferta
   const dispatch = useDispatch();
+  const context = useContext(AppContext);
   //paginación
   const [paginaActual, setPaginaActual] = React.useState(1);
   const prooductosPorPagina = 4;
@@ -113,6 +116,11 @@ function Home() {
           </div>
         </div>
       </div>
+
+      {/* Carrito de Comrpas - modal */}
+      <div className={context.carritoModal === true ? 'modal-carrito-compras-open left-slide' : ''}>
+          <CarritoCompras />
+        </div>
     </div>
   )
 }

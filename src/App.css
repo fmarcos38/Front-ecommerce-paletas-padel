@@ -1,6 +1,8 @@
 :root{
   --color-azul: rgba(56, 32, 218, 0.866);
   --color-blanco: #ffffff;
+  --gris-bordes: rgb(205, 203, 203);
+  --gris-fondo: #f4f4f4;
 }
 
 /* botnes para los Carruseles */

@@ -20,9 +20,6 @@ function NavbarInf({usuario}) {
             <ul className='ul-nav-inf'>
                 <li>Bullpadel</li>
                 <li>Nox</li>
-                <li>
-                    <NavLink to='/favoritos' className='link-navbar-inf'>Favoritos</NavLink>
-                </li>
                 {/* menú Admin */}
                 {
                     usuario?.isAdmin && (

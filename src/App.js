@@ -13,6 +13,7 @@ import PoliticasDeCambioPage from './pages/PoliticasCambio';
 import LoginPage from './pages/Login';
 import FavoritosPage from './pages/Favoritos';
 import './App.css';
+import MiCarritoPage from './pages/MiCarritoPage';
 
 function App() {
   return (
@@ -29,10 +30,11 @@ function App() {
             <Route path='/login' element={<LoginPage/>} />
             <Route path='/detalleProd/:id' element={<DetalleProdPage />} />
             <Route path='/policasDeCambio' element={<PoliticasDeCambioPage />} />
+            <Route path='/favoritos' element={<FavoritosPage/>} />
+            <Route path='/miCarrito' element={<MiCarritoPage />} />
             <Route path='/admin/creaProd' element={<CreaProducto />} />
             <Route path='/admin/listaProdsAdmin' element={<ListaProdsAdminPage />} />
-            <Route path='/admin/editaProd/:id' element={<EditaProd />} />
-            <Route path='/favoritos' element={<FavoritosPage/>} />
+            <Route path='/admin/editaProd/:id' element={<EditaProd />} />            
             <Route path='*' element={<Home/>} />
         </Routes>
       </main>
