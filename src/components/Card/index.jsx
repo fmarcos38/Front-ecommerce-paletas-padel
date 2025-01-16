@@ -1,15 +1,31 @@
-import React, { useContext } from 'react'
+import React from 'react';
 import { NavLink } from 'react-router-dom';
+import { userData } from '../../localStorage';
 import BotonFavorito from '../BotonFavorito';
 import './styles.css';
-import { AppContext } from '../../context';
+import { useDispatch, useSelector } from 'react-redux';
+import { agregarAlCarrito } from '../../redux/actions/actions';
+import Swal from 'sweetalert2';
 
 function Card({id, nombre, precio, imagenes, agotado, enPromo, porcentajeDescuento}) {
 
+    const dataUsuario = useSelector(state => state.dataUsuario);
     const [showDetail, setShowDetail] = React.useState(false); //estado para hover de la imgn - mostrando detalle
-    const context = useContext(AppContext);
+    const dispatch = useDispatch();
 
-    const onClickAgregarAlCarrito = () => {};
+    const onClickAgregarAlCarrito = () => {
+        if(dataUsuario._id){
+            const cantidad = 1;
+            const clienteId = dataUsuario._id;
+            dispatch(agregarAlCarrito(clienteId, id, cantidad));
+        }else{
+            Swal.fire({
+                icon: 'warning',
+                title: 'Oops...',
+                text: 'Debes estar logueado para agregar productos al carrito',
+            });
+        }
+    };
 
     return (
         <div className='cont-card'>
@@ -44,7 +60,12 @@ function Card({id, nombre, precio, imagenes, agotado, enPromo, porcentajeDescuen
                     <p className='precio-pala'>${precio}</p>
                     {enPromo && <p className='descuento-pala'>Desc. -{porcentajeDescuento}%</p>}
                 </div>
-                <button className='btn-agrega-carrito'>Agregar al carrito</button>
+                <button 
+                    className='btn-agrega-carrito' 
+                    onClick={() => {onClickAgregarAlCarrito()}}
+                >
+                    Agregar al carrito
+                </button>
             </div>
         </div>
     )

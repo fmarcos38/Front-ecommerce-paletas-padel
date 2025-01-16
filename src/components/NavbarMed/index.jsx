@@ -8,7 +8,7 @@ import LogoutIcon from '@mui/icons-material/Logout';
 import './styles.css';
 import { AppContext } from '../../context';
 
-function NavbarMed({usuario, isOpen, menuRef, menuItemsRef, toggleMenu, handleLogOut, contCarrito=0, contFav=0}) {
+function NavbarMed({usuario, isOpen, menuRef, menuItemsRef, toggleMenu, handleLogOut, itemsCarrito=0, itemsFavoritos=0}) {
     
     const context = useContext(AppContext);
     const handleOnClickCarrito = () => {
@@ -147,13 +147,13 @@ function NavbarMed({usuario, isOpen, menuRef, menuItemsRef, toggleMenu, handleLo
                 </div>
                 <div className='cont-carrito-fav'>
                     <div className='cont-carrito'>
-                        <p className='items-carrito'>{contCarrito}</p>
+                        <p className='items-carrito'>{itemsCarrito}</p>
                         <button type='button' onClick={handleOnClickCarrito} className='btn-carrito'>
                             <ShoppingCartIcon sx={{ 'fontSize': '30px' }} />
                         </button>
                     </div>
                     <div className='cont-favoritos'>
-                        <p className='items-fav'>{contFav}</p>
+                        <p className='items-fav'>{itemsFavoritos}</p>
                         <NavLink to='/favoritos' className='link-navbar-inf'>
                             <FavoriteIcon sx={{ 'fontSize': '30px' }} />
                         </NavLink>

@@ -6,12 +6,15 @@ import NavbarMed from '../NavbarMed';
 import NavbarSup from '../NavbarSup';
 import { AppContext } from '../../context';
 import './styles.css';
+import { useSelector } from 'react-redux';
 
 function Navbar() {
 
   const [isOpen, setIsOpen] = React.useState(false); //menu hamburguesa  
   const menuRef = React.useRef(null); //referencia menu hamburguesa
   const menuItemsRef = React.useRef([]); //referencia items menu hamburguesa
+  const carrito = useSelector(state => state.carrito); //carrito para obtener cantidad de productos
+  const favoritos = useSelector(state => state.favoritos); //favoritos para obtener cantidad de productos
   const context = useContext(AppContext);  
   
   //funcion para abrir y cerrar menu hamburguesa
@@ -69,6 +72,8 @@ function Navbar() {
         menuItemsRef={menuItemsRef} 
         toggleMenu={toggleMenu} 
         handleLogOut={handleLogOut}
+        itemsCarrito={carrito.productos?.length}
+        itemsFavoritos={favoritos?.length}
       />
       {/* nav inf */}
       <NavbarInf usuario={context.dataUser.user}/>

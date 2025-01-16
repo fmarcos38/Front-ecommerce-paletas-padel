@@ -82,9 +82,12 @@ export const getCarrito = (id) => {
     }
 }
 //agrega al carrito
-export const agregarAlCarrito = (id, productoId) => {
-    return async function() { 
-        await axios.put(`${URL}/carrito/agregar/${id}`, {productoId});
+export const agregarAlCarrito = (clienteId, productoId, cantidad) => {
+    return async function(dispatch) { 
+        await axios.put(`${URL}/carrito/agregar/${clienteId}`, {productoId, cantidad});
+        // Después de agregar, obtener el carrito actualizado
+        const resp = await axios.get(`${URL}/carrito/${clienteId}`);
+        dispatch({ type: GET_CARRITO, payload: resp.data });
     }
 }
 
