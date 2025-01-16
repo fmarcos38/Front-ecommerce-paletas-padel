@@ -89,11 +89,16 @@ export const agregarAlCarrito = (id, productoId) => {
 }
 
 //elimina del carrito
-export const eliminarDelCarrito = (clienteId) => { 
-    return async function() {
-    const clienteData = {clienteId: clienteId.clienteId, productoId: clienteId.productoId};
+export const eliminarDelCarrito = (clienteId, productoId) => { 
+    return async function(dispatch) {
+    /* const clienteData = {clienteId: clienteId.clienteId, productoId: clienteId.productoId};
         await axios.delete(`${URL}/carrito/eliminar/${clienteData.clienteId}`, { data: { productoId: clienteData.productoId } });
-    };
+    }; */
+        await axios.delete(`${URL}/carrito/eliminar/${clienteId}`, { data: { productoId: productoId } });
+        // Después de eliminar, obtener el carrito actualizado
+        const resp = await axios.get(`${URL}/carrito/${clienteId}`);
+        dispatch({ type: GET_CARRITO, payload: resp.data });
+    }
 };
 
 //-------producto-----------------------------

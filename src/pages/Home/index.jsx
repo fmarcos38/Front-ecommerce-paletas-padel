@@ -60,12 +60,13 @@ function Home() {
     }
   }, [data, dispatch]);
 
-  //efecto para traer el carrito del usuario SI hay usuario logueado
-  useEffect(() => { 
-    if(data.user.id){ 
-        dispatch(getCarrito(data.user.id));
+  //efecto para traer carrito del usuario SI hay usuario logueado
+  useEffect(() => {
+    if (data) {
+      dispatch(getCarrito(data.user.id));
     }
-}, [dispatch, data.user.id]);
+  }, [data, dispatch]);
+
 
   return (
     <div className='cont-home'>

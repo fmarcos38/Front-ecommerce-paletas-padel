@@ -5,13 +5,13 @@ import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import './styles.css';
 
 
-function BotonEliminaProdCarrito(clienteId, productoId) {
+function BotonEliminaProdCarrito(clienteId, productoId, ) {
     
     const dispatch = useDispatch();
 
     const onClickEliminarProdCarrito = () => {
         dispatch(eliminarDelCarrito(clienteId, productoId));
-        dispatch(getCarrito());
+        dispatch(getCarrito(clienteId.clienteId));
     }
 
     return (

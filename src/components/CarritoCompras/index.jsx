@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect } from 'react'
 import { AppContext } from '../../context';
 import { useSelector } from 'react-redux';
 import CardProdCarrito from '../CardProdCarrito';
@@ -7,12 +7,17 @@ import './styles.css';
 function CarritoCompras() { 
 
     const carrito = useSelector(state => state.carrito);
+    const [carritoCliente, setCarritoCliente] = React.useState(null);
     const context = useContext(AppContext);
 
     const handleClickCerrarCarrito = () => {
         context.onClickCarrito();
     }
 
+    //actualizar carrito en tiempo real
+    useEffect(() => {
+        setCarritoCliente(carrito);
+    }, [carrito]);
 
     return (
         <div className='carrito-compras'>
@@ -23,8 +28,8 @@ function CarritoCompras() {
             {/* lista prods del carrito */}
             <div className='cont-prods-carrito'>
                 {
-                    carrito ?
-                    carrito.productos?.map(p => (
+                    carritoCliente ?
+                    carritoCliente.productos?.map(p => (
                         <CardProdCarrito 
                             key={p.id}
                             clienteId={carrito.usuario}
