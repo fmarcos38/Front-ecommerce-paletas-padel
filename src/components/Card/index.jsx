@@ -1,11 +1,15 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { NavLink } from 'react-router-dom';
 import BotonFavorito from '../BotonFavorito';
 import './styles.css';
+import { AppContext } from '../../context';
 
 function Card({id, nombre, precio, imagenes, agotado, enPromo, porcentajeDescuento}) {
 
     const [showDetail, setShowDetail] = React.useState(false); //estado para hover de la imgn - mostrando detalle
+    const context = useContext(AppContext);
+
+    const onClickAgregarAlCarrito = () => {};
 
     return (
         <div className='cont-card'>

@@ -14,3 +14,9 @@
     border: none;
     cursor: pointer;
 }
+.cont-prods-carrito{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}

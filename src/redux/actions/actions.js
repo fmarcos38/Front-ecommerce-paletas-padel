@@ -3,7 +3,8 @@ import { URL } from "../../urls";
 import { 
     LOADING, GET_PRODUCTOS, GET_PRODUCTO_BY_ID, RESET_PRODUCTO, GET_PRODS_RANGO_PRECIO, 
     OPEN_CLOSE_MODAL, LOGIN, GET_FAVORITOS, GET_USER, RESET_USER,
-    GET_PRODUTOS_OFERTA
+    GET_PRODUTOS_OFERTA,
+    GET_CARRITO
 } from "./actionTypes";
 
 //-------login-----------------------------
@@ -71,6 +72,30 @@ export const eliminaFavorito = (id, idProd) => {
         await axios.put(`${URL}/usuario/favorito/eliminar/${id}`, {idProd});
     }
 }
+
+//-----------------carrito----------------------
+//trae carrito
+export const getCarrito = (id) => { 
+    return async function(dispatch) { 
+        const resp = await axios.get(`${URL}/carrito/${id}`);
+        dispatch({type: GET_CARRITO, payload: resp.data});
+    }
+}
+//agrega al carrito
+export const agregarAlCarrito = (id, productoId) => {
+    return async function() { 
+        await axios.put(`${URL}/carrito/agregar/${id}`, {productoId});
+    }
+}
+
+//elimina del carrito
+export const eliminarDelCarrito = (clienteId) => { 
+    return async function() {
+    const clienteData = {clienteId: clienteId.clienteId, productoId: clienteId.productoId};
+        await axios.delete(`${URL}/carrito/eliminar/${clienteData.clienteId}`, { data: { productoId: clienteData.productoId } });
+    };
+};
+
 //-------producto-----------------------------
 //trae productos
 export const getProductos = (limit, offset, categoria, marca, enPromo, precioMin, precioMax) => {

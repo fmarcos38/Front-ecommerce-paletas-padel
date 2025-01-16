@@ -1,12 +1,14 @@
 import { 
     LOADING, GET_PRODUCTOS, GET_PRODUCTO_BY_ID, RESET_PRODUCTO, GET_PRODS_RANGO_PRECIO, 
     OPEN_CLOSE_MODAL, LOGIN, RESET_LOGIN, GET_USER, GET_FAVORITOS, RESET_USER,
-    GET_PRODUTOS_OFERTA
+    GET_PRODUTOS_OFERTA,
+    GET_CARRITO
 } from '../actions/actionTypes'
 
 const initialStore = {
     dataUsuario: null,
     favoritos: [],
+    carrito: {},
     productos: [],
     totProds: 0,
     producto: {},
@@ -82,6 +84,11 @@ export default function rootReducer (state = initialStore, action) {
             return {
                 ...state,
                 favoritos: action.payload,
+            }
+        case GET_CARRITO:
+            return {
+                ...state,
+                carrito: action.payload,
             }
         default:
             return state

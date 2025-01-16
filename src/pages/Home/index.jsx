@@ -1,8 +1,9 @@
 import React, { useContext, useEffect } from 'react';
 import { userData } from '../../localStorage';
 import { useDispatch, useSelector } from 'react-redux';
-import { getProductos, getProductosEnOferta } from '../../redux/actions/actions';
-import { getUsuarioById } from '../../redux/actions/actions';
+import { getProductos, getProductosEnOferta, getUsuarioById, getCarrito } from '../../redux/actions/actions';
+import { AppContext } from '../../context';
+import CarritoCompras from '../../components/CarritoCompras';
 import Carrusel from '../../components/CarruselTemporizador';
 import ListaOfertas from '../../components/ListaOfertas';
 import ListaProductos from '../../components/ListaProductos';
@@ -13,8 +14,6 @@ import imgPChica4 from '../../imagenes/img-pChica/ScreenShot004.jpg';
 import Filtros from '../../components/Filtros';
 import Paginacion from '../../components/Paginacion';
 import './styles.css';
-import { AppContext } from '../../context';
-import CarritoCompras from '../../components/CarritoCompras';
 
 
 function Home() {
@@ -61,6 +60,12 @@ function Home() {
     }
   }, [data, dispatch]);
 
+  //efecto para traer el carrito del usuario SI hay usuario logueado
+  useEffect(() => { 
+    if(data.user.id){ 
+        dispatch(getCarrito(data.user.id));
+    }
+}, [dispatch, data.user.id]);
 
   return (
     <div className='cont-home'>

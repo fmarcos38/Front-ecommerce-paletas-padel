@@ -19,3 +19,7 @@ export const RESET_USER = "RESET_USER";
 export const GET_FAVORITOS = "GET_FAVORITOS";
 export const AGREGA_FAVORITO = "AGREGA_FAVORITO";
 export const ELIMINA_FAVORITO = "ELIMINA_FAVORITO";
+//carrito compras
+export const GET_CARRITO = "GET_CARRITO";
+export const AGREGA_CARRITO = "AGREGA_CARRITO";
+export const ELIMINA_CARRITO = "ELIMINA_CARRITO";
