@@ -1,20 +1,10 @@
 import React from 'react'
-import { useDispatch } from 'react-redux';
-import { eliminarDelCarrito, getCarrito } from '../../redux/actions/actions';
-import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
-import Stock from '../Stock';
-//import BotonEliminaProdCarrito from '../BotoneliminaProdCarrito';
 import './styles.css';
+import Stock from '../Stock';
+import BotonEliminaProdCarrito from '../BotoneliminaProdCarrito';
 
 function CardProdCarrito({clienteId, productoId, nombre, precio, imagenes, stock}) {
     
-    const dispatch = useDispatch();
-
-    const onClickEliminarProdCarrito = () => {
-        dispatch(eliminarDelCarrito(clienteId, productoId));
-    }
-
-
     return (
         <div className='cont-card-prod-carrito'>
             <div className='cont-img-card-prod-carrito'>
@@ -29,10 +19,7 @@ function CardProdCarrito({clienteId, productoId, nombre, precio, imagenes, stock
                 <p className='stock-pala-prod-carrito'>Stock: {stock}</p>
             </div>
             <div>
-                <button className='btn-eliminar-prod-carrito' onClick={onClickEliminarProdCarrito}>
-                    <DeleteForeverIcon />
-                </button>
-                {/* <BotonEliminaProdCarrito clienteId={clienteId} productoId={productoId} /> */}
+                <BotonEliminaProdCarrito clienteId={clienteId} productoId={productoId} />
             </div>
         </div>
     )
