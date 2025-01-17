@@ -1,7 +1,7 @@
 import React from 'react'
-import './styles.css';
 import Stock from '../Stock';
 import BotonEliminaProdCarrito from '../BotoneliminaProdCarrito';
+import './styles.css';
 
 function CardProdCarrito({clienteId, productoId, nombre, precio, imagenes, stock}) {
     

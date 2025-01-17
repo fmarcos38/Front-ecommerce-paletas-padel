@@ -2,7 +2,6 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    border: 1px solid var(--gris-bordes);
     width: 80%;
     height: 20px;
     padding: 5px 0;
@@ -19,4 +18,15 @@
 }
 .p-cantidad-stock{
     margin: 0 10px;
+}
+
+/* responsive */
+@media screen and (max-width: 550px){
+    .btn-menos-stock,
+    .btn-mas-stock{
+        font-size: 25px;
+    }
+    .p-cantidad-stock{
+        font-size: 20px;
+    }
 }

@@ -20,9 +20,17 @@ function formatDate(date) {
     return `${day}/${month}/${year}`;
 }
 
-
+//función suma total del carrito
+const sumaTotalCarrito = (carritoCliente) => {
+    let tot = 0;
+    carritoCliente?.productos?.map(p => {
+        return tot += p.precio;
+    });
+    return tot;
+}
 
 export {
     formatMoney,
-    formatDate
+    formatDate,
+    sumaTotalCarrito
 }

@@ -90,7 +90,7 @@
     top: 0;
     right: 0;
     width: 40%;
-    height: 100vh;
+    min-height: 100vh;
     background-color: white;
     box-shadow: -5px 0 15px rgba(0, 0, 0, 0.3);
     opacity: 0; /* Inicialmente, ocultamos los textos */
@@ -185,5 +185,14 @@
     .cont-lista-productos-home{
         width: 100%;
         margin-top: 20px;
+    }
+    /* modal carrito */
+    .modal-carrito-compras-open {
+        width: 50%;
+    }
+}
+@media screen and (max-width: 700px){
+    .modal-carrito-compras-open {
+        width: 100%;
     }
 }
