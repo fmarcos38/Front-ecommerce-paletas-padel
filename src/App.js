@@ -14,6 +14,7 @@ import LoginPage from './pages/Login';
 import FavoritosPage from './pages/Favoritos';
 import './App.css';
 import MiCarritoPage from './pages/MiCarritoPage';
+import FormaEnvio from './pages/formaEnvio';
 
 function App() {
   return (
@@ -32,6 +33,7 @@ function App() {
             <Route path='/policasDeCambio' element={<PoliticasDeCambioPage />} />
             <Route path='/favoritos' element={<FavoritosPage/>} />
             <Route path='/miCarrito' element={<MiCarritoPage />} />
+            <Route path='/formaEnvio' element={<FormaEnvio/>} />
             <Route path='/admin/creaProd' element={<CreaProducto />} />
             <Route path='/admin/listaProdsAdmin' element={<ListaProdsAdminPage />} />
             <Route path='/admin/editaProd/:id' element={<EditaProd />} />            

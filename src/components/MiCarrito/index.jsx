@@ -1,13 +1,11 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
-import { formatMoney, sumaTotalCarrito } from '../../utils/index';
 import logoMiCarrito from '../../imagenes/logo.jpg';
 import WarningIcon from '@mui/icons-material/Warning';
-import CardProdMiCarrito from '../CardProdMiCarrito';
-import './styles.css'; 
-import EnvioProducto from '../EnvioProducto';
-import CardProdCarrito from '../CardProdCarrito';
+import CardProdMiCarrito from '../CardProdMiCarrito' 
+import ResumenCompra from '../ResumenCompra';
+import './styles.css';
 
 
 function MiCarrito() {
@@ -29,7 +27,7 @@ function MiCarrito() {
     const handleClickVolver = () => {
         window.history.back();
     }
-
+    
     return (
         <div className='cont-miCarrito'>
             {/* nav */}
@@ -48,7 +46,7 @@ function MiCarrito() {
             </div>
             {/* msj si hay prods SIN STOCK */}
             {
-                hayProdSinStock() && (
+                hayProdSinStock() &&(
                     <div className='cont-msj-prod-sin-stock'>
                         <WarningIcon sx={{ fontSize: 40, color: 'red' }} />
                         <p className='p-msj-prod-sin-stock'>Hay productos sin stock en tu carrito, por favor quitalos !!</p>
@@ -72,34 +70,16 @@ function MiCarrito() {
                     ))
                 }
                 </div>
+
                 {/* resumen de compra */}
-                <div className='cont-miCarrito-fila-1-col-2'>
-                    <div className='cont-resumen-compra'>
-                        <div className='cont-titulo-resumen-compra'>
-                            <p className='p-titulo-resumen-compra'>RESUMEN DE COMPRA</p>
-                        </div>
-                        {/* lista prods */}
-                        <div className='cont-precios-resumen-compra'>
-                            {
-                                carrito?.productos?.map(p => (
-                                    <div className='cont-descripcion-resumen-compra'>
-                                        <p className='p-precio-resumen-compra'>{p.cantidad}</p>
-                                        <p className='p-precio-resumen-compra'>x</p>
-                                        <p className='p-precio-resumen-compra'>${formatMoney(p.precio)}</p>
-                                    </div>
-                                ))
-                            }
-                        </div>
-                        {/* total */}
-                        <div className='cont-total-resumen-compra'>
-                            <p className='p-total-resumen-compra'>Total:</p>
-                            <p className='p-total-resumen-compra'>${formatMoney(sumaTotalCarrito(carrito))}</p>
-                        </div>
-                    </div>
+                <div className='cont-miCarrito-fila-1-col-2-resumen'>
+                    <ResumenCompra 
+                        carrito={carrito}
+                    />
                     {/* btns continuar y volver */}
                     <div className='cont-btns-continuar-volver'>
                         <button onClick={handleClickVolver} className='btn-volver-compra'>Seguir comprando</button>
-                        <button className='btn-continuar-compra'>Continuar</button>                        
+                        <a href='/formaEnvio' className='btn-continuar-compra'>Continuar</a>
                     </div>
                 </div>
             </div>

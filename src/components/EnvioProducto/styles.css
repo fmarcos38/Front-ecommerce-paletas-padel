@@ -1,11 +1,20 @@
 .cont-envio-producto{
-    width: 100%;
-    height: auto;
+    width: 80%;
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: start;
+    margin-top: 30px;
+}
+/* fila 1 */
+.cont-envio-producto-col-1{
+    width: 65%;
+    height: 100%;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;   
-    margin: 10px 0 10px 0;
+    justify-content: start;
+    align-items: start;
+    
 }
 .como-te-entregamos-la-compra,
 .cont-result-busqueda-codigo-postal{
@@ -113,4 +122,62 @@
     width: 50px;
     height: 50px;
     margin-right: 5px;
+}
+/* col 2 */
+.cont-envio-producto-col-2{
+    width: 30%;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: start;
+}
+/* responsive */
+@media screen and (max-width:1000px) {
+    .cont-envio-producto{
+        width: 90%;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 10px;
+    }
+    .p-texto{
+        font-size: 20px;
+    }
+    .cont-envio-producto-col-1,
+    .cont-envio-producto-col-2{
+        width: 90%;
+        margin-bottom: 10px;
+    }
+}
+@media screen and (max-width:600px) {
+    .cont-envio-producto{
+        width: 100%;
+        margin-bottom: 10px;
+    }
+    .p-texto{
+        font-size: 18px;
+    }
+    .titulo-result-busqueda{
+        font-size: 18px;
+        text-align: center;
+    }
+}
+@media screen and (max-width:400px) {
+    .p-texto{
+        font-size: 15px;
+    }
+    .titulo-result-busqueda{
+        font-size: 15px;
+        text-align: center;
+    }
+    .icono-transporte{
+        width: 20px;
+        height: 20px;
+    }
+    .p-despacho{
+        font-size: 15px;
+    }
+    .p-transporte{
+        font-size: 12px;
+    }
 }

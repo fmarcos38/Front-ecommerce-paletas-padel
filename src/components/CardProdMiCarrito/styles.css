@@ -61,7 +61,7 @@
 /* col btn elim */
 
 /* responsive */
-@media screen and (max-width: 900px){
+@media screen and (max-width: 1000px){
     .cont-img-card-prod-mi-carrito{
         width: 15%;
     }
@@ -73,7 +73,7 @@
         align-items: center;
     }
     .nombre-pala-prod-mi-carrito{
-        font-size: 12px;
+        font-size: 10px;
         padding: 0 5px;
     }
     .cont-stock-pala-prod-mi-carrito{
