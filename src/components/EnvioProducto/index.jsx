@@ -21,7 +21,7 @@ function EnvioProducto() {
         if(cliente){
             dispatch(getCarrito(cliente.user.id));
         }
-    }, [dispatch, userData]);
+    }, [cliente, dispatch]);
 
 
     return (
