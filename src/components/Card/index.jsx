@@ -1,6 +1,5 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import { userData } from '../../localStorage';
 import BotonFavorito from '../BotonFavorito';
 import './styles.css';
 import { useDispatch, useSelector } from 'react-redux';

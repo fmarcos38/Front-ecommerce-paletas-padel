@@ -2,11 +2,20 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 10px;
-    padding: 10px;
     border: 1px solid var(--gris-bordes);
-    width: 100%;
+    width: 80%;
     height: 20px;
+    padding: 5px 0;
+}
+.btn-menos-stock,
+.btn-mas-stock{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+    color: var(--color-azul);
+    border: none;
+    cursor: pointer;
 }
 .p-cantidad-stock{
     margin: 0 10px;

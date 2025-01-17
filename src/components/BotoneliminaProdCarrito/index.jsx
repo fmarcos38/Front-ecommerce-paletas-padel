@@ -16,7 +16,7 @@ function BotonEliminaProdCarrito(clienteId, productoId, ) {
 
     return (
         <button className='btn-eliminar-prod-carrito' onClick={onClickEliminarProdCarrito}>
-            <DeleteForeverIcon />
+            <DeleteForeverIcon sx={{color: 'var(--color-azul)'}}/>
         </button>
     )
 }

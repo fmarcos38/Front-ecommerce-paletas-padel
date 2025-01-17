@@ -1,8 +1,10 @@
 import React, { useContext, useEffect } from 'react'
 import { AppContext } from '../../context';
 import { useSelector } from 'react-redux';
+import { formatMoney } from '../../utils/index';
 import CardProdCarrito from '../CardProdCarrito';
 import './styles.css';
+import { NavLink } from 'react-router-dom';
 
 function CarritoCompras() { 
 
@@ -12,6 +14,14 @@ function CarritoCompras() {
 
     const handleClickCerrarCarrito = () => {
         context.onClickCarrito();
+    }
+    //función suma total del carrito
+    const sumaTotalCarrito = () => {
+        let tot = 0;
+        carritoCliente?.productos?.map(p => {
+            return tot += p.precio;
+        });
+        return tot;
     }
 
     //actualizar carrito en tiempo real
@@ -43,6 +53,20 @@ function CarritoCompras() {
                         <p>No hay productos en tu Carrito !!</p>
                     )
                 }
+            </div>
+            <div className='cont-total-carrito'>
+                <p>${formatMoney(sumaTotalCarrito())}</p>
+            </div>
+            <div className='cont-btn-ir-carrito'>
+                <NavLink to='/miCarrito' className='navLink-carrito'>
+                    <button className='btn-ir-carrito'>Ir al Carrito</button>
+                </NavLink>
+                <button 
+                    className='btn-ir-seguir-comprando'
+                    onClick={handleClickCerrarCarrito}
+                >
+                    Seguir comprando
+                </button>
             </div>
         </div>
     )

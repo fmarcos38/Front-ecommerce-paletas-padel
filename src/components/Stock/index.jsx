@@ -25,9 +25,19 @@ function Stock({stock}) {
 
     return (
         <div className='cont-stock'>
-            <button onClick={handleOnClickMenos}>-</button>
+            <button 
+                onClick={handleOnClickMenos}
+                className='btn-menos-stock'
+            >
+                -
+            </button>
             <p className='p-cantidad-stock'>{cantidad}</p>
-            <button onClick={handleOnClickMas}>+</button>
+            <button 
+                onClick={handleOnClickMas}
+                className='btn-mas-stock'
+            >
+                +
+            </button>
         </div>
     )
 }
