@@ -12,9 +12,9 @@ import DetalleProdPage from './pages/DetalleProdPage';
 import PoliticasDeCambioPage from './pages/PoliticasCambio';
 import LoginPage from './pages/Login';
 import FavoritosPage from './pages/Favoritos';
-import './App.css';
 import MiCarritoPage from './pages/MiCarritoPage';
-import FormaEnvio from './pages/formaEnvio';
+import FormaEnvio from './pages/FormaEnvio';
+import './App.css';
 
 function App() {
   return (

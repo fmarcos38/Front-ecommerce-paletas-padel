@@ -9,7 +9,7 @@ import { userData } from '../../localStorage';
 import './styles.css';
 
 
-function EnvioProducto() {
+function ComoPagar() {
 
     const cliente= userData();
     const carrito = useSelector(state => state.carrito);
@@ -108,4 +108,4 @@ function EnvioProducto() {
     )
 }
 
-export default EnvioProducto
+export default ComoPagar
