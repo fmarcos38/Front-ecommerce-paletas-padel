@@ -16,7 +16,8 @@ function InformacionContacto() {
     const [apellido, setApellido] = useState('');
     const [dni, setDni] = useState('');
     const [telefono, setTelefono] = useState('');
-    const [tipoDeResponsable, setTipoDeResponsable] = useState('');
+    const [email, setEmail] = useState('');
+    //const [tipoDeResponsable, setTipoDeResponsable] = useState(''); //tipo de facturación
     const [calle, setCalle] = useState('');
     const [numero, setNumero] = useState('');
     const [piso, setPiso] = useState('');
@@ -49,6 +50,9 @@ function InformacionContacto() {
         }
         if (!telefono.trim()) {
             errors.telefono = 'El teléfono es requerido';
+        }
+        if (!email.trim()) {
+            errors.email = 'El email es requerido';
         }
         if (!calle.trim()) {
             errors.calle = 'La calle es requerida';
@@ -83,9 +87,12 @@ function InformacionContacto() {
     const handleChangeTelefono = (e) => {
         setTelefono(e.target.value);
     }
-    const handleChangeTipoDeResponsable = (e) => {
-        setTipoDeResponsable(e.target.value);
+    const handleChangeEmail = (e) => {
+        setEmail(e.target.value);
     }
+    /* const handleChangeTipoDeResponsable = (e) => {
+        setTipoDeResponsable(e.target.value);
+    } */
     const handleChangeCalle = (e) => {
         setCalle(e.target.value);
     }
@@ -158,19 +165,19 @@ function InformacionContacto() {
                             </p>
                             <p className='p-texto'>¿COMO TE ENTREGAMOS LA COMPRA?</p>
                         </div>
-                        <div className='como-te-entregamos-la-compra-fila-1'>
+                        {/* <div className='como-te-entregamos-la-compra-fila-1'>
                             <p className='numero1'>
                                 <CheckIcon style={{ fontSize: 20, color: 'green' }} />
                             </p>
                             <p className='p-texto'>¿COMO QUERES PAGAR?</p>
-                        </div>
+                        </div> */}
                     </div>
 
                     {/* ver de sicronizar con correo argentino */}
                     <div className='cont-result-busqueda-codigo-postal'>
                         <h3 className='titulo-result-busqueda'>INFORMACIÓN DE CONTACTO</h3>
                         <div className='cont-titulo-y-inputs'>
-                            <p className='p-despacho'>Datos del titular</p>
+                            {/* <p className='p-despacho'>Datos del titular</p> */}
                             <div className='cont-contacto-nomb-ape-dni'>
                                 {/* nombre */}
                                 <div className='cont-input-contacto-nombre'>
@@ -210,8 +217,7 @@ function InformacionContacto() {
                                 </div>
                             </div>
                             {/* telefono - datos de factuarión */}
-                            <div className='cont-contacto-tel-datosFacturacion'>
-                                <p className='p-despacho'>Datos de contacto</p>
+                            <div className='cont-contacto-nomb-ape-dni'>
                                 <div className='cont-input-contacto'>
                                     <label className='label'>Telefono</label>
                                     <input
@@ -223,39 +229,105 @@ function InformacionContacto() {
                                     />
                                     {errors.telefono && <p className='error'>{errors.telefono}</p>}
                                 </div>
+                                {/* email */}
                                 <div className='cont-input-contacto'>
-                                    <label className='label'>Tipo de responsable</label>
-                                    <select
-                                        value={tipoDeResponsable}
-                                        onChange={handleChangeTipoDeResponsable}
-                                        className="select-nombre-contacto"
-                                    >
-                                        <option value=''>Seleccionar</option>
-                                        <option value='Consumidor final'>Consumidor final</option>
-                                        <option value='Responsable inscripto'>Responsable inscripto</option>
-                                    </select>
+                                    <label className='label'>Email</label>
+                                    <input
+                                        type='email'
+                                        id='email'
+                                        value={email}
+                                        onChange={handleChangeEmail}
+                                        className="input-nombre-contacto"
+                                    />
+                                    {errors.email && <p className='error'>{errors.email}</p>}
+                                </div>
+                            </div>                            
+                            {/* calle-num-piso-depto */}
+                            <div className='cont-contacto-calle-num-piso-depto'>
+                                <div className='cont-input-contacto-calle'>
+                                    <label className='label'>Calle</label>
+                                    <input
+                                        type='text'
+                                        id='calle'
+                                        value={calle}
+                                        onChange={handleChangeCalle}
+                                        className="input-calle-contacto"
+                                    />
+                                    {errors.calle && <p className='error'>{errors.calle}</p>}
+                                </div>
+                                <div className='cont-input-num-piso-depto'>
+                                    {/* num */}
+                                    <div className='cont-input-contacto-numero'>
+                                        <label className='label'>Num</label>
+                                        <input
+                                            type='number'
+                                            id='numero'
+                                            value={numero}
+                                            onChange={handleChangeNumero}
+                                            className="input-numero-contacto"
+                                        />
+                                        {errors.numero && <p className='error'>{errors.numero}</p>}
+                                    </div>
+                                    {/* piso */}
+                                    <div className='cont-input-contacto-piso'>
+                                        <label className='label'>Piso</label>
+                                        <input
+                                            type='number'
+                                            id='piso'
+                                            value={piso}
+                                            onChange={handleChangePiso}
+                                            className="input-piso-contacto"
+                                        />
+                                    </div>
+                                    {/* depto */}
+                                    <div className='cont-input-contacto-depto'>
+                                        <label className='label'>Depto</label>
+                                        <input
+                                            type='text'
+                                            id='departamento'
+                                            value={departamento}
+                                            onChange={handleChangeDepartamento}
+                                            className="input-depto-contacto"
+                                        />
+                                    </div>
                                 </div>
                             </div>
-                            {/* form datos entrega */}
-                            <FormDatosEntrega
-                                calle={calle}
-                                numero={numero}
-                                piso={piso}
-                                departamento={departamento}
-                                provicia={provicia}
-                                localidad={localidad}
-                                codigoPostal={codigoPostal}
-                                datosEntrega={datosEntrega}
-                                handleChangeDatosEntrega={handleChangeDatosEntrega}
-                                handleChangeCalle={handleChangeCalle}
-                                handleChangeNumero={handleChangeNumero}
-                                handleChangePiso={handleChangePiso}
-                                handleChangeDepartamento={handleChangeDepartamento}
-                                handleChangeCodigoPostal={handleChangeCodigoPostal}
-                                handleChangeProvincia={handleChangeProvincia}
-                                handleChangeLocalidad={handleChangeLocalidad}
-                                errors={errors}
-                            />
+                            {/* provincia - localida - cod postal*/}
+                            <div className='cont-contacto-provincia-localidad'>
+                                <div className='cont-input-contacto-prov'>
+                                    <label className='label'>Provincia</label>
+                                    <input
+                                        type='text'
+                                        id='provicia'
+                                        value={provicia}
+                                        onChange={handleChangeProvincia}
+                                        className="input-prov-contacto"
+                                    />
+                                    {errors.provicia && <p className='error'>{errors.provicia}</p>}
+                                </div>
+                                <div className='cont-input-contacto-localidad'>
+                                    <label className='label'>Localidad</label>
+                                    <input
+                                        type='text'
+                                        id='localidad'
+                                        value={localidad}
+                                        onChange={handleChangeLocalidad}
+                                        className="input-localidad-contacto"
+                                    />
+                                    {errors.localidad && <p className='error'>{errors.localidad}</p>}
+                                </div>
+                                <div className='cont-input-contacto-cod-postal'>
+                                    <label className='label'>Código postal</label>
+                                    <input
+                                        type='number'
+                                        id='codigoPostal'
+                                        value={codigoPostal}
+                                        onChange={handleChangeCodigoPostal}
+                                        className="input-cod-postal-contacto"
+                                    />
+                                    {errors.codigoPostal && <p className='error'>{errors.codigoPostal}</p>}
+                                </div>
+                            </div>                            
                             {/* comentarios */}
                             <div className='cont-textarea-contacto'>
                                 <label className='label'>Comentarios</label>
@@ -266,53 +338,6 @@ function InformacionContacto() {
                                     className="textarea-contacto"
                                 />
                             </div>
-                        </div>
-                        {/* los datos de entrega son los mismos q facturación */}
-                        <div className='cont-datos-entrega-mismos-datos'>
-                            <div className='como-te-entregamos-la-compra-fila-1'>
-                                <label class="check-datos-entrega">
-                                    <input
-                                        type="checkbox"
-                                        value={datosEntrega}
-                                        checked={datosEntrega}
-                                        onChange={handleChangeDatosEntrega}
-                                        class="checkbox-redondo" />
-                                    <span class="checkmark"></span>
-                                </label>
-                                <p className='p-texto'>¿LOS DATOS DE ENTREGA SON LOS MISMO QUE DE FACTURACIÓN?</p>
-                            </div>
-                            {
-                                !datosEntrega &&
-                                <>
-                                    <FormDatosEntrega
-                                        calle={calle}
-                                        numero={numero}
-                                        piso={piso}
-                                        departamento={departamento}
-                                        provicia={provicia}
-                                        localidad={localidad}
-                                        codigoPostal={codigoPostal}
-                                        handleChangeCalle={handleChangeCalle}
-                                        handleChangeNumero={handleChangeNumero}
-                                        handleChangePiso={handleChangePiso}
-                                        handleChangeDepartamento={handleChangeDepartamento}
-                                        handleChangeCodigoPostal={handleChangeCodigoPostal}
-                                        handleChangeProvincia={handleChangeProvincia}
-                                        handleChangeLocalidad={handleChangeLocalidad}
-                                        errors={errors}
-                                    />
-                                    {/* comentarios extras*/}
-                                    <div className='cont-input-contacto'>
-                                        <label className='label'>Indicacione adicionales para la entrega en esta dirección</label>
-                                        <textarea
-                                            id='comentariosExtras'
-                                            value={comentariosExtras}
-                                            onChange={handleChangeComentariosExtras}
-                                            className="input-nombre-contacto"
-                                        />
-                                    </div>
-                                </>
-                            }
                         </div>
                     </div>
                 </div>

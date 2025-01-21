@@ -18,7 +18,6 @@ function ResumenCompra({carrito}) {
                                 <img src={p.imagenes[0]} alt='' className='img-resumen-compra'/>
                                 <p className='p-nombre-resumen-compra'>{p.nombre}</p>
                                 <p className='p-precio-resumen-compra'>{p.cantidad}u</p>
-                                <p className='p-precio-resumen-compra'>x</p>
                                 <p className='p-precio-resumen-compra'>${formatMoney(p.precio)}</p>
                             </div>
                         ))

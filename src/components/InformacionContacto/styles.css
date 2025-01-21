@@ -22,6 +22,27 @@
     justify-content: space-between;
     align-items: center;
 }
+.cont-input-contacto-calle{
+    width: 60%;
+    display: flex;
+    justify-content: center;
+    align-items: start;
+}
+.cont-input-num-piso-depto{
+    width: 40%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.cont-input-contacto-numero,
+.cont-input-contacto-piso,
+.cont-input-contacto-depto{
+    width: 30%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: start;
+}
 .cont-input-contacto-nombre,
 .cont-input-contacto-apellido,
 .cont-input-contacto-dni,
@@ -60,50 +81,35 @@
 }
 .textarea-contacto{
     min-height: 80px;
-}
-/* hacer el check redondo */
-/* Ocultar el checkbox original */
-.checkbox-redondo {
-    position: absolute;
-    opacity: 0;
-    cursor: pointer;
-}
-
-/* Estilos para el checkmark personalizado */
-.check-datos-entrega .checkmark {
-    display: inline-block;
-    width: 20px;
-    height: 20px;
-    background-color: white;
-    border: 1px solid var(--gris-bordes);
-    border-radius: 50%; /* Hacer el check redondo */
-    position: relative;
-    margin-right: 10px;
-}
-
-/* Estilos para el checkmark cuando está seleccionado */
-.checkbox-redondo:checked + .checkmark {
-    background-color: var(--color-principal);
-    border-color: var(--color-principal);
-}
-
-/* Estilos para el icono de verificación */
-.checkmark:after {
-    content: "";
-    position: absolute;
-    display: none;
-    left: 7px;
-    top: 3px;
-    width: 5px;
-    height: 10px;
-    border: solid white;
-    border-width: 0 2px 2px 0;
-    transform: rotate(45deg);
-}
-
-/* Mostrar el icono de verificación cuando el checkbox está seleccionado */
-.checkbox-redondo:checked + .checkmark:after {
-    display: block;
+    margin-bottom: 10px;
 }
 
 /* responsive */
+@media screen and (max-width: 700px){
+    .cont-contacto-nomb-ape-dni{
+        flex-direction: column;
+    }
+    .cont-input-contacto-nombre,
+    .cont-input-contacto-apellido,
+    .cont-input-contacto-dni{
+        width: 100%;
+    }
+    .cont-contacto-calle-num-piso-depto{
+        flex-direction: column;
+    }
+    .cont-input-contacto-calle{
+        width: 100%;
+    }
+    .cont-input-num-piso-depto{
+        width: 100%;
+    }
+    .cont-input-contacto-numero,
+    .cont-input-contacto-piso,
+    .cont-input-contacto-depto{
+        width: 33.3%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: start;
+    }
+}

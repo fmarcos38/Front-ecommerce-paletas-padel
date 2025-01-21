@@ -7,3 +7,15 @@
     align-items: center;
     margin-top: 20px;
 }
+
+/* responsive */
+@media screen and (max-width: 900px){
+    .cont-checkout{
+        width: 80%;
+    }
+}
+@media screen and (max-width: 600px){
+    .cont-checkout{
+        width: 98%;
+    }
+}

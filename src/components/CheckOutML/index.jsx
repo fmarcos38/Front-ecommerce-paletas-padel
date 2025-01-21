@@ -15,8 +15,8 @@ const Checkout =  () => {
     const dispatch = useDispatch();
 
     useEffect(() => {
-            dispatch(getCarrito(cliente.user.id));        
-    }, [dispatch]);
+        dispatch(getCarrito(cliente.user.id));        
+    }, [cliente.user.id, dispatch]);
 
     let body = {
         items: [
@@ -56,6 +56,7 @@ const Checkout =  () => {
         };
 
         createPreference();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
 
