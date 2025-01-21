@@ -4,7 +4,7 @@ import './styles.css'
 
 function FormaEnvio() {
     return (
-        <div className='cont-forma-envio'>
+        <div className='cont-forma-envio page'>
             <EnvioProducto />
         </div>
     )

@@ -138,7 +138,7 @@ function NavbarMed({usuario, isOpen, menuRef, menuItemsRef, toggleMenu, handleLo
                         usuario?.nombre ? 
                         <button
                             onClick={() => { handleLogOut() }}
-                            style={{ border: 'none', backgroundColor: 'transparent' }}
+                            style={{ border: 'none', backgroundColor: 'transparent', cursor: 'pointer' }}
                         >
                             <LogoutIcon sx={{ 'fontSize': '30px' }} />
                         </button> :

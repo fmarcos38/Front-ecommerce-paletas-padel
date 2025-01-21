@@ -13,15 +13,25 @@ function Card({id, nombre, precio, imagenes, agotado, enPromo, porcentajeDescuen
     const dispatch = useDispatch();
 
     const onClickAgregarAlCarrito = () => {
-        if(dataUsuario._id){
-            const cantidad = 1;
-            const clienteId = dataUsuario._id;
-            dispatch(agregarAlCarrito(clienteId, id, cantidad));
-        }else{
+        if(!dataUsuario?._id){
             Swal.fire({
                 icon: 'warning',
                 title: 'Oops...',
                 text: 'Debes estar logueado para agregar productos al carrito',
+            });
+            //redirijo a login
+            setTimeout(() => {
+                window.location.href = '/login';
+            }, 2000);
+        }else{
+            const cantidad = 1;
+            const clienteId = dataUsuario._id;
+            dispatch(agregarAlCarrito(clienteId, id, cantidad));
+            Swal.fire({
+                icon: 'success',
+                title: 'Producto agregado al carrito',
+                showConfirmButton: false,
+                timer: 1500
             });
         }
     };

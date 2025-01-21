@@ -4,7 +4,7 @@ import LoginClasico from '../../components/LoginClasico';
 
 function LoginPage() {
     return (
-        <div className='cont-login-page'>
+        <div className='cont-login-page page'>
             <div className='cont-login-clasico-page'>
                 <LoginClasico />
             </div>

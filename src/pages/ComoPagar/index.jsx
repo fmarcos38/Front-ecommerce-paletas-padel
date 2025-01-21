@@ -1,8 +1,11 @@
 import React from 'react'
+import ComoPagar from '../../components/ComoPagar'
 
 function ComoPagarPage() {
     return (
-        <div className=''>ComoPagarPage</div>
+        <div className='page'>
+            <ComoPagar />
+        </div>
     )
 }
 

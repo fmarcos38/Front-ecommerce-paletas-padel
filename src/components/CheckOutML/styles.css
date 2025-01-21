@@ -1,0 +1,9 @@
+.cont-checkout{
+    width: 60%;
+    min-height: 90vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+    margin-top: 20px;
+}

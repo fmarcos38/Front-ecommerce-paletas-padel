@@ -19,7 +19,7 @@ function DetalleProdPage() {
     }, [dispatch, id]);
 
     return (
-        <div className='cont-detalle-page'>
+        <div className='page'>
             <DetalleProd producto={producto}/>
         </div>
     )

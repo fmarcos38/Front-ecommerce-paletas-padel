@@ -1,10 +1,10 @@
 import React from 'react'
 import MiCarrito from '../../components/MiCarrito'
-import './styles.css';
+
 
 function MiCarritoPage() {
     return (
-        <div className='cont-miCarrito-page'>
+        <div className='page'>
             <MiCarrito />
         </div>
     )

@@ -3,7 +3,7 @@ import PoliticasDeCambio from '../../components/PoliticasDeCambio'
 
 function PoliticasDeCambioPage() {
     return (
-        <div>
+        <div className='page'>
             <PoliticasDeCambio />
         </div>
     )

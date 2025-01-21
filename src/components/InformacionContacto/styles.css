@@ -1,0 +1,109 @@
+
+.cont-titulo-y-inputs{
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: start;
+}
+.cont-input-contacto{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: start;
+}
+.cont-contacto-nomb-ape-dni,
+.cont-contacto-calle-num-piso-depto,
+.cont-contacto-provincia-localidad{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+.cont-input-contacto-nombre,
+.cont-input-contacto-apellido,
+.cont-input-contacto-dni,
+.cont-contacto-tel-datosFacturacion,
+.cont-textarea-contacto{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: start;
+    margin-top: 10px;
+}
+.cont-datos-entrega-mismos-datos{
+    width: 90%;
+}
+.input-nombre-contacto{
+    width: 95%;
+    font-size: 20px;
+    padding: 3px;
+}
+.select-nombre-contacto{
+    width: 98%;
+    font-size: 20px;
+    padding: 3px;
+}
+.cont-textarea-contacto{
+    width: 100%;
+}
+.input-nombre-contacto,
+.select-nombre-contacto,
+.textarea-contacto{
+    width: 99%;
+    font-size: 20px;
+    padding: 3px 0;
+    border: 1px solid var(--gris-bordes);
+    border-radius: 5px;
+}
+.textarea-contacto{
+    min-height: 80px;
+}
+/* hacer el check redondo */
+/* Ocultar el checkbox original */
+.checkbox-redondo {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+}
+
+/* Estilos para el checkmark personalizado */
+.check-datos-entrega .checkmark {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    background-color: white;
+    border: 1px solid var(--gris-bordes);
+    border-radius: 50%; /* Hacer el check redondo */
+    position: relative;
+    margin-right: 10px;
+}
+
+/* Estilos para el checkmark cuando está seleccionado */
+.checkbox-redondo:checked + .checkmark {
+    background-color: var(--color-principal);
+    border-color: var(--color-principal);
+}
+
+/* Estilos para el icono de verificación */
+.checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+    left: 7px;
+    top: 3px;
+    width: 5px;
+    height: 10px;
+    border: solid white;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+}
+
+/* Mostrar el icono de verificación cuando el checkbox está seleccionado */
+.checkbox-redondo:checked + .checkmark:after {
+    display: block;
+}
+
+/* responsive */

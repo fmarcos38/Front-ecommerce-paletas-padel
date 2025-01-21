@@ -1,11 +1,10 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { NavLink } from 'react-router-dom';
-import logoMiCarrito from '../../imagenes/logo.jpg';
 import WarningIcon from '@mui/icons-material/Warning';
 import CardProdMiCarrito from '../CardProdMiCarrito' 
 import ResumenCompra from '../ResumenCompra';
 import './styles.css';
+import NavCarrito from '../NavCarrito';
 
 
 function MiCarrito() {
@@ -31,15 +30,7 @@ function MiCarrito() {
     return (
         <div className='cont-miCarrito'>
             {/* nav */}
-            <div className='nav-miCarrito'>
-                <NavLink to='/' className='nav-link-miCarrito'>
-                    <img src={logoMiCarrito} alt='logo' className='logo-miCarrito'/>
-                </NavLink>
-                <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
-                    <p className='p-nav'>articulos</p>
-                    <p className='p-nav'>deportivos</p>
-                </div>
-            </div>
+            <NavCarrito />
             {/* titulo */}
             <div className='cont-titulo-miCarrito'>
                 <p className='p-titulo-mi-carrito'>Mi Carrito</p>

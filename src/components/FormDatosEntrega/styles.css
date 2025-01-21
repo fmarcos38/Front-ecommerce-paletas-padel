@@ -1,0 +1,51 @@
+.cont-contacto-calle-num-piso-depto,
+.cont-contacto-provincia-localidad{
+    width: 90%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+.cont-input-contacto-calle,
+.cont-input-contacto-numero,
+.cont-input-contacto-piso,
+.cont-input-contacto-depto,
+.cont-input-contacto-prov,
+.cont-input-contacto-localidad,
+.cont-input-contacto-cod-postal{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: start;
+    margin-top: 10px;
+}
+.cont-input-contacto-calle{
+    width: 68%;
+}
+.cont-input-contacto-numero,
+.cont-input-contacto-piso,
+.cont-input-contacto-depto{
+    width: 10%;
+}
+.cont-input-contacto-prov,
+.cont-input-contacto-localidad,
+.cont-input-contacto-cod-postal{
+    width: 33.3%;
+}
+.input-calle-contacto,
+.input-numero-contacto,
+.input-piso-contacto,
+.input-depto-contacto,
+.input-cod-postal-contacto,
+.input-prov-contacto,
+.input-localidad-contacto{
+    width: 99%;
+    font-size: 20px;
+    padding: 3px 0;
+    border: 1px solid var(--gris-bordes);
+    border-radius: 5px;
+}
+
+
+
+

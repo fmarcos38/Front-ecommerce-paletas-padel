@@ -1,21 +1,21 @@
-import React, { useContext, useEffect } from 'react';
-import { logOut } from '../../localStorage';
+import React, { useEffect } from 'react';
+import { logOut, userData } from '../../localStorage';
+import { useSelector } from 'react-redux';
 import Swal from 'sweetalert2';
 import NavbarInf from '../NavbarInf';
 import NavbarMed from '../NavbarMed';
 import NavbarSup from '../NavbarSup';
-import { AppContext } from '../../context';
 import './styles.css';
-import { useSelector } from 'react-redux';
+
 
 function Navbar() {
 
+  const usuario = userData(); //usuario para obtener isAdmin
   const [isOpen, setIsOpen] = React.useState(false); //menu hamburguesa  
   const menuRef = React.useRef(null); //referencia menu hamburguesa
   const menuItemsRef = React.useRef([]); //referencia items menu hamburguesa
   const carrito = useSelector(state => state.carrito); //carrito para obtener cantidad de productos
-  const favoritos = useSelector(state => state.favoritos); //favoritos para obtener cantidad de productos
-  const context = useContext(AppContext);  
+  const favoritos = useSelector(state => state.favoritos); //favoritos para obtener cantidad de productos  
   
   //funcion para abrir y cerrar menu hamburguesa
   const toggleMenu = () => {
@@ -38,7 +38,6 @@ function Navbar() {
         window.location.href = '/';
     });        
   };
-  
   
   //cierra el menú hamburguesa si se hace click fuera de él
   useEffect(() => {
@@ -66,7 +65,7 @@ function Navbar() {
       <NavbarSup />
       {/* nav med */}
       <NavbarMed 
-        usuario={context.dataUser.user}
+        usuario={usuario?.user}
         isOpen={isOpen}
         menuRef={menuRef} 
         menuItemsRef={menuItemsRef} 
@@ -76,7 +75,7 @@ function Navbar() {
         itemsFavoritos={favoritos?.length}
       />
       {/* nav inf */}
-      <NavbarInf usuario={context.dataUser.user}/>
+      <NavbarInf usuario={usuario?.user}/>
     </div>
   )
 }

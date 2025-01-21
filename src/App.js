@@ -14,6 +14,9 @@ import LoginPage from './pages/Login';
 import FavoritosPage from './pages/Favoritos';
 import MiCarritoPage from './pages/MiCarritoPage';
 import FormaEnvio from './pages/FormaEnvio';
+import ComoPagarPage from './pages/ComoPagar';
+import InformacionContactoPage from './pages/InformacionContactoPage';
+import CheOutML from './components/CheckOutML';
 import './App.css';
 
 function App() {
@@ -34,6 +37,9 @@ function App() {
             <Route path='/favoritos' element={<FavoritosPage/>} />
             <Route path='/miCarrito' element={<MiCarritoPage />} />
             <Route path='/formaEnvio' element={<FormaEnvio/>} />
+            <Route path='/comoPagar' element={<ComoPagarPage />} />
+            <Route path='/infoContacto' element={<InformacionContactoPage />} />
+            <Route path='/checkout' element={<CheOutML />}/>
             <Route path='/admin/creaProd' element={<CreaProducto />} />
             <Route path='/admin/listaProdsAdmin' element={<ListaProdsAdminPage />} />
             <Route path='/admin/editaProd/:id' element={<EditaProd />} />            

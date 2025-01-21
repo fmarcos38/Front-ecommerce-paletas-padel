@@ -18,7 +18,7 @@ function ListaProdsAdminPage() {
 
     return context.dataUser &&
     (
-        <div className='cont-lista-prods-admin'>
+        <div className='cont-lista-prods-admin page'>
             <h1 className='titulo-lista-prods-admin-page'>Lista de productos</h1>
             <ListaProductosAdmin productos={productos}/>
         </div>

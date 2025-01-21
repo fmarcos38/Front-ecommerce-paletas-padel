@@ -18,7 +18,7 @@ function FavoritosPage() {
     }, [dispatch, usuario]);
 
     return (
-        <div className='cont-fav-page'>
+        <div className='page'>
             <h1>Tus Favoritos</h1>
             {
                 favoritos.length === 0 ? 
