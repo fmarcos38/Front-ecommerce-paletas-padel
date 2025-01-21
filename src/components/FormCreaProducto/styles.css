@@ -1,5 +1,5 @@
 .form-crea-prod{
-    width: 50%;
+    width: 60%;
     height: auto;
     display: flex;
     flex-direction: column;
@@ -10,11 +10,11 @@
     border: 1px solid #000;
     border-radius: 10px;
     margin-bottom: 20px;
-    background-color: #f5f5f5;
+    background-color: rgba(229, 229, 229, 0.664);
 }
+.cont-imagen,
 .cont-nombre,
-.cont-descripcion,
-.cont-imagen{
+.cont-descripcion{
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -32,23 +32,24 @@
     margin-bottom: 10px;
 }
 .cont-precio-cat{
-    width: 33%;
+    width: 30%;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: start;
 }
 .cont-promo{
-    width: 30%;
+    width: 50%;
     display: flex;
     justify-content: start;
     align-items: center;
 }
 .cont-desc{
-    width: 70%;
+    width: 50%;
     display: flex;
     justify-content: start;
     align-items: center;
+    margin-left: 10px;
 }
 .label-prod{
     font-size: 20px;
@@ -57,16 +58,22 @@
 .input-crea-precio,
 .input-crea-cat,
 .input-crea-stock{
-    width: 80%;
+    width: 100%;
     font-size: 20px;
-    border-radius: 10px;
+    border-radius: 5px;
+    border: 1px solid #6c6b6b;
+}
+.input-crea-desc{
+    width: 30%;
+    font-size: 20px;
+    border-radius: 5px;
     border: 1px solid #6c6b6b;
 }
 .input-crea-descrip{
-    width: 80%;
+    width: 100%;
     min-height: 100px;
     font-size: 20px;
-    border-radius: 10px;
+    border-radius: 5px;
     border: 1px solid #3b3a3a;
 }
 .cont-vista-previa{
@@ -120,11 +127,11 @@
 .label-prod{
     margin-right: 5px;
 }
-.input-crea-desc{
-    width: 100px;
+.input-crea-descrip{
     font-size: 20px;
     border-radius: 10px;
     border: 1px solid #6c6b6b;
+    background-color: white;
 }
 .btn-crea-prod{
     width: 200px;
@@ -144,6 +151,11 @@
     margin: 0;
 }
 /* responsive */
+@media screen and (max-width: 1100px){
+    .form-crea-prod{
+        width: 80%;
+    }
+}
 @media screen and (max-width: 768px){
     .form-crea-prod{
         width: 90%;
@@ -182,5 +194,17 @@
         width: 80%;
         height: 30px;
         font-size: 15px;
+    }
+}
+@media screen and (max-width: 500px) {
+    .form-crea-prod{
+        width: 85%;
+    }
+    .cont-desc{
+        flex-direction: column;
+        margin-left: 0;
+    }
+    .input-crea-desc{
+        width: 30%;
     }
 }

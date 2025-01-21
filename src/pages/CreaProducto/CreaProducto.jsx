@@ -2,6 +2,7 @@ import React, { useContext } from 'react'
 import { AppContext } from '../../context';
 import FormCreaProducto from '../../components/FormCreaProducto';
 import Swal from 'sweetalert2';
+import './styles.css';
 
 
 function CreaProducto() { 
@@ -45,7 +46,7 @@ function CreaProducto() {
 
     return context.dataUser &&
     (
-        <div className='page'>
+        <div className='page cont-crea-prod-page'>
             <h1 className='title-crea-prod'>Crea un nuevo producto</h1>
             <FormCreaProducto onSubmit={onSubmit}/>
         </div>

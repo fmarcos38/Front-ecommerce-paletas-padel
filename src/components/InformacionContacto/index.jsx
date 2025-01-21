@@ -4,7 +4,6 @@ import { getCarrito } from '../../redux/actions/actions';
 import { userData } from '../../localStorage';
 import ResumenCompra from '../ResumenCompra';
 import CheckIcon from '@mui/icons-material/Check';
-import FormDatosEntrega from '../FormDatosEntrega';
 import NavCarrito from '../NavCarrito';
 import './styles.css';
 
@@ -17,7 +16,6 @@ function InformacionContacto() {
     const [dni, setDni] = useState('');
     const [telefono, setTelefono] = useState('');
     const [email, setEmail] = useState('');
-    //const [tipoDeResponsable, setTipoDeResponsable] = useState(''); //tipo de facturación
     const [calle, setCalle] = useState('');
     const [numero, setNumero] = useState('');
     const [piso, setPiso] = useState('');
@@ -26,9 +24,7 @@ function InformacionContacto() {
     const [provicia, setProvincia] = useState('');
     const [localidad, setLocalidad] = useState('');
     const [comentarios, setComentarios] = useState('');
-    const [comentariosExtras, setComentariosExtras] = useState('');
     const [errors, setErrors] = useState({});
-    const [datosEntrega, setDatosEntrega] = useState(true);
     const dispatch = useDispatch();
 
     //funcion onClick vuelvo a la página anterior
@@ -90,9 +86,6 @@ function InformacionContacto() {
     const handleChangeEmail = (e) => {
         setEmail(e.target.value);
     }
-    /* const handleChangeTipoDeResponsable = (e) => {
-        setTipoDeResponsable(e.target.value);
-    } */
     const handleChangeCalle = (e) => {
         setCalle(e.target.value);
     }
@@ -117,12 +110,6 @@ function InformacionContacto() {
     const handleChangeComentarios = (e) => {
         setComentarios(e.target.value);
     }
-    const handleChangeComentariosExtras = (e) => {
-        setComentariosExtras(e.target.value);
-    }
-    const handleChangeDatosEntrega = () => {
-        setDatosEntrega(!datosEntrega);
-    }
     //me traigo el carrito
     useEffect(() => {
         if(cliente){
@@ -130,28 +117,6 @@ function InformacionContacto() {
         }
     }, [dispatch]);
 
-    //efecto para el check de datos de entrega
-    useEffect(() => {
-        if(datosEntrega){
-            setCalle();
-            setNumero();
-            setPiso();
-            setDepartamento();
-            setCodigoPostal();
-            setProvincia();
-            setLocalidad();
-            setComentariosExtras();
-        } else {
-            setCalle('');
-            setNumero('');
-            setPiso('');
-            setDepartamento('');
-            setCodigoPostal('');
-            setProvincia('');
-            setLocalidad('');
-            setComentariosExtras('');
-        }
-    }, [datosEntrega, cliente]);
 
     return (
         <div className='cont-miCarrito'>
@@ -332,8 +297,8 @@ function InformacionContacto() {
                             <div className='cont-textarea-contacto'>
                                 <label className='label'>Comentarios</label>
                                 <textarea
-                                    id='comentariosExtras'
-                                    value={comentariosExtras}
+                                    id='comentarios'
+                                    value={comentarios}
                                     onChange={handleChangeComentarios}
                                     className="textarea-contacto"
                                 />
