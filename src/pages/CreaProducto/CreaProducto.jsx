@@ -10,13 +10,13 @@ function CreaProducto() {
     const context = useContext(AppContext);
 
     const onSubmit = async(data) => {        
-        const formData = new FormData();
-        formData.append('data', JSON.stringify(data));
-
+        const formData = new FormData(); //creo el formData
+        formData.append('data', JSON.stringify(data)); //agrego los datos del producto
+        //agrego las imagenes
         data.imagenes.forEach((imagen) => {
             formData.append('imagenes', imagen);
         });
-        console.log('formData:', formData);
+        
         try{
             const response = await fetch('http://localhost:3002/producto', {
                 method: 'POST',
@@ -29,16 +29,14 @@ function CreaProducto() {
                     confirmButtonText: 'Aceptar',
                     confirmButtonColor: '#3f51b5',
                 });
-                //redirijo a la lista de propiedades
-                window.location.href = '/admin/listaProdsAdmin';
-                }else{
+            }else{
                     Swal.fire({
                         title: 'Error al crear el producto',
                         icon: 'error',
                         confirmButtonText: 'Aceptar',
                         confirmButtonColor: '#3f51b5',
                     });
-                }
+            }
         }catch(error){
             console.error('Error al crear producto:', error);
         }

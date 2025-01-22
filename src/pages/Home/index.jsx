@@ -32,7 +32,7 @@ function Home() {
   const context = useContext(AppContext);
   //paginación
   const [paginaActual, setPaginaActual] = React.useState(1);
-  const prooductosPorPagina = 4;
+  const prooductosPorPagina = 12;
   const limit = prooductosPorPagina;
   const offset = (paginaActual - 1) * prooductosPorPagina;
 

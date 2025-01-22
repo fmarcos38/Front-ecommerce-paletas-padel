@@ -14,7 +14,7 @@ function EditaProd() {
         data.imagenes.forEach((imagen) => {
             formData.append('imagenes', imagen);
         });
-        console.log('data:', data);
+        
         try {
             const response = await fetch(`http://localhost:3002/producto/edita/${data.id}`, {
                 method: 'PUT',

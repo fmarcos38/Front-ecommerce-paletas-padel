@@ -172,6 +172,7 @@ export const getProductoPorNombre = (nombre) => {
         dispatch({type: GET_PRODUCTO_POR_NOMBRE, payload: resp.data});
     }
 }
+
 //reset producto
 export const resetProducto = () => {
     return {
@@ -184,6 +185,8 @@ export const deleteProducto = (id) => {
     return async function(dispatch){
         await axios.delete(`${URL}/producto/${id}`);
         dispatch({type: 'DELETE_PRODUCTO', payload: id});
+        //actualizo la lista de productos
+        dispatch(getProductos());
     }
 }
 

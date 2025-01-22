@@ -18,6 +18,7 @@ function FormCreaProducto({onSubmit, operacion}) {
     const [vistaPrevia, setVistaPrevia] = React.useState([]); //vista previa
     const [vistaPreviaExistentes, setVistaPreviaExistentes] = React.useState([]); //vista previa de las imágenes existentes SI es editar
     const [categoria, setCategoria] = React.useState(''); 
+    const [marca, setMarca] = React.useState('');
     const [stock, setStock] = React.useState(1);
     const [enPromo, setEnPromo] = React.useState(false);
     const [descuento, setDescuento] = React.useState(0);
@@ -49,6 +50,9 @@ function FormCreaProducto({onSubmit, operacion}) {
     };
     const handleChangeCategoria = (e) => {
         setCategoria(e.target.value);
+    };
+    const handleChangeMarca = (e) => {
+        setMarca(e.target.value);
     };
     const handleChangeStock = (e) => {
         setStock(e.target.value);
@@ -105,6 +109,29 @@ function FormCreaProducto({onSubmit, operacion}) {
         }
         return true;
     };
+    //funcion limpiar inputs
+    const limpiarInputs = () => {
+        document.querySelector('.form-crea-prod').reset(); // Limpia el formulario
+        setNombre('');
+        setPrecio('');
+        setImagenes([]);
+        setVistaPrevia([]);
+        setCategoria('');
+        setMarca('');
+        setStock(1);
+        setEnPromo(false);
+        setDescuento(0);
+        setAgotado(false);
+        setDescripcion('');
+        setErrors({});
+        setVistaPreviaExistentes([]);
+    
+        // Limpia el contenido del editor Quill
+        if (quillRef.current && quillRef.current.__quillInstance) {
+            quillRef.current.__quillInstance.root.innerHTML = '';
+        }
+    };
+    
     //igualmente a pesar de que recibo del padre la función onsubmit, la vuelvo a definir acá
     const handleOnSubmit = (e) => { 
         e.preventDefault();
@@ -116,7 +143,7 @@ function FormCreaProducto({onSubmit, operacion}) {
                 descripcion,
                 imagenes,
                 imgsExistentes,
-                //imgsEliminar,
+                marca,
                 categoria,
                 stock,
                 enPromo,
@@ -124,7 +151,7 @@ function FormCreaProducto({onSubmit, operacion}) {
                 agotado,
             };
             onSubmit(data);
-            window.location.href = '/admin/listaProdsAdmin';
+            //window.location.href = '/admin/listaProdsAdmin';
         }else{
             if (validarDatos()) { 
                 const data = {
@@ -135,13 +162,14 @@ function FormCreaProducto({onSubmit, operacion}) {
                     imagenes,
                     imgsExistentes,
                     categoria,
+                    marca,
                     stock,
                     enPromo,
                     porcentajeDescuento: descuento,
                     agotado,
                 };
                 onSubmit(data);
-                window.location.href = '/admin/listaProdsAdmin';
+                limpiarInputs();
             }
         }
     }
@@ -159,6 +187,7 @@ function FormCreaProducto({onSubmit, operacion}) {
             setPrecio(prod.precio || '');
             setDescripcion(prod.descripcion || '');
             setCategoria(prod.categoria || '');
+            setMarca(prod.marca || '');
             setStock(prod.stock || 1);
             setImgsExistentes(prod?.imagenes || []);            
             setVistaPreviaExistentes(prod.imagenes?.map((img) => ({ url: img })) || []);
@@ -196,11 +225,11 @@ function FormCreaProducto({onSubmit, operacion}) {
     }, []);
     //efecto para traer prod por nombre SI existe
     useEffect(() => {
-        if(nombre){
+        if(operacion === 'crear' && nombre){
             dispatch(getProductoPorNombre(nombre));
             setExisteProd(existeProducto.msg);
         }
-    }, [dispatch, existeProducto.msg, nombre]);
+    }, [dispatch, existeProducto.msg, nombre, operacion]);
 
 
     return (
@@ -222,7 +251,7 @@ function FormCreaProducto({onSubmit, operacion}) {
                     {
                         vistaPreviaExistentes?.map((img, index) => (
                             <div className='cont-img-vista-previa' key={index}>
-                                <button className='btn-elimina-img' onClick={(index)=>handleEliminaImg(index)}>X</button>
+                                <button type='button' className='btn-elimina-img' onClick={(index)=>handleEliminaImg(index)}>X</button>
                                 <img key={img.url} src={img.url} alt={img.file} className='img-vista-previa' />
                             </div>
                         ))
@@ -319,16 +348,28 @@ function FormCreaProducto({onSubmit, operacion}) {
                 </div>
             </div>
             {/* Agotado */}
-            <div className='cont-agotado'>
-                <label className='label-prod'>¿Producto agotado?</label>
-                <input 
-                    type='checkbox' 
-                    name='agotado'
-                    value={agotado}
-                    checked={agotado}
-                    onChange={handleChangeAgotado}
-                    className='check-crea-promo' 
-                />
+            <div className='cont-promo-desc'>
+                <div className='cont-promo'>
+                    <label className='label-prod'>¿Está agotado?</label>
+                    <input 
+                        type='checkbox' 
+                        name='agotado'
+                        value={agotado}
+                        checked={agotado}
+                        onChange={handleChangeAgotado}
+                        className='check-crea-promo' 
+                    />
+                </div>
+                <div className='cont-desc'>
+                    <label className='label-prod'>Marca:</label>
+                    <input 
+                        type='text'
+                        name='marca'
+                        value={marca}
+                        onChange={handleChangeMarca}
+                        className='input-crea-desc' 
+                    />
+                </div>
             </div>
             {/* descripción */}
             <div className='cont-descripcion'>
