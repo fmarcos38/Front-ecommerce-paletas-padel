@@ -4,16 +4,16 @@ import 'quill/dist/quill.snow.css'; // Estilos de Quill
 import './styles.css';
 import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { getProductoById } from '../../redux/actions/actions';
+import { getProductoById, getProductoPorNombre } from '../../redux/actions/actions';
 
 function FormCreaProducto({onSubmit, operacion}) {
 
     const cat = ['Paletas', 'Bolsos', 'Zapatillas'];  //tipo de categorías
     const {id} = useParams();
-    const [nombre, setNombre] = React.useState('');
+    const [nombre, setNombre] = React.useState(''); 
     const [precio, setPrecio] = React.useState(null);
-    const [imagenes, setImagenes] = React.useState([]); console.log('imgs:', imagenes);
-    const [imgsExistentes, setImgsExistentes] = React.useState([]); console.log('imgsExistentes:', imgsExistentes);//se guardan las existentes(url en string) SI es editar
+    const [imagenes, setImagenes] = React.useState([]); 
+    const [imgsExistentes, setImgsExistentes] = React.useState([]);  //se guardan las existentes(url en string) SI es editar
     //const [imgsEliminar, setImgsEliminar] = React.useState([]); //imágenes a eliminar SI es editar
     const [vistaPrevia, setVistaPrevia] = React.useState([]); //vista previa
     const [vistaPreviaExistentes, setVistaPreviaExistentes] = React.useState([]); //vista previa de las imágenes existentes SI es editar
@@ -24,8 +24,10 @@ function FormCreaProducto({onSubmit, operacion}) {
     const [agotado, setAgotado] = React.useState(false);
     const [descripcion, setDescripcion] = React.useState('');
     const [errors, setErrors] = React.useState({});
+    const existeProducto = useSelector((state) => state.existeProducto);
     const quillRef = React.useRef(null);
     const prod = useSelector((state) => state.producto);
+    const [existeProd, setExisteProd] = React.useState(null); 
     const dispatch = useDispatch();
 
     const handleChangeNombre = (e) => {
@@ -78,7 +80,6 @@ function FormCreaProducto({onSubmit, operacion}) {
         nuevasVistas.splice(index, 1);
         setVistaPrevia(nuevasVistas);
     };
-
     //funcion validar datos
     const validarDatos = () => {
         let errores = {};
@@ -193,7 +194,13 @@ function FormCreaProducto({onSubmit, operacion}) {
             quillRef.current.__quillInstance = quillInstance;
         }
     }, []);
-    
+    //efecto para traer prod por nombre SI existe
+    useEffect(() => {
+        if(nombre){
+            dispatch(getProductoPorNombre(nombre));
+            setExisteProd(existeProducto.msg);
+        }
+    }, [dispatch, existeProducto.msg, nombre]);
 
 
     return (
@@ -230,6 +237,7 @@ function FormCreaProducto({onSubmit, operacion}) {
                     }
                 </div>
             </div>
+            {/* nombre */}
             <div className='cont-nombre'>
                 <label className='label-prod'>Nombre producto</label>
                 <input 
@@ -240,6 +248,7 @@ function FormCreaProducto({onSubmit, operacion}) {
                     className='input-nombre-prod'
                 />
                 {errors.nombre && <p className='error'>{errors.nombre}</p>}
+                {existeProd && <p className='error'>El producto ya existe</p>}
             </div>
             {/* precio - categoría - stock*/}
             <div className='cont-precio-cat-stock'>

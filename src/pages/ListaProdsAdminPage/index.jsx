@@ -14,7 +14,7 @@ function ListaProdsAdminPage() {
 
     useEffect(()=>{
         dispatch(getProductos());
-    },[dispatch, productos]);
+    },[dispatch]);
 
     return context.dataUser &&
     (

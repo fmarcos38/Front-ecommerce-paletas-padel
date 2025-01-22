@@ -2,9 +2,8 @@ import axios from "axios";
 import { URL } from "../../urls";
 import { 
     LOADING, GET_PRODUCTOS, GET_PRODUCTO_BY_ID, RESET_PRODUCTO, GET_PRODS_RANGO_PRECIO, 
-    OPEN_CLOSE_MODAL, LOGIN, GET_FAVORITOS, GET_USER, RESET_USER,
-    GET_PRODUTOS_OFERTA,
-    GET_CARRITO
+    OPEN_CLOSE_MODAL, LOGIN, GET_FAVORITOS, GET_USER, RESET_USER, GET_PRODUTOS_OFERTA,
+    GET_CARRITO, GET_PRODUCTO_POR_NOMBRE,
 } from "./actionTypes";
 
 //-------login-----------------------------
@@ -166,6 +165,13 @@ export const getProductoById = (id) => {
     }
 }
 
+//trae por nombre
+export const getProductoPorNombre = (nombre) => {
+    return async function(dispatch) {
+        const resp = await axios.get(`${URL}/producto/busca?nombre=${nombre}`); 
+        dispatch({type: GET_PRODUCTO_POR_NOMBRE, payload: resp.data});
+    }
+}
 //reset producto
 export const resetProducto = () => {
     return {

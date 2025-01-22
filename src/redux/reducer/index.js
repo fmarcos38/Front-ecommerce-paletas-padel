@@ -2,7 +2,8 @@ import {
     LOADING, GET_PRODUCTOS, GET_PRODUCTO_BY_ID, RESET_PRODUCTO, GET_PRODS_RANGO_PRECIO, 
     OPEN_CLOSE_MODAL, LOGIN, RESET_LOGIN, GET_USER, GET_FAVORITOS, RESET_USER,
     GET_PRODUTOS_OFERTA,
-    GET_CARRITO
+    GET_CARRITO,
+    GET_PRODUCTO_POR_NOMBRE
 } from '../actions/actionTypes'
 
 const initialStore = {
@@ -13,6 +14,7 @@ const initialStore = {
     totProds: 0,
     producto: {},
     enPromo: [],
+    existeProducto: false,
     productosRangoPrecio: [],
     isModalOpen: false,
     loading: false,
@@ -47,6 +49,11 @@ export default function rootReducer (state = initialStore, action) {
                 ...state,
                 producto: action.payload,
                 loading: false
+            }
+        case GET_PRODUCTO_POR_NOMBRE:
+            return {
+                ...state,
+                existeProducto: action.payload,
             }
         case RESET_PRODUCTO:
             return {
