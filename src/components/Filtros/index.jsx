@@ -8,7 +8,7 @@ function Filtros({
     setMarca,
     categoria,
     setCategoria,
-    promo,
+    enPromo,
     setPromo,
     precioMin,
     setPrecioMin,
@@ -100,7 +100,7 @@ function Filtros({
                     <input 
                         type="checkbox" 
                         id='promo'
-                        value={promo}
+                        value={enPromo}
                         onChange={handleChangePromo}
                         className='check-categoria'
                     />

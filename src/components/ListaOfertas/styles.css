@@ -25,7 +25,9 @@
     transform: translateY(-50%);
     z-index: 1;
 }
-
+.buttonLeft{
+    margin: 0;
+}
 .arrow-button:focus {
     outline: none;
 }
@@ -38,3 +40,11 @@
     right: 10px;
 }
 
+@media screen and (max-width: 500px) {
+    .lista-ofertas {
+        width: auto;
+    }
+    .arrow-button {
+        font-size: 15px;
+    }
+}

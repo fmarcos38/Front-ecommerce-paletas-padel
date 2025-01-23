@@ -15,11 +15,13 @@
     cursor: pointer;
     border-radius: 5px;
     font-size: 16px;
-  }
-  
-  .paginacion-button:disabled {
     background-color: #ccc;
     color: black;
+  }
+  .paginacion-button:hover{
+    background-color: aliceblue;
+  }
+  .paginacion-button:disabled {
     cursor: not-allowed;
   }
   

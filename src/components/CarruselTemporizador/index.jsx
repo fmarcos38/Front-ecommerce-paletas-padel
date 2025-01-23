@@ -53,9 +53,11 @@ function CarruselTemporizador({imagenes}) {
             </button>
             {/* imágenes */}
             <div className='cont-imgs'>
-            {visibleImages.map((img, idx) => (
+            {
+                visibleImages.map((img, idx) => (
                     <img key={idx} src={img} alt='' className='img-carrusel' />
-                ))}
+                ))
+            }
             </div>
             {/* botón sgt */}
             <button onClick={onClickAdelante} className='btn-sgt'>

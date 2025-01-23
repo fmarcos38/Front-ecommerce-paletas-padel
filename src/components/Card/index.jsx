@@ -1,10 +1,10 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import BotonFavorito from '../BotonFavorito';
-import './styles.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { agregarAlCarrito } from '../../redux/actions/actions';
+import BotonFavorito from '../BotonFavorito';
 import Swal from 'sweetalert2';
+import './styles.css';
 
 function Card({id, nombre, precio, imagenes, agotado, enPromo, porcentajeDescuento}) {
 
@@ -42,6 +42,8 @@ function Card({id, nombre, precio, imagenes, agotado, enPromo, porcentajeDescuen
             <div className='cont-btn-fav-card'>
                 <BotonFavorito id={id} />
             </div>
+            {/* descuento */}
+            {enPromo && <p className='descuento-pala'>-{porcentajeDescuento}%</p>}
             {/* carrusel de imagenes */}
             <NavLink to={`/detalleProd/${id}`} className='navLink-car'>
                 <div
@@ -66,8 +68,18 @@ function Card({id, nombre, precio, imagenes, agotado, enPromo, porcentajeDescuen
             <div className='cont-info-card'>
                 <p className='nombre-pala'>{nombre}</p>
                 <div className='cont-precio-desc'>
-                    <p className='precio-pala'>${precio}</p>
-                    {enPromo && <p className='descuento-pala'>Desc. -{porcentajeDescuento}%</p>}
+                    {
+                        enPromo ?
+                        (
+                            <>
+                                <p className='precio-pala-tachado'>${precio}</p>
+                                <p className='precio-pala-promo'>${precio - (precio * porcentajeDescuento / 100)}</p>
+                            </>
+                        ) :
+                        (
+                            <p className='precio-pala'>${precio}</p>
+                        )
+                    }
                 </div>
                 <button 
                     className='btn-agrega-carrito' 

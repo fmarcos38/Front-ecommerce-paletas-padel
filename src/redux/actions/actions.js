@@ -120,7 +120,7 @@ export const getProductos = (limit, offset, categoria, marca, enPromo, precioMin
         }
         //enPromo
         if(enPromo) {
-            queryParams += `&oferta=${enPromo}`;
+            queryParams += `&enPromo=${enPromo}`;
         }
         //precioMin
         if(precioMin) {

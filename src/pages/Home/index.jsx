@@ -21,7 +21,7 @@ function Home() {
   const data = userData();
   const [marca, setMarca] = React.useState('');
   const [categoria, setCategoria] = React.useState('');
-  const [promo, setPromo] = React.useState(false);
+  const [enPromo, setPromo] = React.useState(false);
   const [precioMin, setPrecioMin] = React.useState(1000);
   const [precioMax, setPrecioMax] = React.useState(1000000);
   const arrImgsMostrar = [imgPChica1, imgPChica2, imgPChica3, imgPChica4]; //array de imagenes a mostrar en el carrusel
@@ -50,8 +50,8 @@ function Home() {
 
   //efecto para traer los productos
   useEffect(() => {
-    dispatch(getProductos(limit, offset, categoria, marca, promo, precioMin, precioMax));
-  }, [categoria, dispatch, limit, marca, offset, precioMax, precioMin, promo]);
+    dispatch(getProductos(limit, offset, categoria, marca, enPromo, precioMin, precioMax));
+  }, [categoria, dispatch, limit, marca, offset, precioMax, precioMin, enPromo]);
 
   //efecto para traer los datos del usuario SI hay usuario logueado
   useEffect(() => {
@@ -71,7 +71,9 @@ function Home() {
   return (
     <div className='cont-home'>
       <div className='cont-msj-envio'>
-        <h1 className='msj-envio'>ENVIOS A TODO EL PAÍS</h1>
+        <h1 className='msj-envio'>
+          ENVIOS A TODO EL PAÍS &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ENVIOS A TODO EL PAÍS
+        </h1>
       </div>
       
       {/* carrusel */}
@@ -100,7 +102,7 @@ function Home() {
               setMarca={setMarca}
               categoria={categoria}
               setCategoria={setCategoria}
-              promo={promo}
+              enPromo={enPromo}
               setPromo={setPromo}
               precioMin={precioMin}
               setPrecioMin={setPrecioMin}

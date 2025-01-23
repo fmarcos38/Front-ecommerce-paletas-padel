@@ -14,11 +14,29 @@
     justify-content: center;
     align-items: center;
     background-color: #776de1;
+    overflow: hidden; /* Oculta el desbordamiento horizontal */
+    position: relative;
 }
 .msj-envio{
+    position: relative;
     margin: 0;
     font-size: 22px;
     color: white;
+    margin-left: 120px;
+    display: inline-block;
+    white-space: nowrap; /* Evita que el texto se divida en varias líneas */
+    overflow: hidden; /* Oculta el texto que se desborda */
+    box-sizing: border-box;
+    animation: scroll-left 10s linear infinite; /* Aplica la animación */
+}
+/* animación msj-envio */
+@keyframes scroll-left {
+    0% {
+        transform: translateX(100%); /* Comienza fuera de la pantalla a la derecha */
+    }
+    100% {
+        transform: translateX(-100%); /* Termina fuera de la pantalla a la izquierda */
+    }
 }
 .cont-carrusel-home{
     width: 100%;
@@ -70,6 +88,7 @@
     max-height: calc(100vh - 20px); /* Ajusta la altura máxima para evitar que salga del contenedor */
     overflow-y: auto; /* Permite el desplazamiento dentro de la barra lateral si el contenido es más largo */
     background-color: turquoise; 
+    border-radius: 5px;
 }
 /* estilos titulo y lista prods */
 .cont-lista-productos-home{
@@ -194,5 +213,8 @@
 @media screen and (max-width: 700px){
     .modal-carrito-compras-open {
         width: 100%;
+    }
+    .titulo-ofertas{
+        text-align: center;
     }
 }
