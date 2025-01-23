@@ -1,10 +1,19 @@
 .cont-stock{
+    width: 100%;
+    height: auto;
     display: flex;
+    flex-direction: column;
     justify-content: center;
-    align-items: center;
+    align-items: start;
     width: 80%;
     height: 20px;
     padding: 5px 0;
+}
+.cont-cant-vendida{
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    width: 100%;
 }
 .btn-menos-stock,
 .btn-mas-stock{
@@ -19,7 +28,14 @@
 .p-cantidad-stock{
     margin: 0 10px;
 }
-
+.stock-pala-prod-carrito{
+    margin-top: 3px;
+    margin-left: 8px;
+}
+.sinStock{
+    color: red;
+    font-weight: 500;
+}
 /* responsive */
 @media screen and (max-width: 550px){
     .btn-menos-stock,

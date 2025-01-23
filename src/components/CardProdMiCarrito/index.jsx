@@ -15,8 +15,7 @@ function CardProdMiCarrito({clienteId, productoId, nombre, precio, imagenes, sto
                     <p className='nombre-pala-prod-mi-carrito'>{nombre}</p>
                 </div>                
                 <div className='cont-stock-pala-prod-mi-carrito'>
-                    <Stock stock={stock} />
-                    <p className='stock-pala-prod-mi-carrito'>Stock: {stock}</p>
+                    <Stock clienteId={clienteId} productoId={productoId} stock={stock} />
                 </div>
                 <div className='cont-precio-pala-prod-mi-carrito'>
                     <p className='precio-pala-prod-mi-carrito'>${precio}</p>
