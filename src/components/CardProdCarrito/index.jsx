@@ -17,7 +17,7 @@ function CardProdCarrito({clienteId, productoId, nombre, precio, imagenes, stock
                     <Stock clienteId={clienteId} productoId={productoId} stock={stock} />
                 </div>
             </div>
-            <div>
+            <div className='cont-btn-elimina-prod-carrito'>
                 <BotonEliminaProdCarrito clienteId={clienteId} productoId={productoId} />
             </div>
         </div>

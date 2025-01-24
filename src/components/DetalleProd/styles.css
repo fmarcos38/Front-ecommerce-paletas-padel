@@ -1,11 +1,9 @@
 .cont-detalle-prod{
     width: 100%;
-    height: auto;
     display: flex;
     flex-direction: column;
     justify-content: start;
     align-items: center;
-    background-color: rgba(115, 115, 115, 0.925);
 }
 /* estilos prod y carrito */
 .cont-producto-Y-carrito{
@@ -79,6 +77,13 @@
 .medios-pago-prod-detalle{
     margin-left: 5px;
 }
+.link-carrito{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+}
 /* botones */
 .btns-prod-detalle{
     width: 100%;
@@ -86,21 +91,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-}
-.btn-comprar-detalle,
-.btn-agrega-carrito-detalle{
-    width: 80%;
-    height: 40px;
-    background-color: var(--color-azul);
-    border-radius: 3px;
-    border: none;
-    cursor: pointer;
-    margin-top: 10px;
-}
-.btn-agrega-carrito-detalle{
-    margin-bottom: 20px;
-    border: 1px solid var(--color-azul);
-    background-color: transparent;
+    margin-bottom: 10px;
 }
 /* FILA-2 */
 .cont-fila-2{
@@ -181,6 +172,7 @@
     width: 100%;
     height: 100vh;
     background-color: black;
+    z-index: 1000;
 }
 /* responsiv */
 @media screen and (max-width: 1200px){

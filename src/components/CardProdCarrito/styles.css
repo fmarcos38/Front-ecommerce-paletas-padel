@@ -8,6 +8,13 @@
     border-radius: 10px;
     width: 80%;
 }
+.cont-img-card-prod-carrito{
+    width: 30%;
+    height: 100px;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+}
 .img-card-prod-carrito{
     width: 100px;
     height: 100px;
@@ -15,11 +22,16 @@
 }
 .cont-stock-card-prod-carrito{
     width: 50%;
-    height: 70px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: start;
+}
+.cont-btn-elimina-prod-carrito{
+    width: 20%;
+    display: flex;
+    justify-content: end;
+    align-items: center;
 }
 /* responsive */
 @media screen and (max-width: 500px){

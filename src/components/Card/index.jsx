@@ -1,40 +1,12 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
-import { agregarAlCarrito } from '../../redux/actions/actions';
 import BotonFavorito from '../BotonFavorito';
-import Swal from 'sweetalert2';
+import BotonAgregaalCarrito from '../BotonAgregaAlCarrito';
 import './styles.css';
 
 function Card({id, nombre, precio, imagenes, agotado, enPromo, porcentajeDescuento}) {
 
-    const dataUsuario = useSelector(state => state.dataUsuario);
     const [showDetail, setShowDetail] = React.useState(false); //estado para hover de la imgn - mostrando detalle
-    const dispatch = useDispatch();
-
-    const onClickAgregarAlCarrito = () => {
-        if(!dataUsuario?._id){
-            Swal.fire({
-                icon: 'warning',
-                title: 'Oops...',
-                text: 'Debes estar logueado para agregar productos al carrito',
-            });
-            //redirijo a login
-            setTimeout(() => {
-                window.location.href = '/login';
-            }, 2000);
-        }else{
-            const cantidad = 1;
-            const clienteId = dataUsuario._id;
-            dispatch(agregarAlCarrito(clienteId, id, cantidad));
-            Swal.fire({
-                icon: 'success',
-                title: 'Producto agregado al carrito',
-                showConfirmButton: false,
-                timer: 1500
-            });
-        }
-    };
 
     return (
         <div className='cont-card'>
@@ -81,12 +53,8 @@ function Card({id, nombre, precio, imagenes, agotado, enPromo, porcentajeDescuen
                         )
                     }
                 </div>
-                <button 
-                    className='btn-agrega-carrito' 
-                    onClick={() => {onClickAgregarAlCarrito()}}
-                >
-                    Agregar al carrito
-                </button>
+                {/* botón agrega al carrito */}
+                <BotonAgregaalCarrito id={id} />
             </div>
         </div>
     )

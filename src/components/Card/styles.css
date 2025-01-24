@@ -136,17 +136,6 @@
     text-align: center;
     color: red;
 }
-.btn-agrega-carrito{
-    width: 200px;
-    height: 40px;
-    font-size: 20px;
-    margin-top: 10px;
-    margin-bottom: 10px;
-    border: 1px solid #000;
-    border-radius: 10px;
-    background-color: #0c0463;
-    color: white;
-    cursor: pointer;
-}
+
 
 /* responsive */

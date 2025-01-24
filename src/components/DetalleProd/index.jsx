@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getProductosRangoPrecio } from '../../redux/actions/actions';
+import { NavLink } from 'react-router-dom';
 import { formatMoney } from '../../utils';
 import ListaProductos from '../ListaProductos';
 import CarruselDetalle from '../CarruselDetalle';
@@ -8,12 +9,15 @@ import StoreIcon from '@mui/icons-material/Store';
 import LocalShippingIcon from '@mui/icons-material/LocalShipping';
 import CreditCardIcon from '@mui/icons-material/CreditCard';
 import BotonFavorito from '../BotonFavorito';
-import './styles.css';
 import ModalImgGrande from '../ModalImgGrande';
+import BotonAgregaalCarrito from '../BotonAgregaAlCarrito';
+import BotonComprar from '../BotonComprar';
+import './styles.css';
 
 
 function DetalleProd({producto}) {
 
+    const dataUsuario = useSelector(state => state.dataUsuario);
     //me traigo productos en un rango de precio +- $30.000 al prod seleccionado
     const prodsPrecios = useSelector(state => state.productosRangoPrecio);
     const isModalOpen = useSelector(state => state.isModalOpen);
@@ -69,11 +73,14 @@ function DetalleProd({producto}) {
                                 <p className='medios-pago-prod-detalle'>Medios de pago</p>
                             </div>
                             {/* componente cant a comprar y stock disp */}
-                            <p className='stock-prod-detalle'>Stock: </p>
+                            <p className='stock-prod-detalle'>Stock: {producto.stock}</p>
                         </div>
+                        {/* botones Comprar - agrega carrito */}
                         <div className='btns-prod-detalle'>
-                            <button className='btn-comprar-detalle'>Comprar</button>
-                            <button className='btn-agrega-carrito-detalle'>Agregar al carrito</button>
+                            <NavLink to='/miCarrito' className='link-carrito'>
+                                <BotonComprar dataUsuario={dataUsuario} id={producto?._id}/>
+                            </NavLink>
+                            <BotonAgregaalCarrito id={producto?._id} />
                         </div>
                     </div>
                 </div>
@@ -100,10 +107,6 @@ function DetalleProd({producto}) {
                             </div>
                             <div>
                                 <h4>Con tarjeta de débito</h4>
-                                <img src='https://res.cloudinary.com/dyoyk3bwj/image/upload/v1735673153/tarjetas_n9jsg7.png' alt='logo-mercado-pago' className='img-medios-de-pago'/>
-                            </div>
-                            <div>
-                                <h4>Transferencias</h4>
                                 <img src='https://res.cloudinary.com/dyoyk3bwj/image/upload/v1735673153/tarjetas_n9jsg7.png' alt='logo-mercado-pago' className='img-medios-de-pago'/>
                             </div>
                         </div>

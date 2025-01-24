@@ -3,9 +3,8 @@ import { useSelector } from 'react-redux';
 import WarningIcon from '@mui/icons-material/Warning';
 import CardProdMiCarrito from '../CardProdMiCarrito' 
 import ResumenCompra from '../ResumenCompra';
-import './styles.css';
 import NavCarrito from '../NavCarrito';
-
+import './styles.css';
 
 function MiCarrito() {
 
