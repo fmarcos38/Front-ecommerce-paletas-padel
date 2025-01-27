@@ -54,9 +54,7 @@ export const resetUsuario = () => {
 //modifica usuario
 export const modificaUsuario = (id, data) => {
     return async function() { 
-        const resp = await axios.put(`${URL}/usuario/modifica/${id}`, data);
-        localStorage.removeItem('dataUser');
-        localStorage.setItem('dataUser', JSON.stringify(resp.data));
+        await axios.put(`${URL}/usuario/modifica/${id}`, data);
     }
 }
 //-----------------favoritos---------------------

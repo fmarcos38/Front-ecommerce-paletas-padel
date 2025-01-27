@@ -5,51 +5,25 @@
     justify-content: center;
     align-items: start;
 }
-.cont-input-contacto{
+.cont-contacto-nomb-ape-dni{
     width: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: start;
-}
-.cont-contacto-nomb-ape-dni,
-.cont-contacto-calle-num-piso-depto,
-.cont-contacto-provincia-localidad{
-    width: 100%;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-}
-.cont-input-contacto-calle{
-    width: 50%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: start;
-}
-.cont-input-num-piso-depto{
-    width: 50%;
     display: flex;
     justify-content: start;
     align-items: center;
 }
-.input-calle-contacto{
-    width: 95%;
-}
-.cont-input-contacto-numero,
-.cont-input-contacto-piso,
-.cont-input-contacto-depto{
-    width: 33%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: start;
-}
+/* estilos contenedores de los inputs */
 .cont-input-contacto-nombre,
 .cont-input-contacto-apellido,
 .cont-input-contacto-dni,
-.cont-input-contacto-tel,
+.cont-input-contacto-area,
+.cont-input-contacto-numTel,
+.cont-input-contacto-calle,
+.cont-input-contacto-numero,
+.cont-input-contacto-piso,
+.cont-input-contacto-depto,
+.cont-input-contacto-codigoPostal,
+.cont-input-contacto-localidad,
+.cont-input-contacto-provincia,
 .cont-contacto-tel-datosFacturacion,
 .cont-textarea-contacto{
     display: flex;
@@ -58,19 +32,47 @@
     align-items: start;
     margin-top: 10px;
 }
-.cont-input-contacto-nombre,
-.cont-input-contacto-apellido,
-.cont-input-contacto-dni,
-.cont-input-contacto-tel{
+.cont-input-contacto-area,
+.cont-input-contacto-numTel{
     width: 50%;
 }
-.cont-datos-entrega-mismos-datos{
-    width: 90%;
+.cont-input-contacto-calle{
+    width: 70%;
 }
-.input-nombre-contacto{
-    width: 95%;
+.cont-input-contacto-numero,
+.cont-input-contacto-piso,
+.cont-input-contacto-depto{
+    width: 10%;
+}
+
+/* estilos de los inputs */
+.input-nombre,
+.input-apellido,
+.input-dni,
+.input-area,
+.input-numTel,
+.input-calle,
+.input-numero,
+.input-piso,
+.input-depto,
+.input-codigoPostal,
+.input-localidad,
+.input-provincia,
+.textarea-contacto{
+    width: 100%;
     font-size: 20px;
-    padding: 3px;
+    padding: 3px 0;
+    border: 1px solid var(--gris-bordes);
+    border-radius: 5px;
+}
+.input-area,
+.input-numTel{
+    width: 100%;
+}
+.textarea-contacto{
+    width: 100%;
+    min-height: 80px;
+    margin-bottom: 10px;
 }
 .select-nombre-contacto{
     width: 98%;
@@ -80,20 +82,15 @@
 .cont-textarea-contacto{
     width: 100%;
 }
-.input-nombre-contacto,
-.select-nombre-contacto,
-.textarea-contacto{
-    width: 99%;
-    font-size: 20px;
-    padding: 3px 0;
-    border: 1px solid var(--gris-bordes);
-    border-radius: 5px;
-}
-.textarea-contacto{
-    min-height: 80px;
-    margin-bottom: 10px;
-}
 
+.nav-btn-continuar{
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    text-decoration: none;
+}
 /* responsive */
 @media screen and (max-width: 800px){
     .cont-contacto-nomb-ape-dni{
