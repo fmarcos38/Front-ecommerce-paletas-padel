@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
-import { getCarrito } from '../../redux/actions/actions';
+import { getCarrito, getUsuarioById, modificaUsuario } from '../../redux/actions/actions';
 import { userData } from '../../localStorage';
+import { NavLink } from 'react-router-dom';
 import ResumenCompra from '../ResumenCompra';
 import CheckIcon from '@mui/icons-material/Check';
 import NavCarrito from '../NavCarrito';
 import './styles.css';
+
 
 function InformacionContacto() {
 
@@ -15,7 +17,6 @@ function InformacionContacto() {
     const [apellido, setApellido] = useState('');
     const [dni, setDni] = useState('');
     const [telefono, setTelefono] = useState('');
-    const [email, setEmail] = useState('');
     const [calle, setCalle] = useState('');
     const [numero, setNumero] = useState('');
     const [piso, setPiso] = useState('');
@@ -46,9 +47,6 @@ function InformacionContacto() {
         }
         if (!telefono.trim()) {
             errors.telefono = 'El teléfono es requerido';
-        }
-        if (!email.trim()) {
-            errors.email = 'El email es requerido';
         }
         if (!calle.trim()) {
             errors.calle = 'La calle es requerida';
@@ -83,9 +81,6 @@ function InformacionContacto() {
     const handleChangeTelefono = (e) => {
         setTelefono(e.target.value);
     }
-    const handleChangeEmail = (e) => {
-        setEmail(e.target.value);
-    }
     const handleChangeCalle = (e) => {
         setCalle(e.target.value);
     }
@@ -110,14 +105,55 @@ function InformacionContacto() {
     const handleChangeComentarios = (e) => {
         setComentarios(e.target.value);
     }
+    const hadleOnSubmit = (e) => {
+        e.preventDefault();
+        const data = {
+            nombre: nombre,
+            apellido: apellido,
+            dni: dni,
+            telefono: telefono,
+            direccion: {
+                calle: calle,
+                numero: numero,
+                piso: piso,
+                depto: departamento,
+                codigoPostal: codigoPostal,
+                provincia: provicia,
+                localidad: localidad
+            },
+            comentarios: comentarios
+        };
+
+        if (validar()) {
+            dispatch(modificaUsuario(cliente.user.id, data));
+        }
+    }
     //me traigo el carrito
     useEffect(() => {
         if(cliente){
+            dispatch(getUsuarioById(cliente.user.id));
             dispatch(getCarrito(cliente.user.id));
         }
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [dispatch]);
 
+    //efecto para llenar los inputs con los datos del usuario
+    useEffect(() => {
+        if(cliente){
+            setNombre(cliente.user.nombre);
+            setApellido(cliente.user.apellido);
+            setDni(cliente.user.dni);
+            setTelefono(cliente.user.telefono);
+            setCalle(cliente.user.direccion.calle);
+            setNumero(cliente.user.direccion.numero);
+            setPiso(cliente.user.direccion.piso);
+            setDepartamento(cliente.user.direccion.depto);
+            setCodigoPostal(cliente.user.direccion.codigoPostal);
+            setProvincia(cliente.user.direccion.provincia);
+            setLocalidad(cliente.user.direccion.localidad);
+            setComentarios(cliente.user.comentarios);
+        }
+    }, []);
 
     return (
         <div className='cont-miCarrito'>
@@ -140,7 +176,7 @@ function InformacionContacto() {
                     </div>
 
                     {/* ver de sicronizar con correo argentino */}
-                    <div className='cont-result-busqueda-codigo-postal'>
+                    <form onSubmit={hadleOnSubmit} className='cont-result-busqueda-codigo-postal'>
                         <h3 className='titulo-result-busqueda'>INFORMACIÓN DE CONTACTO</h3>
                         <div className='cont-titulo-y-inputs'>
                             {/* <p className='p-despacho'>Datos del titular</p> */}
@@ -169,6 +205,9 @@ function InformacionContacto() {
                                     />
                                     {errors.apellido && <p className='error'>{errors.apellido}</p>}
                                 </div>
+                            </div>
+                            {/* telefono - datos de factuarión */}
+                            <div className='cont-contacto-nomb-ape-dni'>
                                 {/* dni */}
                                 <div className='cont-input-contacto-dni'>
                                     <label className='label'>DNI</label>
@@ -181,10 +220,7 @@ function InformacionContacto() {
                                     />
                                     {errors.dni && <p className='error'>{errors.dni}</p>}
                                 </div>
-                            </div>
-                            {/* telefono - datos de factuarión */}
-                            <div className='cont-contacto-nomb-ape-dni'>
-                                <div className='cont-input-contacto'>
+                                <div className='cont-input-contacto-tel'>
                                     <label className='label'>Telefono</label>
                                     <input
                                         type='number'
@@ -194,19 +230,7 @@ function InformacionContacto() {
                                         className="input-nombre-contacto"
                                     />
                                     {errors.telefono && <p className='error'>{errors.telefono}</p>}
-                                </div>
-                                {/* email */}
-                                <div className='cont-input-contacto'>
-                                    <label className='label'>Email</label>
-                                    <input
-                                        type='email'
-                                        id='email'
-                                        value={email}
-                                        onChange={handleChangeEmail}
-                                        className="input-nombre-contacto"
-                                    />
-                                    {errors.email && <p className='error'>{errors.email}</p>}
-                                </div>
+                                </div>                                
                             </div>                            
                             {/* calle-num-piso-depto */}
                             <div className='cont-contacto-calle-num-piso-depto'>
@@ -305,15 +329,17 @@ function InformacionContacto() {
                                 />
                             </div>
                         </div>
-                    </div>
+                    </form>
                 </div>
 
                 <div className='cont-envio-producto-col-2'>
                     <ResumenCompra carrito={carrito} />
                     {/* btns continuar y volver */}
                     <div className='cont-btns-continuar-volver'>
-                        <button onClick={handleClickVolver} className='btn-volver-compra'>Seguir comprando</button>
-                        <a href='/checkout' className='btn-continuar-compra'>Continuar</a>
+                        <button type='button' onClick={handleClickVolver} className='btn-volver-compra'>Seguir comprando</button>
+                        <NavLink to={'/checkout'} className='nav-btn-continuar' >
+                            <button type='onSubmit' className='btn-continuar-compra'>Continuar</button>
+                        </NavLink>
                     </div>
                 </div>
             </div>
