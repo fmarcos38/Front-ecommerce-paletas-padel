@@ -58,6 +58,7 @@ function ListaOfertas({ productos }) {
                         agotado={producto.agotado}
                         enPromo={producto.enPromo}
                         porcentajeDescuento={producto.porcentajeDescuento}
+                        stock={producto.stock}
                     />
                 ))}
             </div>

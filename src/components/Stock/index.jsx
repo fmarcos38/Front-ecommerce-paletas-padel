@@ -4,24 +4,24 @@ import { useDispatch } from 'react-redux';
 import { agregarAlCarrito } from '../../redux/actions/actions';
 
 function Stock({ clienteId, productoId, stock}) {
-console.log('stock', stock)
+
     const [cantidad, setCantidad] = React.useState(1); 
     const [stockActual, setStockActual] = React.useState(stock-1); 
     const dispatch = useDispatch();
 
     const handleOnClickMas = (e) => {
-        if(stockActual){
+        if(stockActual > 0){
             setCantidad(cantidad + 1);
             setStockActual(stockActual - 1);
             dispatch(agregarAlCarrito(clienteId, productoId, 1));
-            if(stockActual === 0){
-                return;
-            }
         }else{
             return;
         }
     }
     const handleOnClickMenos = (e) => {
+        if(stock === 0){
+            return;
+        }
         if(cantidad >= stockActual){
             setCantidad(cantidad - 1);
             setStockActual(stockActual + 1);
@@ -30,7 +30,6 @@ console.log('stock', stock)
             return;
         }
     }
-
 
     return (
         <div className='cont-stock'>

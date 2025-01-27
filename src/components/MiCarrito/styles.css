@@ -50,6 +50,7 @@
 .p.mensaje-prod-sin-stock{
     font-size: 20px;
     color: red;
+    margin: 0;
 }
 /* fila 1 */
 .cont-miCarrito-fila-1{

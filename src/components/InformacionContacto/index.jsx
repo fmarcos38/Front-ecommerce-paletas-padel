@@ -115,6 +115,7 @@ function InformacionContacto() {
         if(cliente){
             dispatch(getCarrito(cliente.user.id));
         }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [dispatch]);
 
 
@@ -216,7 +217,7 @@ function InformacionContacto() {
                                         id='calle'
                                         value={calle}
                                         onChange={handleChangeCalle}
-                                        className="input-calle-contacto"
+                                        className="input-nombre-contacto"
                                     />
                                     {errors.calle && <p className='error'>{errors.calle}</p>}
                                 </div>
@@ -229,7 +230,7 @@ function InformacionContacto() {
                                             id='numero'
                                             value={numero}
                                             onChange={handleChangeNumero}
-                                            className="input-numero-contacto"
+                                            className="input-nombre-contacto"
                                         />
                                         {errors.numero && <p className='error'>{errors.numero}</p>}
                                     </div>
@@ -241,7 +242,7 @@ function InformacionContacto() {
                                             id='piso'
                                             value={piso}
                                             onChange={handleChangePiso}
-                                            className="input-piso-contacto"
+                                            className="input-nombre-contacto"
                                         />
                                     </div>
                                     {/* depto */}
@@ -252,7 +253,7 @@ function InformacionContacto() {
                                             id='departamento'
                                             value={departamento}
                                             onChange={handleChangeDepartamento}
-                                            className="input-depto-contacto"
+                                            className="input-nombre-contacto"
                                         />
                                     </div>
                                 </div>
@@ -266,7 +267,7 @@ function InformacionContacto() {
                                         id='provicia'
                                         value={provicia}
                                         onChange={handleChangeProvincia}
-                                        className="input-prov-contacto"
+                                        className="input-nombre-contacto"
                                     />
                                     {errors.provicia && <p className='error'>{errors.provicia}</p>}
                                 </div>
@@ -277,7 +278,7 @@ function InformacionContacto() {
                                         id='localidad'
                                         value={localidad}
                                         onChange={handleChangeLocalidad}
-                                        className="input-localidad-contacto"
+                                        className="input-nombre-contacto"
                                     />
                                     {errors.localidad && <p className='error'>{errors.localidad}</p>}
                                 </div>
@@ -288,7 +289,7 @@ function InformacionContacto() {
                                         id='codigoPostal'
                                         value={codigoPostal}
                                         onChange={handleChangeCodigoPostal}
-                                        className="input-cod-postal-contacto"
+                                        className="input-nombre-contacto"
                                     />
                                     {errors.codigoPostal && <p className='error'>{errors.codigoPostal}</p>}
                                 </div>

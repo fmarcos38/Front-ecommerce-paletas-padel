@@ -19,6 +19,7 @@ function ListaProductos({productos}) {
                         agotado={p.agotado}
                         enPromo={p.enPromo}
                         porcentajeDescuento={p.porcentajeDescuento}
+                        stock={p.stock}
                     />
                 )) : <NoHayProds />
             }

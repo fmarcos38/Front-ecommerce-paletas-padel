@@ -4,12 +4,13 @@ import { agregarAlCarrito } from '../../redux/actions/actions';
 import Swal from 'sweetalert2';
 import './styles.css';
 
-function BotonAgregaalCarrito({id}) {
+function BotonAgregaalCarrito({id, stock}) { 
 
     const dataUsuario = useSelector(state => state.dataUsuario);
     const dispatch = useDispatch();
 
     const onClickAgregarAlCarrito = () => {
+        /* si el cliente no está log */
         if(!dataUsuario?._id){
             Swal.fire({
                 icon: 'warning',
@@ -20,7 +21,15 @@ function BotonAgregaalCarrito({id}) {
             setTimeout(() => {
                 window.location.href = '/login';
             }, 2000);
-        }else{
+        }
+        /* si el prod ya existe en el carrito */
+        if(dataUsuario?.carrito?.find(prod => prod.productoId === id)){
+            Swal.fire({
+                icon: 'warning',
+                title: 'Oops...',
+                text: 'Este producto ya se encuentra en tu carrito',
+            });
+        }else {
             const cantidad = 1;
             const clienteId = dataUsuario._id;
             dispatch(agregarAlCarrito(clienteId, id, cantidad));
@@ -31,15 +40,16 @@ function BotonAgregaalCarrito({id}) {
                 timer: 1500
             });
         }
-    };
+    }
 
     return (
-        <button 
-                    className='btn-agrega-carrito' 
-                    onClick={() => {onClickAgregarAlCarrito()}}
-                >
-                    Agregar al carrito
-                </button>
+        <button
+            disabled={stock === 0}
+            className='btn-agrega-carrito'
+            onClick={() => { onClickAgregarAlCarrito() }}
+        >
+            Agregar al carrito
+        </button>
     )
 }
 

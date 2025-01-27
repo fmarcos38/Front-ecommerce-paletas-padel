@@ -4,7 +4,7 @@ import BotonFavorito from '../BotonFavorito';
 import BotonAgregaalCarrito from '../BotonAgregaAlCarrito';
 import './styles.css';
 
-function Card({id, nombre, precio, imagenes, agotado, enPromo, porcentajeDescuento}) {
+function Card({id, nombre, precio, imagenes, agotado, enPromo, porcentajeDescuento, stock}) {
 
     const [showDetail, setShowDetail] = React.useState(false); //estado para hover de la imgn - mostrando detalle
 
@@ -34,7 +34,7 @@ function Card({id, nombre, precio, imagenes, agotado, enPromo, porcentajeDescuen
                 </div>
             </NavLink>
             {
-                agotado && <p className='prod-agotado'>Agotado</p>
+                stock === 0 && <p className='prod-agotado'>Agotado</p>
             }
             {/* data */}
             <div className='cont-info-card'>
@@ -54,7 +54,7 @@ function Card({id, nombre, precio, imagenes, agotado, enPromo, porcentajeDescuen
                     }
                 </div>
                 {/* botón agrega al carrito */}
-                <BotonAgregaalCarrito id={id} />
+                <BotonAgregaalCarrito id={id} stock={stock}/>
             </div>
         </div>
     )
