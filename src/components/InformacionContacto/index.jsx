@@ -11,7 +11,8 @@ import './styles.css';
 
 function InformacionContacto() {
 
-    const cliente= userData();
+    const clienteLog= userData();
+    const cliente = useSelector(state => state.dataUsuario);
     const carrito = useSelector(state => state.carrito);
     const [nombre, setNombre] = useState('');
     const [apellido, setApellido] = useState('');
@@ -33,24 +34,6 @@ function InformacionContacto() {
     const handleClickVolver = () => {
         window.history.back();
     }
-
-    useEffect(() => {
-        if (cliente?.nombre) {
-            setNombre(cliente.nombre || '');
-            setApellido(cliente.apellido || '');
-            setDni(cliente.dni || '');
-            setArea(cliente.telefono?.area || '');
-            setNumTel(cliente.telefono?.numero || '');
-            setCalle(cliente.direccion?.calle || '');
-            setNumero(cliente.direccion?.numero || '');
-            setPiso(cliente.direccion?.piso || '');
-            setDepto(cliente.direccion?.depto || '');
-            setCodigoPostal(cliente.direccion?.codigoPostal || '');
-            setProvincia(cliente.direccion?.provincia || '');
-            setLocalidad(cliente.direccion?.localidad || '');
-            setComentarios(cliente.comentarios || '');
-        }
-    }, [cliente]);
 
     const handleChange = (e) => {
         const { id, value } = e.target;
@@ -164,6 +147,33 @@ function InformacionContacto() {
         </div>
     );
 
+    //me traigo el carrito
+    useEffect(() => {
+        if(clienteLog){
+            dispatch(getUsuarioById(clienteLog.user.id));
+            dispatch(getCarrito(clienteLog.user.id));
+        }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [dispatch]);
+
+    useEffect(() => {
+        if (cliente?.nombre) {
+            setNombre(cliente.nombre || '');
+            setApellido(cliente.apellido || '');
+            setDni(cliente.dni || '');
+            setArea(cliente.telefono?.area || '');
+            setNumTel(cliente.telefono?.numero || '');
+            setCalle(cliente.direccion?.calle || '');
+            setNumero(cliente.direccion?.numero || '');
+            setPiso(cliente.direccion?.piso || '');
+            setDepto(cliente.direccion?.depto || '');
+            setCodigoPostal(cliente.direccion?.codigoPostal || '');
+            setProvincia(cliente.direccion?.provincia || '');
+            setLocalidad(cliente.direccion?.localidad || '');
+            setComentarios(cliente.comentarios || '');
+        }
+    }, [cliente]);
+
     return (
         <div className='cont-miCarrito'>
             <NavCarrito />
@@ -201,7 +211,7 @@ function InformacionContacto() {
                             {/* calle-num-piso-depto */}
                             <div className='cont-contacto-nomb-ape-dni'>
                                 <InputField id="calle" label="Calle" value={calle} onChange={handleChange} error={errors.calle} classNameInput='calle'/>
-                                <InputField id="numero" label="Número" value={numero} onChange={handleChange} error={errors.numero} className='piso'/>
+                                <InputField id="numero" label="Num" value={numero} onChange={handleChange} error={errors.numero} className='piso'/>
                                 <InputField id="piso" label="Piso" value={piso} onChange={handleChange} error={errors.piso} className='piso'/>
                                 <InputField id="depto" label="Depto" value={depto} onChange={handleChange} error={errors.depto} className='piso'/>
                             </div>
