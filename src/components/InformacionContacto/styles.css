@@ -82,14 +82,32 @@
 .cont-textarea-contacto{
     width: 100%;
 }
-
-.nav-btn-continuar{
-    width: 50%;
+.cont-btns-continuar-volver{
+    width: 95%;
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
     margin-top: 20px;
-    text-decoration: none;
+}
+.btn-volver-compra{
+    width: 50%;
+    padding: 10px;
+    background-color: transparent;
+    color: var(--color-azul);
+    font-size: 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.btn-continuar-compra{
+    width: 50%;
+    padding: 10px;
+    background-color: var(--color-azul);
+    color: white;
+    font-size: 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
 }
 /* responsive */
 @media screen and (max-width: 800px){

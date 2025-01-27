@@ -241,9 +241,7 @@ function InformacionContacto() {
                     {/* btns continuar y volver */}
                     <div className='cont-btns-continuar-volver'>
                         <button type='button' onClick={handleClickVolver} className='btn-volver-compra'>Seguir comprando</button>
-                        <NavLink to={'/checkout'} className='nav-btn-continuar' >
-                            <button type='button' className='btn-continuar-compra'>Continuar</button>
-                        </NavLink>
+                        <a href='/checkout' className='btn-continuar-compra'>Continuar</a>
                     </div>
                 </div>
             </div>
