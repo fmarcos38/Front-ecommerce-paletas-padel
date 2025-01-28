@@ -1,6 +1,7 @@
 import React from 'react';
 import './styles.css';
 import LoginClasico from '../../components/LoginClasico';
+import LoginGoogle from '../../components/LoginGoogle';
 
 function LoginPage() {
     return (
@@ -9,7 +10,9 @@ function LoginPage() {
                 <LoginClasico />
             </div>
             
-            Login con Google
+            <div className='cont-login-google-page'>
+                <LoginGoogle />
+            </div>
         </div>
     )
 }
