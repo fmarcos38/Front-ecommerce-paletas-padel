@@ -4,7 +4,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: rgba(238, 235, 255, 0.866);
+    background-color: rgb(208, 208, 209);
 }
 .ul-nav-inf{
     display: flex;

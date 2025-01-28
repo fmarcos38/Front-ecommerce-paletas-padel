@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { getCarrito, getUsuarioById, modificaUsuario } from '../../redux/actions/actions';
 import { userData } from '../../localStorage';
-import { NavLink } from 'react-router-dom';
 import ResumenCompra from '../ResumenCompra';
 import CheckIcon from '@mui/icons-material/Check';
 import NavCarrito from '../NavCarrito';

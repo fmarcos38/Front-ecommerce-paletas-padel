@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { logOut, userData } from '../../localStorage';
+import { logOut} from '../../localStorage';
 import { useSelector } from 'react-redux';
 import Swal from 'sweetalert2';
 import NavbarInf from '../NavbarInf';
@@ -10,7 +10,7 @@ import './styles.css';
 
 function Navbar() {
 
-  const usuario = userData(); //usuario para obtener isAdmin
+  const usuario = useSelector(state => state.dataUsuario); console.log("usuNav",usuario);
   const [isOpen, setIsOpen] = React.useState(false); //menu hamburguesa  
   const menuRef = React.useRef(null); //referencia menu hamburguesa
   const menuItemsRef = React.useRef([]); //referencia items menu hamburguesa
@@ -59,13 +59,14 @@ function Navbar() {
     };
   }, []);
 
+  
   return (
     <div className='navbar'>
       {/* nav sup */}
       <NavbarSup />
       {/* nav med */}
       <NavbarMed 
-        usuario={usuario?.user}
+        usuario={usuario}
         isOpen={isOpen}
         menuRef={menuRef} 
         menuItemsRef={menuItemsRef} 
@@ -75,7 +76,7 @@ function Navbar() {
         itemsFavoritos={favoritos?.length}
       />
       {/* nav inf */}
-      <NavbarInf usuario={usuario?.user}/>
+      <NavbarInf usuario={usuario}/>
     </div>
   )
 }

@@ -5,15 +5,15 @@
     justify-content: center;
     align-items: center;
     margin-top: 20px;
-    background-color: #fff;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: rgb(108, 107, 107);
 }
 
 .login-title {
     margin-bottom: 20px;
     font-size: 24px;
-    color: #333;
+    color: white;
 }
 
 .login-form {
@@ -32,14 +32,12 @@
     align-items: start;
     margin-bottom: 15px;
 }
-
 .form-group > label {
     margin-bottom: 5px;
     font-weight: bold;
-    color: #555;
+    color: white;
     text-align: left;
 }
-
 .form-group > input {
     width: 95%;
     padding: 10px;
@@ -47,17 +45,14 @@
     border-radius: 4px;
     font-size: 16px;
 }
-
 .input-error {
     border-color: #e74c3c;
 }
-
 .error-message {
     color: #e74c3c;
     font-size: 14px;
     margin-top: 5px;
 }
-
 .login-button {
     width: 50%;
     padding: 10px 20px;
@@ -69,11 +64,20 @@
     cursor: pointer;
     transition: background-color 0.3s ease;
 }
-
 .login-button:hover {
     background-color: #2980b9;
 }
-
+.p-login{
+    color: white;
+    font-size: 18px;
+}
+.register-button-login{
+    color: black;
+    font-size: 18px;
+    cursor: pointer;
+    padding: 5px 10px;
+    margin-bottom: 10px;
+}
 /* responsive */
 @media screen and (max-width: 700px) {
     .login-container {

@@ -99,8 +99,8 @@ function LoginClasico() {
                 </div>
                 <button type="submit" className="login-button">Login</button>
             </form>
-            <p>Si no estás registrado/a</p>
-            <button type='button' className="register-button" onClick={() => window.location.href = '/registrarse'}>
+            <p className='p-login'>Si no estás registrado/a</p>
+            <button type='button' className="register-button-login" onClick={() => window.location.href = '/registrarse'}>
                 Registrate
             </button>
         </div>
