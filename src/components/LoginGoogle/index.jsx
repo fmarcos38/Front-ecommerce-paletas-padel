@@ -1,17 +1,16 @@
 // Login.js
 import React from "react";
 import { GoogleOAuthProvider, GoogleLogin } from "@react-oauth/google";
-import axios from "axios";
+import { useDispatch } from "react-redux";
+import { loginGoogle } from "../../redux/actions/actions";
 
 const Login = () => {
+    
+    const dispatch = useDispatch();
+
     const handleSuccess = async (credentialResponse) => {
         const { credential } = credentialResponse;
-        try {
-            const backendResponse = await axios.post("http://localhost:3002/auth/login/google", { tokenId: credential });
-            console.log("Login successful", backendResponse.data);
-        } catch (error) {
-            console.error("Error logging in", error.response?.data || error.message);
-        }
+        dispatch(loginGoogle(credential)); 
     };
 
     const handleFailure = () => {

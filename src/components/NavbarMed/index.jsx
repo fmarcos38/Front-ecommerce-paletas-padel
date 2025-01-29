@@ -9,7 +9,7 @@ import './styles.css';
 import { AppContext } from '../../context';
 
 function NavbarMed({usuario, isOpen, menuRef, menuItemsRef, toggleMenu, handleLogOut, itemsCarrito=0, itemsFavoritos=0}) {
-    
+
     const context = useContext(AppContext);
     const handleOnClickCarrito = () => {
         context.onClickCarrito();

@@ -22,6 +22,19 @@ export const resetLogin = () => {
     }
 }
 
+//login google
+export const loginGoogle = (credential) => {
+    return async function(dispatch) {
+        try {
+            const resp = await axios.post(`${URL}/auth/login/google`, { tokenId: credential });
+            //guardo data en localstorage
+            localStorage.setItem('dataUser', JSON.stringify(resp.data));
+            dispatch({type: LOGIN, payload: resp.data});
+        } catch (error) {
+            console.error("Error logging in", error.response?.data || error.message);
+        }
+    }
+}
 //-------usuario-----------------------------
 //registrarse
 export const registrarse = (data) => {

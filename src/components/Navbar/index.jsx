@@ -10,7 +10,7 @@ import './styles.css';
 
 function Navbar() {
 
-  const usuario = useSelector(state => state.dataUsuario); console.log("usuNav",usuario);
+  const usuario = useSelector(state => state.dataUsuario);
   const [isOpen, setIsOpen] = React.useState(false); //menu hamburguesa  
   const menuRef = React.useRef(null); //referencia menu hamburguesa
   const menuItemsRef = React.useRef([]); //referencia items menu hamburguesa
