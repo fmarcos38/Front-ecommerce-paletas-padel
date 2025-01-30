@@ -1,5 +1,6 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
+import { formatMoney } from '../../utils';
 import BotonFavorito from '../BotonFavorito';
 import BotonAgregaalCarrito from '../BotonAgregaAlCarrito';
 import './styles.css';
@@ -39,13 +40,14 @@ function Card({id, nombre, precio, imagenes, agotado, enPromo, porcentajeDescuen
             {/* data */}
             <div className='cont-info-card'>
                 <p className='nombre-pala'>{nombre}</p>
+                {/* precio */}
                 <div className='cont-precio-desc'>
                     {
                         enPromo ?
                         (
                             <>
-                                <p className='precio-pala-tachado'>${precio}</p>
-                                <p className='precio-pala-promo'>${precio - (precio * porcentajeDescuento / 100)}</p>
+                                <p className='precio-pala-tachado'>${formatMoney(precio)}</p>
+                                <p className='precio-pala-promo'>${formatMoney(precio - (precio * porcentajeDescuento / 100))}</p>
                             </>
                         ) :
                         (
