@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import VisibilityIcon from '@mui/icons-material/Visibility';
 import { useDispatch } from 'react-redux';
 import { registrarse } from '../../redux/actions/actions';
+import VisibilityIcon from '@mui/icons-material/Visibility';
 import Swal from 'sweetalert2';
 import './styles.css';
 

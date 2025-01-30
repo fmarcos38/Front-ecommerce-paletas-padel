@@ -7,7 +7,12 @@
     justify-content: center;
     align-items: center;
 }
-
+.cont-login-google-page{
+    margin-top: 20px;
+    background-color: black;
+    padding: 10px;
+    border-radius: 5px;
+}
 /* responsive */
 @media screen and (max-width: 700px) {
     .cont-login-clasico-page{

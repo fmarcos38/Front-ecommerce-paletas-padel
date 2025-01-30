@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { login, resetLogin } from '../../redux/actions/actions';
+import EmailIcon from '@mui/icons-material/Email';
+import VisibilityIcon from '@mui/icons-material/Visibility';
 import Swal from 'sweetalert2';
 import './styles.css';
 
@@ -29,6 +31,15 @@ function LoginClasico() {
         setErrors(validationErrors);
         return Object.keys(validationErrors).length > 0 ? true : false;
     };
+    //funcion para ver la contraseña
+    const onClickVerContraseña = () => {
+        const inputContraseña = document.getElementById('password');
+        if(inputContraseña.type === 'password') { //le cambio el tipo de input
+            inputContraseña.type = 'text';
+        }else {
+            inputContraseña.type = 'password';
+        }
+    }
 
     const handleLogin = (e) => {
         e.preventDefault();
@@ -77,24 +88,36 @@ function LoginClasico() {
             <form onSubmit={handleLogin} className="login-form">
                 <div className="form-group">
                     <label htmlFor="email">Email</label>
-                    <input
-                        type="email"
-                        id="email"
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                        className={errors.email ? 'input-error' : ''}
-                    />
+                    <div className='cont-inputPass-Y-btnVer'>
+                        <input
+                            type="email"
+                            id="email"
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}
+                            className={errors.email ? 'input-error' : 'input-pass'}
+                        />
+                        <EmailIcon className='icon-email' />
+                    </div>
                     {errors.email && <p className="error-message">{errors.email}</p>}
                 </div>
                 <div className="form-group">
                     <label htmlFor="password">Contraseña</label>
-                    <input
-                        type="password"
-                        id="password"
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
-                        className={errors.password ? 'input-error' : ''}
-                    />
+                    <div className='cont-inputPass-Y-btnVer'>
+                        <input
+                            type="password"
+                            id="password"
+                            value={password}
+                            onChange={(e) => setPassword(e.target.value)}
+                            className={errors.password ? 'input-error' : 'input-pass'}
+                        />
+                        <button
+                            type='button'
+                            className='btn-viewPass-login'
+                            onClick={() => { onClickVerContraseña() }}
+                        >
+                            <VisibilityIcon />
+                        </button>
+                    </div>
                     {errors.password && <p className="error-message">{errors.password}</p>}
                 </div>
                 <button type="submit" className="login-button">Login</button>
