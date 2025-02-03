@@ -73,7 +73,7 @@
     margin-top: 5px;
 }
 .login-button {
-    width: 50%;
+    width: 90%;
     padding: 10px 20px;
     background-color: #3498db;
     color: #fff;
@@ -89,14 +89,15 @@
 .p-login{
     color: white;
     font-size: 18px;
+    margin: 0;
 }
 .register-button-login{
     color: black;
-    font-size: 18px;
+    font-size: 16px;
     cursor: pointer;
-    padding: 5px 10px;
     margin-bottom: 10px;
 }
+
 /* responsive */
 @media screen and (max-width: 700px) {
     .login-container {

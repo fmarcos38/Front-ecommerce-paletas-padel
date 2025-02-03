@@ -4,6 +4,7 @@ import {
     LOADING, GET_PRODUCTOS, GET_PRODUCTO_BY_ID, RESET_PRODUCTO, GET_PRODS_RANGO_PRECIO, 
     OPEN_CLOSE_MODAL, LOGIN, GET_FAVORITOS, GET_USER, RESET_USER, GET_PRODUTOS_OFERTA,
     GET_CARRITO, GET_PRODUCTO_POR_NOMBRE,
+    GET_USER_BY_DNI,
 } from "./actionTypes";
 
 //-------login-----------------------------
@@ -39,7 +40,8 @@ export const loginGoogle = (credential) => {
 //registrarse
 export const registrarse = (data) => {
     return async function() { 
-        await axios.post(`${URL}/usuario/registrarse`, data);        
+        const resp = await axios.post(`${URL}/usuario/registrarse`, data);
+        return resp.data;
     }
 }
 //confirma email
@@ -54,6 +56,15 @@ export const getUsuarioById = (id) => {
     return async function(dispatch) {  
         const resp = await axios.get(`${URL}/usuario/${id}`);
         dispatch({type: GET_USER, payload: resp.data});
+    }
+}
+
+//trae usuario por DNI
+export const getUsuarioByDNI = (dni) => { console.log('dni', dni)
+    return async function(dispatch){
+        const resp = await axios.get(`${URL}/usuario/dni/${dni}`);
+        dispatch({type: GET_USER_BY_DNI, payload: resp.data});
+        return resp.data;
     }
 }
 

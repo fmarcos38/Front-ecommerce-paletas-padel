@@ -1,43 +1,63 @@
 import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { registrarse } from '../../redux/actions/actions';
 import VisibilityIcon from '@mui/icons-material/Visibility';
+import LoginGoogle from '../LoginGoogle';
 import Swal from 'sweetalert2';
 import './styles.css';
 
 
 function Registrarse({operacion}) {
 
+    const usuario = useSelector(state => state.dataUsuario);
     const [nombre, setNombre] = useState('');
     const [apellido, setApellido] = useState('');
+    const [dni, setDni] = useState('');
     const [email, setemail] = useState('');
-    const [contraseña, setContraseña] = useState('');
+    const [password, setContraseña] = useState('');
     const [telefono, setTelefono] = useState('');
     const [direccion, setDireccion] = useState('');
     const [error, setError] = useState(null);
     const dispatch = useDispatch();
 
+    //función quito los errores
+    const quitarError = (e) => {
+        const newError = { ...error };
+        delete newError[e.target.name];
+        setError(newError);
+    }
+
     const onChangeNombre = (e) => {
         setNombre(e.target.value);
+        quitarError(e);
     }
     const onChangeApellido = (e) => {
         setApellido(e.target.value);
+        quitarError(e);
+    }
+    const onChangeDni = (e) => {
+        setDni(e.target.value);
+        quitarError(e);
     }
     const onChangeemail = (e) => {
         setemail(e.target.value);
+        quitarError(e);
     }
     const onChangeContraseña = (e) => {
         setContraseña(e.target.value);
+        quitarError(e);
     }
     const onChangeTelefono = (e) => {
         setTelefono(e.target.value);
+        quitarError(e);
     }
     const onChangeDireccion = (e) => {
         setDireccion(e.target.value);
+        quitarError(e);
     }
-    //funcion para ver la contraseña
+    //funcion para ver la password
     const onClickVerContraseña = () => {
-        const inputContraseña = document.querySelector('.input-contraseña');
+        const inputContraseña = document.querySelector('.input-password');
         if(inputContraseña.type === 'password') { //le cambio el tipo de input
             inputContraseña.type = 'text';
         }else {
@@ -54,13 +74,16 @@ function Registrarse({operacion}) {
         if(!apellido) {
             newError.apellido = 'El campo apellido es obligatorio';
         }
+        if(!dni) {
+            newError.dni = 'El campo dni es obligatorio';
+        }
         if(!email) {
             newError.email = 'El campo email es obligatorio';
         }else if (!/\S+@\S+\.\S+/.test(email)) {
             newError.email = 'El email no es válido';
         }
-        if(!contraseña) {
-            newError.contraseña = 'El campo contraseña es obligatorio';
+        if(!password) {
+            newError.password = 'El campo password es obligatorio';
         }
         if(!telefono) {
             newError.telefono = 'El campo telefono es obligatorio';
@@ -75,28 +98,38 @@ function Registrarse({operacion}) {
         if(Object.keys(newError).length) return true;
         return false;
     }
-
+    //limpio los campos
+    const limpiarCampos = () => {
+        setNombre('');
+        setApellido('');
+        setDni('');
+        setemail('');
+        setContraseña('');
+        setTelefono('');
+        setDireccion('');
+    };
     const handleSubmit = async (e) => {
         e.preventDefault();
         if (!validar()) {
             const data = {
                 nombre,
                 apellido,
+                dni,
                 email,
-                contraseña,
+                password,
                 telefono,
                 direccion,
                 isAdmin: false
             };
             dispatch(registrarse(data))
                 .then((response) => {
-                    if (response?.data?.msg === 'success') {
+                    if (response?.msg === 'success') {
                         Swal.fire({
                             icon: 'success',
                             title: 'Registrado correctamente',
-                            showConfirmButton: false,
                             timer: 1500,
                         });
+                        limpiarCampos();
                     } else {
                         Swal.fire({
                             icon: 'error',
@@ -118,7 +151,19 @@ function Registrarse({operacion}) {
         }
     }
 
-
+    //efecto si la operacion es modificar
+    React.useEffect(() => {
+        if (operacion === 'modificar') {
+            setNombre(usuario.nombre);
+            setApellido(usuario.apellido);
+            setDni(usuario.dni);
+            setemail(usuario.email);
+            setContraseña(usuario.password);
+            setTelefono(usuario.telefono);
+            setDireccion(usuario.direccion);
+        }
+    }, [operacion, usuario]);
+    
     return (
         <div className='cont-registrarse'>
             <form onSubmit={handleSubmit} className='form-registrarse'>
@@ -126,22 +171,35 @@ function Registrarse({operacion}) {
                     <div className='cont-email'>
                         <label className='label-input'>Nombre</label>
                         <input 
-                            type="text" 
+                            type="text"
+                            name='nombre'
                             value={nombre} 
                             onChange={(e) => {onChangeNombre(e)}} 
                             className='input-nombre'
                         />
                         {error?.nombre && <p className='error'>{error.nombre}</p>}
                     </div>
-                    <div className='cont-email'>
+                    <div className='cont-apellido'>
                         <label className='label-input'>Apellido</label>
                         <input 
-                            type="text" 
+                            type="text"
+                            name='apellido' 
                             value={apellido} 
                             onChange={(e) => {onChangeApellido(e)}} 
                             className='input-apellido'
                         />
                         {error?.apellido && <p className='error'>{error.apellido}</p>}
+                    </div>
+                    <div className='cont-password'>
+                        <label className='label-input'>DNI</label>
+                        <input 
+                            type="number" 
+                            name='dni'
+                            value={dni} 
+                            onChange={(e) => {onChangeDni(e)}} 
+                            className='input-apellido'
+                        />
+                        {error?.dni && <p className='error'>{error.dni}</p>}
                     </div>
                 </div>
 
@@ -150,20 +208,22 @@ function Registrarse({operacion}) {
                         <label className='label-input'>email</label>
                         <input 
                             type="email"
+                            name='email'
                             value={email}
                             onChange={(e) => {onChangeemail(e)}}
                             className='input-email'
                         />
                         {error?.email && <p className='error'>{error.email}</p>}
                     </div>
-                    <div className='cont-contraseña'>
+                    <div className='cont-password'>
                         <label className='label-input'>Contraseña</label>
                         <div className='cont-pass-viewPass'>
                             <input
                                 type="password"
-                                value={contraseña}
+                                name='password'
+                                value={password}
                                 onChange={(e) => { onChangeContraseña(e) }}
-                                className='input-contraseña'
+                                className='input-password'
                             />
                             <button
                                 type='button'
@@ -173,7 +233,7 @@ function Registrarse({operacion}) {
                                 <VisibilityIcon />
                             </button>
                         </div>
-                        {error?.contraseña && <p className='error'>{error.contraseña}</p>}
+                        {error?.password && <p className='error'>{error.password}</p>}
                     </div>
                 </div>
 
@@ -182,6 +242,7 @@ function Registrarse({operacion}) {
                         <label className='label-input'>Telefono</label>
                         <input 
                             type="number"
+                            name='telefono'
                             value={telefono}
                             onChange={(e) => {onChangeTelefono(e)}}
                             className='input-telefono'
@@ -191,7 +252,8 @@ function Registrarse({operacion}) {
                     <div className='cont-direccion'>
                         <label className='label-input'>Dirección</label>
                         <input 
-                            type="text" 
+                            type="text"
+                            name='direccion' 
                             value={direccion}
                             onChange={(e) => {onChangeDireccion(e)}}
                             className='input-direccion'
@@ -202,6 +264,7 @@ function Registrarse({operacion}) {
 
                 <div className='cont-btn-registrarse'>
                     <button type="submit" className='btn-registrarse'>Registrarse</button>
+                    <LoginGoogle />
                 </div>
             </form>
         </div>

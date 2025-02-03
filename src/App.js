@@ -18,6 +18,7 @@ import ComoPagarPage from './pages/ComoPagar';
 import InformacionContactoPage from './pages/InformacionContactoPage';
 import CheOutML from './components/CheckOutML';
 import './App.css';
+import ModificaDatosUsuario from './pages/ModificaDatosUsuario';
 
 function App() {
   return (
@@ -32,6 +33,7 @@ function App() {
             <Route path="/" element={<Home/>} />
             <Route path='/registrarse' element={<RegistrarsePage/>} />
             <Route path='/login' element={<LoginPage/>} />
+            <Route path='/modificarDatos' element={<ModificaDatosUsuario />} />
             <Route path='/detalleProd/:id' element={<DetalleProdPage />} />
             <Route path='/policasDeCambio' element={<PoliticasDeCambioPage />} />
             <Route path='/favoritos' element={<FavoritosPage/>} />

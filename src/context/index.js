@@ -9,6 +9,7 @@ export const AppProvider = ({ children }) => {
 
     const [dataUser, setDataUser] = React.useState({}); //estado data user
     const [carritoModal, setCarritoModal] = React.useState(false); //estado modal carrito
+    const [recuperaDatosModal, setRecuperaDatosModal] = React.useState(false); //estado modal recupera datos
     
     const marcas = ['Nox', 'Bullpadel', 'Wilson', 'Head',]; //arreglo de marcas
     const categorias = ['Paletas', 'Pelotas', 'Zapatillas', 'Bolsos']; //arreglo de categorías
@@ -16,6 +17,7 @@ export const AppProvider = ({ children }) => {
     const onClickCarrito = () => {
         setCarritoModal(!carritoModal);
     };
+    
 
     //efecto para verificar si hay usuario logueado
     useEffect(() => {
@@ -33,6 +35,8 @@ export const AppProvider = ({ children }) => {
             categorias,
             carritoModal,
             onClickCarrito,
+            recuperaDatosModal,
+            setRecuperaDatosModal,
         }}>
             {children}
         </AppContext.Provider>
