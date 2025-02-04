@@ -55,15 +55,15 @@ function Home() {
 
   //efecto para traer los datos del usuario SI hay usuario logueado
   useEffect(() => {
-    if (data) {
-      dispatch(getUsuarioById(data.user.id));
+    if (data?.user?.nombre) {
+      dispatch(getUsuarioById(data?.user?.id));
     }
   }, [data, dispatch]);
 
   //efecto para traer carrito del usuario SI hay usuario logueado
   useEffect(() => {
-    if (data) {
-      dispatch(getCarrito(data.user.id));
+    if (data?.user?.nombre) {
+      dispatch(getCarrito(data?.user?.id));
     }
   }, [data, dispatch]);
 

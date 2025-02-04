@@ -5,8 +5,8 @@ import FavoriteIcon from '@mui/icons-material/Favorite';
 import logo from '../../imagenes/logo.jpg';
 import BuscaProducto from '../BuscaProducto';
 import LogoutIcon from '@mui/icons-material/Logout';
-import './styles.css';
 import { AppContext } from '../../context';
+import './styles.css';
 
 function NavbarMed({usuario, isOpen, menuRef, menuItemsRef, toggleMenu, handleLogOut, itemsCarrito=0, itemsFavoritos=0}) {
 

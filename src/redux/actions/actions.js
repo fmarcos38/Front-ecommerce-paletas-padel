@@ -37,10 +37,10 @@ export const loginGoogle = (credential) => {
     }
 }
 //-------usuario-----------------------------
-//registrarse
+//-------registrarse-------
 export const registrarse = (data) => {
     return async function() { 
-        const resp = await axios.post(`${URL}/usuario/registrarse`, data);
+        const resp = await axios.post(`${URL}/registrarse`, data);
         return resp.data;
     }
 }
@@ -54,13 +54,14 @@ export const confirmarEmail = (email) => {
 //trae usuario por id
 export const getUsuarioById = (id) => {
     return async function(dispatch) {  
-        const resp = await axios.get(`${URL}/usuario/${id}`);
+        const resp = await axios.get(`${URL}/usuario/${id}`); 
+        localStorage.setItem('dataUser', JSON.stringify(resp.data));
         dispatch({type: GET_USER, payload: resp.data});
     }
 }
 
 //trae usuario por DNI
-export const getUsuarioByDNI = (dni) => { console.log('dni', dni)
+export const getUsuarioByDNI = (dni) => { 
     return async function(dispatch){
         const resp = await axios.get(`${URL}/usuario/dni/${dni}`);
         dispatch({type: GET_USER_BY_DNI, payload: resp.data});

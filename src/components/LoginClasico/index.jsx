@@ -1,7 +1,6 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { login, resetLogin } from '../../redux/actions/actions';
-import { AppContext } from '../../context';
 import EmailIcon from '@mui/icons-material/Email';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import Swal from 'sweetalert2';
@@ -16,7 +15,6 @@ function LoginClasico() {
     const [password, setPassword] = useState('');
     const [errors, setErrors] = useState({});
     const dispatch = useDispatch();
-    const context = useContext(AppContext);
 
     //valida errores
     const validate = () => {
@@ -127,7 +125,7 @@ function LoginClasico() {
                 <button type="submit" className="login-button">Login</button>
             </form>
             <p className='p-login'>¿Olvidaste tu contraseña o email?</p>
-            <button type='button' className="register-button-login" onClick={() => {context.setRecuperaDatosModal(true)}}>
+            <button type='button' className="register-button-login" onClick={() => window.location.href = '/recuperarDatosUsuario'}>
                 Recuperar contraseña
             </button>
             <p className='p-login'>Si no estás registrado/a</p>

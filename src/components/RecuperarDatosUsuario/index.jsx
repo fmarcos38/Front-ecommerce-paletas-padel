@@ -1,13 +1,15 @@
-import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { registrarse } from '../../redux/actions/actions';
+import React, { useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux';
+import { getUsuarioByDNI, modificaUsuario } from '../../redux/actions/actions';
 import FormDatosUsuario from '../FormDatosUsuario';
-import LoginGoogle from '../LoginGoogle';
 import Swal from 'sweetalert2';
 import './styles.css';
 
-function Registrarse() {
 
+function RecuperarDatosUsuario() {
+    const usuario = useSelector((state) => state.dataUsuario);
+    const [dniUsuario, setDniUsuario] = React.useState('');
+    //estados datos usuario
     const [nombre, setNombre] = useState('');
     const [apellido, setApellido] = useState('');
     const [dni, setDni] = useState('');
@@ -17,7 +19,7 @@ function Registrarse() {
     const [direccion, setDireccion] = useState('');
     const [error, setError] = useState(null);
     const dispatch = useDispatch();
-
+    
     //función quito los errores
     const quitarError = (e) => {
         const newError = { ...error };
@@ -25,6 +27,25 @@ function Registrarse() {
         setError(newError);
     }
 
+    const onChangeDniUsuario = (e) => {
+        setDniUsuario(e.target.value);
+        //quito error
+        quitarError(e);
+    }
+    //btn enviar dni usuario a buscar    
+    const handleRecuperaDatos = (e) => {
+        e.preventDefault();
+        if (!dniUsuario) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Error',
+                text: 'Por favor, completa el campo DNI',
+            });
+        } else {
+            dispatch(getUsuarioByDNI(dniUsuario));
+        }
+    }
+    //onChange info del usuario
     const onChangeNombre = (e) => {
         setNombre(e.target.value);
         quitarError(e);
@@ -56,9 +77,9 @@ function Registrarse() {
     //funcion para ver la password
     const onClickVerContraseña = () => {
         const inputContraseña = document.querySelector('.input-password');
-        if(inputContraseña.type === 'password') { //le cambio el tipo de input
+        if (inputContraseña.type === 'password') { //le cambio el tipo de input
             inputContraseña.type = 'text';
-        }else {
+        } else {
             inputContraseña.type = 'password';
         }
     }
@@ -66,34 +87,37 @@ function Registrarse() {
     const validar = () => {
         const newError = {};
 
-        if(!nombre) {
+        if(!dniUsuario) {
+            newError.dniUsuario = 'El campo DNI es obligatorio';
+        }
+        if (!nombre) {
             newError.nombre = 'El campo nombre es obligatorio';
         }
-        if(!apellido) {
+        if (!apellido) {
             newError.apellido = 'El campo apellido es obligatorio';
         }
-        if(!dni) {
+        if (!dni) {
             newError.dni = 'El campo dni es obligatorio';
         }
-        if(!email) {
+        if (!email) {
             newError.email = 'El campo email es obligatorio';
-        }else if (!/\S+@\S+\.\S+/.test(email)) {
+        } else if (!/\S+@\S+\.\S+/.test(email)) {
             newError.email = 'El email no es válido';
         }
-        if(!password) {
+        if (!password) {
             newError.password = 'El campo password es obligatorio';
         }
-        if(!telefono) {
+        if (!telefono) {
             newError.telefono = 'El campo telefono es obligatorio';
         }
-        if(!direccion) {
+        if (!direccion) {
             newError.direccion = 'El campo direccion es obligatorio';
         }
         //actualizo el estado local de errors
         setError(newError);
 
         //si el objeto newError esta vacio, retorna false
-        if(Object.keys(newError).length) return true;
+        if (Object.keys(newError).length) return true;
         return false;
     }
     //limpio los campos
@@ -119,7 +143,7 @@ function Registrarse() {
                 direccion,
                 isAdmin: false
             };
-            dispatch(registrarse(data))
+            dispatch(modificaUsuario(usuario?._id, data))
                 .then((response) => {
                     if (response?.msg === 'success') {
                         Swal.fire({
@@ -149,34 +173,66 @@ function Registrarse() {
                 });
         }
     }
-    
+
+    //efecto carga los datos del usuario SI es que lo encuentra
+    React.useEffect(() => {
+        if (usuario) {
+            setNombre(usuario?.nombre);
+            setApellido(usuario?.apellido);
+            setDni(usuario?.dni);
+            setemail(usuario?.email);
+            setContraseña(usuario?.password);
+            setTelefono(usuario?.telefono);
+            setDireccion(usuario?.direccion);
+        }
+    }, [usuario]);
+
+
     return (
-        <form onSubmit='handleSubmit' className='cont-registrarse'>
-            <FormDatosUsuario 
-                nombre={nombre}
-                apellido={apellido}
-                dni={dni}
-                email={email}
-                password={password}
-                telefono={telefono}
-                direccion={direccion}
-                onChangeNombre={onChangeNombre}
-                onChangeApellido={onChangeApellido}
-                onChangeDni={onChangeDni}
-                onChangeemail={onChangeemail}
-                onChangeContraseña={onChangeContraseña}
-                onChangeTelefono={onChangeTelefono}
-                onChangeDireccion={onChangeDireccion}
-                error={error}
-                handleSubmit={handleSubmit}
-                onClickVerContraseña={onClickVerContraseña}
-            />
-            <div className='cont-btn-registrarse'>
-                <button type="submit" className='btn-registrarse'>Registrarse</button>
-                <LoginGoogle />
+        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
+            <div className='form-modalRecupera'>
+                <h2>Recupera tus datos</h2>
+                {/* carga dni a buscar */}
+                <div className="modalRecuperaDatos__input">
+                    <label>Ingresa tu DNI</label>
+                    <input
+                        type="number"
+                        name='dniUsuario'
+                        value={dniUsuario}
+                        onChange={onChangeDniUsuario}
+                        className='modalRecuperaDatos__inputDNI'
+                    />
+                </div>
+                <button type='button' onClick={handleRecuperaDatos} className='modalRecuperaDatos__btn'>Enviar</button>
             </div>
-        </form>
+
+            {/* formulario */}
+            <form onSubmit='handleSubmit' className='cont-registrarse'>
+                <FormDatosUsuario
+                    nombre={nombre}
+                    apellido={apellido}
+                    dni={dni}
+                    email={email}
+                    password={password}
+                    telefono={telefono}
+                    direccion={direccion}
+                    onChangeNombre={onChangeNombre}
+                    onChangeApellido={onChangeApellido}
+                    onChangeDni={onChangeDni}
+                    onChangeemail={onChangeemail}
+                    onChangeContraseña={onChangeContraseña}
+                    onChangeTelefono={onChangeTelefono}
+                    onChangeDireccion={onChangeDireccion}
+                    error={error}
+                    handleSubmit={handleSubmit}
+                    onClickVerContraseña={onClickVerContraseña}
+                />
+                <div className='cont-btn-registrarse'>
+                    <button type="submit" className='btn-registrarse'>Modificar datos</button>
+                </div>
+            </form>
+        </div>
     )
 }
 
-export default Registrarse
+export default RecuperarDatosUsuario

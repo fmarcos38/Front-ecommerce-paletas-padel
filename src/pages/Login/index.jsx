@@ -1,12 +1,9 @@
-import React, { useContext } from 'react';
-import { AppContext } from '../../context';
+import React from 'react';
 import LoginClasico from '../../components/LoginClasico';
 import LoginGoogle from '../../components/LoginGoogle';
-import ModalRecuperaDatos from '../../components/ModalRecuperarDatos';
 import './styles.css';
 
 function LoginPage() {
-    const context = useContext(AppContext);
 
     return (
         <div className='cont-login-page page'>
@@ -16,11 +13,6 @@ function LoginPage() {
             
             <div className='cont-login-google-page'>
                 <LoginGoogle />
-            </div>
-
-            {/* modal recuperar datos */}
-            <div className={context.recuperaDatosModal ? 'modalRecuperaDatos' : 'modalRecuperaDatos hidden'}>
-                <ModalRecuperaDatos />
             </div>
         </div>
     )
