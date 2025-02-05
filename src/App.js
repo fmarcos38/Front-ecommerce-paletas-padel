@@ -18,7 +18,9 @@ import ComoPagarPage from './pages/ComoPagar';
 import InformacionContactoPage from './pages/InformacionContactoPage';
 import CheOutML from './components/CheckOutML';
 import RecuperarDatosUsuario from './components/RecuperarDatosUsuario';
+import ComoComprar from './pages/ComoComprar';
 import './App.css';
+import ComoMeLlega from './pages/ComoMeLlega';
 
 function App() {
   return (
@@ -39,7 +41,9 @@ function App() {
             <Route path='/favoritos' element={<FavoritosPage/>} />
             <Route path='/miCarrito' element={<MiCarritoPage />} />
             <Route path='/formaEnvio' element={<FormaEnvio/>} />
+            <Route path='/comoComprar' element={<ComoComprar/>} /> 
             <Route path='/comoPagar' element={<ComoPagarPage />} />
+            <Route path='/comoMeLlega' element={<ComoMeLlega/>} />
             <Route path='/infoContacto' element={<InformacionContactoPage />} />
             <Route path='/checkout' element={<CheOutML />}/>
             <Route path='/admin/creaProd' element={<CreaProducto />} />

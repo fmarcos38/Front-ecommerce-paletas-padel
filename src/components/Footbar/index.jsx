@@ -25,9 +25,9 @@ function Footbar() {
         
         <div className='cont-col-2'>
           <h2 className='h2-info'>Información</h2>
-          <p className='p-info'>¿Cómo comprar?</p>
-          <p className='p-info'>¿Cómo pagar?</p>
-          <p className='p-info'>¿Cómo me llega?</p>
+          <a href='/comoComprar' className='enlaces-info-foot'>¿Cómo comprar?</a>
+          <a href='/comoPagar' className='enlaces-info-foot'>¿Cómo pagar?</a>
+          <a href='/comoMeLlega' className='enlaces-info-foot'>¿Cómo me llega?</a>
         </div>
 
         <div className='cont-col-3'>

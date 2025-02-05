@@ -1,0 +1,18 @@
+.cont-texto-comoComprar {
+    text-align: justify; /* Justifica el texto */
+    margin: 20px 0; /* Márgenes verticales */
+    line-height: 1.6; /* Altura de línea para mejorar la legibilidad */
+    font-size: 16px; /* Tamaño de fuente */
+    color: #f6f1f1; /* Color del texto */
+}
+
+.cont-texto-comoComprar > p {
+    margin-bottom: 15px; /* Espaciado entre párrafos */
+}
+
+/* responsive */
+@media screen and (max-width: 768px){
+    .cont-texto-comoComprar{
+        width: 95%;
+    }
+}
