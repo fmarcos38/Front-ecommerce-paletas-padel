@@ -64,7 +64,12 @@
 .enlaces-info-foot{
     text-decoration: none;
     color: #fff;
+    margin-top: 3px;
 }
+.enlaces-info-foot:hover{
+    color: var(--color-azul);
+}
+
 /* responsive */
 @media screen and (max-width: 768px){
     .cont-suscripcion{

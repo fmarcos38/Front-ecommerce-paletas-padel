@@ -3,8 +3,7 @@ import { URL } from "../../urls";
 import { 
     LOADING, GET_PRODUCTOS, GET_PRODUCTO_BY_ID, RESET_PRODUCTO, GET_PRODS_RANGO_PRECIO, 
     OPEN_CLOSE_MODAL, LOGIN, GET_FAVORITOS, GET_USER, RESET_USER, GET_PRODUTOS_OFERTA,
-    GET_CARRITO, GET_PRODUCTO_POR_NOMBRE,
-    GET_USER_BY_DNI,
+    GET_CARRITO, GET_PRODUCTO_POR_NOMBRE, GET_USER_BY_DNI,
 } from "./actionTypes";
 
 //-------login-----------------------------
@@ -137,7 +136,7 @@ export const eliminarDelCarrito = (clienteId) => {
 
 //-------producto-----------------------------
 //trae productos
-export const getProductos = (limit, offset, categoria, marca, enPromo, precioMin, precioMax) => {
+export const getProductos = (limit, offset, categoria, marca, enPromo, palabra, precioMin, precioMax) => {
     return async function(dispatch) { 
         dispatch({type: LOADING});
 
@@ -155,6 +154,10 @@ export const getProductos = (limit, offset, categoria, marca, enPromo, precioMin
         //enPromo
         if(enPromo) {
             queryParams += `&enPromo=${enPromo}`;
+        }
+        //por palabra
+        if(palabra) {
+            queryParams += `&palabra=${palabra}`;
         }
         //precioMin
         if(precioMin) {

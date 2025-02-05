@@ -21,6 +21,7 @@ import RecuperarDatosUsuario from './components/RecuperarDatosUsuario';
 import ComoComprar from './pages/ComoComprar';
 import './App.css';
 import ComoMeLlega from './pages/ComoMeLlega';
+import MuestraProductosPage from './pages/MuestraProductosPage';
 
 function App() {
   return (
@@ -36,6 +37,7 @@ function App() {
             <Route path='/registrarse' element={<RegistrarsePage/>} />
             <Route path='/login' element={<LoginPage/>} />
             <Route path='/recuperarDatosUsuario' element={<RecuperarDatosUsuario />} />
+            <Route path='/busca/productos/:busqueda' element={<MuestraProductosPage/>} />
             <Route path='/detalleProd/:id' element={<DetalleProdPage />} />
             <Route path='/policasDeCambio' element={<PoliticasDeCambioPage />} />
             <Route path='/favoritos' element={<FavoritosPage/>} />

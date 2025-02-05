@@ -1,5 +1,3 @@
-/* styles.css */
-
 .cont-busca-producto {
     width: 90%;
     display: flex;
@@ -9,12 +7,28 @@
     border-radius: 10px;
     background-color: #f5f5f5;
 }
-
 .input-busca {
     width: 100%;
     padding: 10px;
     border: none;
-    border-radius: 4px;
     font-size: 16px;
+
+}
+/* Quitar los estilos cuando el input tiene el foco */
+.input-busca:focus {
+    outline: none; /* Quita el borde de enfoque predeterminado */
+    box-shadow: none; /* Quita cualquier sombra */
+    background-color: transparent; /* Opcional: cambia el fondo a transparente */
+}
+
+/* Quitar los estilos cuando el input está activo (se está escribiendo en él) */
+.input-busca:active {
+    outline: none; /* Quita el borde de enfoque predeterminado */
+    box-shadow: none; /* Quita cualquier sombra */
+    background-color: transparent; /* Opcional: cambia el fondo a transparente */
+}
+.btn-buscaProducto{
+    border: none;
+    background-color: transparent;
 }
 
