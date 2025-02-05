@@ -77,11 +77,13 @@ export const resetUsuario = () => {
 }
 
 //modifica usuario
-export const modificaUsuario = (id, data) => {
-    return async function() { 
-        await axios.put(`${URL}/usuario/modifica/${id}`, data);
+export const modificaUsuario = (id, data) => { console.log('id', id);
+    return async function() { console.log('data', data);
+        const resp = await axios.put(`${URL}/usuario/modifica/${id}`, data);
+        return resp.data;
     }
 }
+
 //-----------------favoritos---------------------
 export const getFavoritos = (id) => {
     return async function(dispatch) { 

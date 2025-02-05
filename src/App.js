@@ -18,7 +18,6 @@ import ComoPagarPage from './pages/ComoPagar';
 import InformacionContactoPage from './pages/InformacionContactoPage';
 import CheOutML from './components/CheckOutML';
 import RecuperarDatosUsuario from './components/RecuperarDatosUsuario';
-import ModificaDatosUsuario from './pages/ModificaDatosUsuario';
 import './App.css';
 
 function App() {

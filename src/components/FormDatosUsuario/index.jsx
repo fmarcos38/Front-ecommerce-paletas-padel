@@ -3,13 +3,14 @@ import VisibilityIcon from '@mui/icons-material/Visibility';
 
 function FormDatosUsuario({
   nombre, apellido, dni, email, password, telefono, direccion,  
-  onChangeNombre, onChangeApellido, onChangeDni, onChangeemail, onChangeContraseña,
+  onChangeNombre, onChangeApellido, onChangeDni, onChangeEmail, onChangePassword,
   onChangeTelefono, onChangeDireccion, error, onClickVerContraseña
 }) {
 
   return (
     <div className='form-registrarse'>
       <div className='cont-inputs'>
+        {/* nombre */}
         <div className='cont-email'>
           <label className='label-input'>Nombre</label>
           <input
@@ -21,6 +22,7 @@ function FormDatosUsuario({
           />
           {error?.nombre && <p className='error'>{error.nombre}</p>}
         </div>
+        {/* apell */}
         <div className='cont-apellido'>
           <label className='label-input'>Apellido</label>
           <input
@@ -32,6 +34,7 @@ function FormDatosUsuario({
           />
           {error?.apellido && <p className='error'>{error.apellido}</p>}
         </div>
+        {/* DNI */}
         <div className='cont-password'>
           <label className='label-input'>DNI</label>
           <input
@@ -46,17 +49,19 @@ function FormDatosUsuario({
       </div>
 
       <div className='cont-inputs'>
+        {/* email */}
         <div className='cont-email'>
           <label className='label-input'>email</label>
           <input
             type="email"
             name='email'
             value={email}
-            onChange={(e) => { onChangeemail(e) }}
+            onChange={(e) => { onChangeEmail(e) }}
             className='input-email'
           />
           {error?.email && <p className='error'>{error.email}</p>}
         </div>
+        {/* pass */}
         <div className='cont-password'>
           <label className='label-input'>Contraseña</label>
           <div className='cont-pass-viewPass'>
@@ -64,7 +69,7 @@ function FormDatosUsuario({
               type="password"
               name='password'
               value={password}
-              onChange={(e) => { onChangeContraseña(e) }}
+              onChange={(e) => { onChangePassword(e) }}
               className='input-password'
             />
             <button
@@ -80,6 +85,7 @@ function FormDatosUsuario({
       </div>
 
       <div className='cont-inputs'>
+        {/* tel */}
         <div className='cont-telefono'>
           <label className='label-input'>Telefono</label>
           <input
@@ -91,6 +97,7 @@ function FormDatosUsuario({
           />
           {error?.telefono && <p className='error'>{error.telefono}</p>}
         </div>
+        {/* direcc */}
         <div className='cont-direccion'>
           <label className='label-input'>Dirección</label>
           <input

@@ -5,7 +5,6 @@ import FormDatosUsuario from '../FormDatosUsuario';
 import Swal from 'sweetalert2';
 import './styles.css';
 
-
 function RecuperarDatosUsuario() {
     const usuario = useSelector((state) => state.dataUsuario);
     const [dniUsuario, setDniUsuario] = React.useState('');
@@ -13,8 +12,8 @@ function RecuperarDatosUsuario() {
     const [nombre, setNombre] = useState('');
     const [apellido, setApellido] = useState('');
     const [dni, setDni] = useState('');
-    const [email, setemail] = useState('');
-    const [password, setContraseña] = useState('');
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState(null);
     const [telefono, setTelefono] = useState('');
     const [direccion, setDireccion] = useState('');
     const [error, setError] = useState(null);
@@ -58,12 +57,12 @@ function RecuperarDatosUsuario() {
         setDni(e.target.value);
         quitarError(e);
     }
-    const onChangeemail = (e) => {
-        setemail(e.target.value);
+    const onChangeEmail = (e) => {
+        setEmail(e.target.value);
         quitarError(e);
     }
-    const onChangeContraseña = (e) => {
-        setContraseña(e.target.value);
+    const onChangePassword = (e) => {
+        setPassword(e.target.value);
         quitarError(e);
     }
     const onChangeTelefono = (e) => {
@@ -125,14 +124,20 @@ function RecuperarDatosUsuario() {
         setNombre('');
         setApellido('');
         setDni('');
-        setemail('');
-        setContraseña('');
+        setEmail('');
+        setPassword('');
         setTelefono('');
         setDireccion('');
     };
     const handleSubmit = async (e) => {
         e.preventDefault();
-        if (!validar()) {
+        if(validar() || !password){
+            Swal.fire({
+                icon: 'error',
+                title: 'Error',
+                text: 'Por favor, completa los campos correctamente',
+            });
+        } else {
             const data = {
                 nombre,
                 apellido,
@@ -148,7 +153,7 @@ function RecuperarDatosUsuario() {
                     if (response?.msg === 'success') {
                         Swal.fire({
                             icon: 'success',
-                            title: 'Registrado correctamente',
+                            title: 'Datos actualizados !!',
                             timer: 1500,
                         });
                         limpiarCampos();
@@ -180,19 +185,31 @@ function RecuperarDatosUsuario() {
             setNombre(usuario?.nombre);
             setApellido(usuario?.apellido);
             setDni(usuario?.dni);
-            setemail(usuario?.email);
-            setContraseña(usuario?.password);
+            setEmail(usuario?.email);
+            setPassword(usuario?.password);
             setTelefono(usuario?.telefono);
             setDireccion(usuario?.direccion);
+            // Borra los mensajes de error correspondientes
+            setError((prevError) => {
+                const newError = { ...prevError };
+                delete newError.nombre;
+                delete newError.apellido;
+                delete newError.dni;
+                delete newError.email;
+                delete newError.password;
+                delete newError.telefono;
+                delete newError.direccion;
+                return newError;
+            });
         }
     }, [usuario]);
 
 
     return (
-        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
+        <div className='cont-recup-datos'>
+            {/* carga dni a buscar */}
             <div className='form-modalRecupera'>
-                <h2>Recupera tus datos</h2>
-                {/* carga dni a buscar */}
+                <h2>Recupera tus datos</h2>                
                 <div className="modalRecuperaDatos__input">
                     <label>Ingresa tu DNI</label>
                     <input
@@ -200,14 +217,14 @@ function RecuperarDatosUsuario() {
                         name='dniUsuario'
                         value={dniUsuario}
                         onChange={onChangeDniUsuario}
-                        className='modalRecuperaDatos__inputDNI'
+                        className='input-nombre'
                     />
                 </div>
                 <button type='button' onClick={handleRecuperaDatos} className='modalRecuperaDatos__btn'>Enviar</button>
             </div>
 
             {/* formulario */}
-            <form onSubmit='handleSubmit' className='cont-registrarse'>
+            <form onSubmit={handleSubmit} className='cont-registrarse'>
                 <FormDatosUsuario
                     nombre={nombre}
                     apellido={apellido}
@@ -219,12 +236,11 @@ function RecuperarDatosUsuario() {
                     onChangeNombre={onChangeNombre}
                     onChangeApellido={onChangeApellido}
                     onChangeDni={onChangeDni}
-                    onChangeemail={onChangeemail}
-                    onChangeContraseña={onChangeContraseña}
+                    onChangeEmail={onChangeEmail}
+                    onChangePassword={onChangePassword}
                     onChangeTelefono={onChangeTelefono}
                     onChangeDireccion={onChangeDireccion}
                     error={error}
-                    handleSubmit={handleSubmit}
                     onClickVerContraseña={onClickVerContraseña}
                 />
                 <div className='cont-btn-registrarse'>

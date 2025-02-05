@@ -11,8 +11,8 @@ function Registrarse() {
     const [nombre, setNombre] = useState('');
     const [apellido, setApellido] = useState('');
     const [dni, setDni] = useState('');
-    const [email, setemail] = useState('');
-    const [password, setContraseña] = useState('');
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
     const [telefono, setTelefono] = useState('');
     const [direccion, setDireccion] = useState('');
     const [error, setError] = useState(null);
@@ -37,12 +37,12 @@ function Registrarse() {
         setDni(e.target.value);
         quitarError(e);
     }
-    const onChangeemail = (e) => {
-        setemail(e.target.value);
+    const onChangeEmail = (e) => {
+        setEmail(e.target.value);
         quitarError(e);
     }
-    const onChangeContraseña = (e) => {
-        setContraseña(e.target.value);
+    const onChangePassword = (e) => {
+        setPassword(e.target.value);
         quitarError(e);
     }
     const onChangeTelefono = (e) => {
@@ -101,8 +101,8 @@ function Registrarse() {
         setNombre('');
         setApellido('');
         setDni('');
-        setemail('');
-        setContraseña('');
+        setEmail('');
+        setPassword('');
         setTelefono('');
         setDireccion('');
     };
@@ -151,7 +151,7 @@ function Registrarse() {
     }
     
     return (
-        <form onSubmit='handleSubmit' className='cont-registrarse'>
+        <form onSubmit={handleSubmit} className='cont-registrarse'>
             <FormDatosUsuario 
                 nombre={nombre}
                 apellido={apellido}
@@ -163,8 +163,8 @@ function Registrarse() {
                 onChangeNombre={onChangeNombre}
                 onChangeApellido={onChangeApellido}
                 onChangeDni={onChangeDni}
-                onChangeemail={onChangeemail}
-                onChangeContraseña={onChangeContraseña}
+                onChangeEmail={onChangeEmail}
+                onChangePassword={onChangePassword}
                 onChangeTelefono={onChangeTelefono}
                 onChangeDireccion={onChangeDireccion}
                 error={error}

@@ -14,7 +14,7 @@ function NavbarInf({usuario}) {
     const handleMouseLeaveAdmin = () => {
         setMuestraMenuAdmin(false);
     };
-console.log("usuario:",usuario)
+
     return (
         <div className='fila-inf'>
             <ul className='ul-nav-inf'>
