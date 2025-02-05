@@ -19,9 +19,14 @@ import InformacionContactoPage from './pages/InformacionContactoPage';
 import CheOutML from './components/CheckOutML';
 import RecuperarDatosUsuario from './components/RecuperarDatosUsuario';
 import ComoComprar from './pages/ComoComprar';
-import './App.css';
 import ComoMeLlega from './pages/ComoMeLlega';
 import MuestraProductosPage from './pages/MuestraProductosPage';
+import ListaPaletasPage from './pages/ListaPaletasPage';
+import ListaAccesoriosPage from './pages/ListaAccesoriosPage';
+import ListaBolzosPage from './pages/ListaBolzosPage';
+import ListaPelotasPage from './pages/ListaPelotasPage';
+import ListaZapatillasPage from './pages/ListaZapatillasPage';
+import './App.css';
 
 function App() {
   return (
@@ -37,6 +42,11 @@ function App() {
             <Route path='/registrarse' element={<RegistrarsePage/>} />
             <Route path='/login' element={<LoginPage/>} />
             <Route path='/recuperarDatosUsuario' element={<RecuperarDatosUsuario />} />
+            <Route path='/muestraPaletas' element={<ListaPaletasPage/>} />
+            <Route path='/muestraPelotas' element={<ListaPelotasPage/>} />
+            <Route path='/muestraBolzos' element={<ListaBolzosPage/>} />
+            <Route path='/muestraAccesorios' element={<ListaAccesoriosPage/>} />
+            <Route path='/muestraZapatillas' element={<ListaZapatillasPage/>} />
             <Route path='/busca/productos/:busqueda' element={<MuestraProductosPage/>} />
             <Route path='/detalleProd/:id' element={<DetalleProdPage />} />
             <Route path='/policasDeCambio' element={<PoliticasDeCambioPage />} />

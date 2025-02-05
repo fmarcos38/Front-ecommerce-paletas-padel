@@ -1,16 +1,13 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { getProductos } from '../../redux/actions/actions';
-import { useParams } from 'react-router-dom';
 import Filtros from '../../components/Filtros';
 import ListaProductos from '../../components/ListaProductos';
 import Paginacion from '../../components/Paginacion';
-import './styles.css';
 
-function MuestraProductosPage() {
 
-    const { busqueda } = useParams();  
-    let palabra=busqueda;
+function ListaPaletasPage() {
+
     const productos = useSelector(state => state.productos);
     const dispatch = useDispatch();
     const [marca, setMarca] = React.useState('');
@@ -26,8 +23,8 @@ function MuestraProductosPage() {
     const offset = (paginaActual - 1) * prooductosPorPagina;
 
     useEffect(() => {
-        dispatch(getProductos(limit, offset, categoria, marca, enPromo, palabra, precioMin, precioMax));
-    }, [busqueda, categoria, dispatch, enPromo, limit, marca, offset, palabra, precioMax, precioMin]);
+        dispatch(getProductos(limit, offset, categoria, marca, enPromo, '', precioMin, precioMax));
+    }, [categoria, dispatch, enPromo, limit, marca, offset, precioMax, precioMin]);
 
 
     return (
@@ -35,7 +32,7 @@ function MuestraProductosPage() {
             {/* filtros y lista prods */}
             <div className='lista-productos-home'>
                 <div className='cont-titulo-lista-prods'>
-                    <h2>Productos</h2>
+                    <h2>Paletas</h2>
                 </div>
                 <div className='cont-filtros-lista-prods'>
                     {/* filtros */}
@@ -71,4 +68,4 @@ function MuestraProductosPage() {
     )
 }
 
-export default MuestraProductosPage
+export default ListaPaletasPage

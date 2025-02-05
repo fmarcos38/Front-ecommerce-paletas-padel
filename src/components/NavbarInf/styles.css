@@ -12,7 +12,7 @@
     align-items: center;
     list-style: none;
 }
-.ul-nav-inf > li{
+.link-navbar-inf{
     margin: 0 10px;
     font-size: 20px;
     font-weight: 500;

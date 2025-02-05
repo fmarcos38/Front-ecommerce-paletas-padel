@@ -18,8 +18,21 @@ function NavbarInf({usuario}) {
     return (
         <div className='fila-inf'>
             <ul className='ul-nav-inf'>
-                <li>Bullpadel</li>
-                <li>Nox</li>
+                <li>
+                    <NavLink to='/muestraPaletas' className='link-navbar-inf'>Paletas</NavLink>
+                </li>
+                <li>
+                    <NavLink to='/muestraPelotas' className='link-navbar-inf'>Pelotas</NavLink>
+                </li>
+                <li>
+                    <NavLink to='/muestraAccesorios' className='link-navbar-inf'>Accesorios</NavLink>
+                </li>
+                <li>
+                    <NavLink to='/muestraBolzos' className='link-navbar-inf'>Bolzos</NavLink>
+                </li>
+                <li>
+                    <NavLink to='/muestraZapatillas' className='link-navbar-inf'>Zapatillas</NavLink>
+                </li>
                 {/* menú Admin */}
                 {
                     usuario?.isAdmin && (

@@ -50,7 +50,7 @@ function Home() {
 
   //efecto para traer los productos
   useEffect(() => {
-    dispatch(getProductos(limit, offset, categoria, marca, enPromo, precioMin, precioMax));
+    dispatch(getProductos(limit, offset, categoria, marca, enPromo, '', precioMin, precioMax));
   }, [categoria, dispatch, limit, marca, offset, precioMax, precioMin, enPromo]);
 
   //efecto para traer los datos del usuario SI hay usuario logueado
