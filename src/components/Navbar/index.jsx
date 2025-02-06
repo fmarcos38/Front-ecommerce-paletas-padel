@@ -12,8 +12,8 @@ function Navbar() {
 
   const usuario = useSelector(state => state.dataUsuario);
   const [isOpen, setIsOpen] = React.useState(false); //menu hamburguesa  
-  const menuRef = React.useRef(null); //referencia menu hamburguesa
-  const menuItemsRef = React.useRef([]); //referencia items menu hamburguesa
+  //const menuRef = React.useRef(null); //referencia menu hamburguesa
+  //const menuItemsRef = React.useRef([]); //referencia items menu hamburguesa
   const carrito = useSelector(state => state.carrito); //carrito para obtener cantidad de productos
   const favoritos = useSelector(state => state.favoritos); //favoritos para obtener cantidad de productos  
   
@@ -39,26 +39,7 @@ function Navbar() {
     });        
   };
   
-  //cierra el menú hamburguesa si se hace click fuera de él
-  useEffect(() => {
-    function handleClickOutside(event) {
-        // Verificar si el clic o toque es fuera del menú
-        if (
-            menuRef.current && !menuRef.current.contains(event.target) && 
-            !menuItemsRef.current.filter(item => item).some(item => item.contains(event.target))
-        ) {
-            setIsOpen(false); // Cierra el menú si no es clic en el menú
-        }
-    }
-
-    document.addEventListener('mousedown', handleClickOutside);
-    document.addEventListener('touchstart', handleClickOutside);
-
-    return () => {
-        document.removeEventListener('mousedown', handleClickOutside);
-        document.removeEventListener('touchstart', handleClickOutside);
-    };
-}, []);
+  
 
   
   return (
@@ -69,8 +50,8 @@ function Navbar() {
       <NavbarMed 
         usuario={usuario}
         isOpen={isOpen}
-        menuRef={menuRef} 
-        menuItemsRef={menuItemsRef} 
+        /* menuRef={menuRef} 
+        menuItemsRef={menuItemsRef} */ 
         toggleMenu={toggleMenu} 
         handleLogOut={handleLogOut}
         itemsCarrito={carrito.productos?.length}

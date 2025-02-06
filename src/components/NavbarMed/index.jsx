@@ -42,7 +42,7 @@ function NavbarMed({usuario, isOpen, menuRef, menuItemsRef, toggleMenu, handleLo
                                                 <NavLink
                                                     to='/admin/creaProd'
                                                     className='link-navbar'
-                                                    ref={el => menuItemsRef.current[0] = el}
+                                                    /* ref={el => menuItemsRef.current[0] = el} */
                                                 >
                                                     Crea producto
                                                 </NavLink>
@@ -51,7 +51,7 @@ function NavbarMed({usuario, isOpen, menuRef, menuItemsRef, toggleMenu, handleLo
                                                 <NavLink
                                                     to='/admin/listaProdsAdmin'
                                                     className='link-navbar'
-                                                    ref={el => menuItemsRef.current[1] = el}
+                                                    /* ref={el => menuItemsRef.current[1] = el} */
                                                 >
                                                     Lista productos
                                                 </NavLink>
@@ -64,7 +64,7 @@ function NavbarMed({usuario, isOpen, menuRef, menuItemsRef, toggleMenu, handleLo
                                     <NavLink
                                         to='/muestraPaletas'
                                         className='link-navbar'
-                                        ref={el => menuItemsRef.current[2] = el}
+                                        /* ref={el => menuItemsRef.current[2] = el} */
                                     >
                                         Paletas
                                     </NavLink>
@@ -73,7 +73,7 @@ function NavbarMed({usuario, isOpen, menuRef, menuItemsRef, toggleMenu, handleLo
                                     <NavLink
                                         to='/muestraPelotas'
                                         className='link-navbar'
-                                        ref={el => menuItemsRef.current[3] = el}
+                                        /* ref={el => menuItemsRef.current[3] = el} */
                                     >
                                         Pelotas
                                     </NavLink>
@@ -82,7 +82,7 @@ function NavbarMed({usuario, isOpen, menuRef, menuItemsRef, toggleMenu, handleLo
                                     <NavLink
                                         to='/muestraBolzos'
                                         className='link-navbar'
-                                        ref={el => menuItemsRef.current[4] = el}
+                                        /* ref={el => menuItemsRef.current[4] = el} */
                                     >
                                         Bolzos
                                     </NavLink>
@@ -91,7 +91,7 @@ function NavbarMed({usuario, isOpen, menuRef, menuItemsRef, toggleMenu, handleLo
                                     <NavLink
                                         to='/muestraZapatillas'
                                         className='link-navbar'
-                                        ref={el => menuItemsRef.current[5] = el}
+                                        /* ref={el => menuItemsRef.current[5] = el} */
                                     >
                                         Zapatillas
                                     </NavLink>
@@ -104,7 +104,7 @@ function NavbarMed({usuario, isOpen, menuRef, menuItemsRef, toggleMenu, handleLo
                                                 <NavLink
                                                     to='/favoritos'
                                                     className='link-navbar'
-                                                    ref={el => menuItemsRef.current[6] = el}
+                                                    /* ref={el => menuItemsRef.current[6] = el} */
                                                 >
                                                     Tus Favoritos
                                                 </NavLink>
@@ -119,6 +119,7 @@ function NavbarMed({usuario, isOpen, menuRef, menuItemsRef, toggleMenu, handleLo
                                             <button
                                                 onClick={() => { handleLogOut() }}
                                                 style={{ border: 'none', backgroundColor: 'transparent' }}
+                                                /* ref={el => menuItemsRef.current[7] = el} */
                                             >
                                                 <LogoutIcon sx={{ 'fontSize': '18px', 'color': 'white' }} />
                                             </button>
@@ -129,7 +130,7 @@ function NavbarMed({usuario, isOpen, menuRef, menuItemsRef, toggleMenu, handleLo
                                                     <NavLink
                                                         to='/login'
                                                         className='link-navbar'
-                                                        ref={el => menuItemsRef.current[7] = el}
+                                                        /* ref={el => menuItemsRef.current[8] = el} */
                                                     >
                                                         Login
                                                     </NavLink>
@@ -139,7 +140,7 @@ function NavbarMed({usuario, isOpen, menuRef, menuItemsRef, toggleMenu, handleLo
                                                     <NavLink
                                                         to='/registrarse'
                                                         className='link-navbar'
-                                                        ref={el => menuItemsRef.current[8] = el}
+                                                        /* ref={el => menuItemsRef.current[9] = el} */
                                                     >
                                                         Registrarse
                                                     </NavLink>
