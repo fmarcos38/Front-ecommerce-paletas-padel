@@ -139,3 +139,9 @@
 
 
 /* responsive */
+@media screen and (max-width: 670px){
+    .cont-card{
+        width: 350px;
+        height: 500px;
+    }
+}

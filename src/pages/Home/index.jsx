@@ -18,7 +18,7 @@ import './styles.css';
 
 function Home() {
 
-  const data = userData();
+  const data = userData(); 
   const [marca, setMarca] = React.useState('');
   const [categoria, setCategoria] = React.useState('');
   const [enPromo, setPromo] = React.useState(false);

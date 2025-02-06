@@ -19,10 +19,21 @@
     color: black;
 }
 /* estilos menú ADMIN */
+.navbar-item-admin {
+    position: relative;
+    font-size:x-large;
+    font-weight: 600;
+    margin-left: 30px;
+    color: red;
+    cursor: pointer;
+}
+.navbar-item-admin:hover {
+    color: blue;
+}
 .dropdown-menu-admin {
     position: absolute;
     top: 115%;
-    left: 0;    
+    left: -10px;    
     list-style: none;
     margin: 0;
     padding: 0;
@@ -50,6 +61,11 @@
 .link-navbar-admin{
     text-decoration: none;
     color: black;
+}
+.item-admin-navbar{
+    font-size: 20px;
+    font-weight: 500;
+    color: red;
 }
 /* responsive */
 @media screen and (max-width: 800px){

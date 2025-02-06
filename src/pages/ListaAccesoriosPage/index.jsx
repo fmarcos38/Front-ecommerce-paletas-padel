@@ -49,6 +49,7 @@ function ListaAccesoriosPage() {
                             precioMax={precioMax}
                             setPrecioMax={setPrecioMax}
                             setPaginaActual={setPaginaActual}
+                            sinCategoria={true}
                         />
                     </div>
                     {/* lista productos */}

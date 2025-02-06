@@ -18,12 +18,10 @@ function BotonAgregaalCarrito({id, stock}) {
                 text: 'Debes estar logueado para agregar productos al carrito',
             });
             //redirijo a login
-            setTimeout(() => {
+            /* setTimeout(() => {
                 window.location.href = '/login';
-            }, 2000);
-        }
-        /* si el prod ya existe en el carrito */
-        if(dataUsuario?.carrito?.find(prod => prod.productoId === id)){
+            }, 2000); */
+        }else if(dataUsuario?.carrito?.find(prod => prod.productoId === id)){
             Swal.fire({
                 icon: 'warning',
                 title: 'Oops...',

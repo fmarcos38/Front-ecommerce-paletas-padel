@@ -36,7 +36,7 @@ function NavbarMed({usuario, isOpen, menuRef, menuItemsRef, toggleMenu, handleLo
                             <ul className='ul-lista-pChica'>
                                 {/* opc ADMIN */}
                                 {
-                                    usuario.dataUser.admin && (
+                                    usuario?.isAdmin && (
                                         <>
                                             <li className='items-pChica'>
                                                 <NavLink
@@ -44,7 +44,7 @@ function NavbarMed({usuario, isOpen, menuRef, menuItemsRef, toggleMenu, handleLo
                                                     className='link-navbar'
                                                     ref={el => menuItemsRef.current[0] = el}
                                                 >
-                                                    Crea Producto
+                                                    Crea producto
                                                 </NavLink>
                                             </li>
                                             <li className='items-pChica'>
@@ -53,14 +53,58 @@ function NavbarMed({usuario, isOpen, menuRef, menuItemsRef, toggleMenu, handleLo
                                                     className='link-navbar'
                                                     ref={el => menuItemsRef.current[1] = el}
                                                 >
-                                                    Lista Propiedades
+                                                    Lista productos
                                                 </NavLink>
                                             </li>
+                                        </>
+                                    )
+                                }
+                                {/* productos */}
+                                <li className='items-pChica'>
+                                    <NavLink
+                                        to='/muestraPaletas'
+                                        className='link-navbar'
+                                        ref={el => menuItemsRef.current[2] = el}
+                                    >
+                                        Paletas
+                                    </NavLink>
+                                </li>
+                                <li className='items-pChica'>
+                                    <NavLink
+                                        to='/muestraPelotas'
+                                        className='link-navbar'
+                                        ref={el => menuItemsRef.current[3] = el}
+                                    >
+                                        Pelotas
+                                    </NavLink>
+                                </li>
+                                <li className='items-pChica'>
+                                    <NavLink
+                                        to='/muestraBolzos'
+                                        className='link-navbar'
+                                        ref={el => menuItemsRef.current[4] = el}
+                                    >
+                                        Bolzos
+                                    </NavLink>
+                                </li>
+                                <li className='items-pChica'>
+                                    <NavLink
+                                        to='/muestraZapatillas'
+                                        className='link-navbar'
+                                        ref={el => menuItemsRef.current[5] = el}
+                                    >
+                                        Zapatillas
+                                    </NavLink>
+                                </li>
+                                {
+                                    usuario?.isAdmin === false && (
+                                        <>
+                                            {/* favoritos */}
                                             <li className='items-pChica'>
                                                 <NavLink
                                                     to='/favoritos'
                                                     className='link-navbar'
-                                                    ref={el => menuItemsRef.current[2] = el}
+                                                    ref={el => menuItemsRef.current[6] = el}
                                                 >
                                                     Tus Favoritos
                                                 </NavLink>
@@ -68,18 +112,9 @@ function NavbarMed({usuario, isOpen, menuRef, menuItemsRef, toggleMenu, handleLo
                                         </>
                                     )
                                 }
-                                <li className='items-pChica'>
-                                    <NavLink
-                                        to='/productos'
-                                        className='link-navbar'
-                                        ref={el => menuItemsRef.current[2] = el}
-                                    >
-                                        Productos
-                                    </NavLink>
-                                </li>
                                 {/* login/logout */}
                                 {
-                                    usuario.dataUser.nombre ? (
+                                    usuario?.nombre ? (
                                         <li className='items-pChica'>
                                             <button
                                                 onClick={() => { handleLogOut() }}
@@ -89,26 +124,29 @@ function NavbarMed({usuario, isOpen, menuRef, menuItemsRef, toggleMenu, handleLo
                                             </button>
                                         </li>
                                     ) : (
-                                        <li className='items-pChica'>
-                                            <NavLink
-                                                to='/login'
-                                                className='link-navbar'
-                                                ref={el => menuItemsRef.current[3] = el}
-                                            >
-                                                Login
-                                            </NavLink>
-                                        </li>
+                                            <>
+                                                <li className='items-pChica'>
+                                                    <NavLink
+                                                        to='/login'
+                                                        className='link-navbar'
+                                                        ref={el => menuItemsRef.current[7] = el}
+                                                    >
+                                                        Login
+                                                    </NavLink>
+                                                </li>
+                                                {/* registrarse */}
+                                                <li className='items-pChica'>
+                                                    <NavLink
+                                                        to='/registrarse'
+                                                        className='link-navbar'
+                                                        ref={el => menuItemsRef.current[8] = el}
+                                                    >
+                                                        Registrarse
+                                                    </NavLink>
+                                                </li>
+                                            </>
                                     )
                                 }
-                                <li className='items-pChica'>
-                                    <NavLink
-                                        to='/registrarse'
-                                        className='link-navbar'
-                                        ref={el => menuItemsRef.current[4] = el}
-                                    >
-                                        Registrarse
-                                    </NavLink>
-                                </li>
                             </ul>
                         )
                     }

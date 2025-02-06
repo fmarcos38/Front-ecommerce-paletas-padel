@@ -15,6 +15,7 @@ function Filtros({
     precioMax,
     setPrecioMax,
     setPaginaActual,
+    sinCategoria
 }) {
 
     
@@ -73,7 +74,7 @@ function Filtros({
                 </div>
             </div>
             {/* por categoría */}
-            <div className='cont-filtro-categoria'>
+            <div className={sinCategoria ? 'displeyOFF' : 'cont-filtro-categoria'}>
                 <h2 className='titulo-filtro'>Categoría</h2>
                 <div className='cont-map-marca'>
                 {

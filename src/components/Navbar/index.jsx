@@ -45,19 +45,20 @@ function Navbar() {
         // Verificar si el clic o toque es fuera del menú
         if (
             menuRef.current && !menuRef.current.contains(event.target) && 
-            !menuItemsRef.current.some(item => item.contains(event.target))
+            !menuItemsRef.current.filter(item => item).some(item => item.contains(event.target))
         ) {
             setIsOpen(false); // Cierra el menú si no es clic en el menú
         }
     }
 
-    // Escuchar el evento pointerdown (compatible con mouse y táctil)
-    document.addEventListener('pointerdown', handleClickOutside);
+    document.addEventListener('mousedown', handleClickOutside);
+    document.addEventListener('touchstart', handleClickOutside);
+
     return () => {
-        // Limpiar el evento cuando el componente se desmonta
-        document.removeEventListener('pointerdown', handleClickOutside);
+        document.removeEventListener('mousedown', handleClickOutside);
+        document.removeEventListener('touchstart', handleClickOutside);
     };
-  }, []);
+}, []);
 
   
   return (
