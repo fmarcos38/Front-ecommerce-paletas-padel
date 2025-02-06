@@ -1,5 +1,5 @@
-import React, { useEffect } from 'react';
-import { logOut} from '../../localStorage';
+import React from 'react';
+import { logOut, userData} from '../../localStorage';
 import { useSelector } from 'react-redux';
 import Swal from 'sweetalert2';
 import NavbarInf from '../NavbarInf';
@@ -10,7 +10,7 @@ import './styles.css';
 
 function Navbar() {
 
-  const usuario = useSelector(state => state.dataUsuario);
+  const usuario = userData(); //usuario logueado
   const [isOpen, setIsOpen] = React.useState(false); //menu hamburguesa  
   //const menuRef = React.useRef(null); //referencia menu hamburguesa
   //const menuItemsRef = React.useRef([]); //referencia items menu hamburguesa

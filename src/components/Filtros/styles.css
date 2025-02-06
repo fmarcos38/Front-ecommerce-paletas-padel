@@ -16,14 +16,20 @@
 }
 .cont-titulo-filtros{
     width: 80%;
+    height: 25px;
     display: flex;
     justify-content: center;
-    align-items: center;
-    font-size: 13px;
+    align-items: center;    
     border-bottom: 1px solid black;
 }
 .titulo-filtro{
-    margin: 0 0 10px 0;
+    font-size: 18px;
+}
+.titulo-filtro-marcas,
+.titulo-filtro-rango-precio{
+    font-size: 18px;
+    margin-top: 5px;
+    margin-bottom: 0;
 }
 .cont-map-marca{
     width: 100%;
@@ -31,6 +37,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    margin: 0;
 }
 .cont-check-Y-label-marca,
 .cont-check-Y-label-categoria{
@@ -86,8 +93,16 @@
         font-weight: 300px;
     }
 }
-@media screen and (max-width: 450px) {
-    .cont-map-marca{
+@media screen and (max-width: 600px) {
+    .cont-map-marca {
+        width: 90%;
         flex-wrap: wrap;
+    }
+
+    .cont-check-Y-label-marca,
+    .cont-check-Y-label-categoria {
+        width: 50%;
+        justify-content: center;
+        align-items: center;
     }
 }

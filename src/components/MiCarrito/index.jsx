@@ -32,9 +32,9 @@ function MiCarrito() {
     }
 
     useEffect(() => {
-            if (cliente.user.id) {
-                dispatch(getUsuarioById(cliente.user.id));
-                dispatch(getCarrito(cliente.user.id));
+            if (cliente.id) {
+                dispatch(getUsuarioById(cliente.id));
+                dispatch(getCarrito(cliente.id));
             }
             // eslint-disable-next-line react-hooks/exhaustive-deps
         }, [dispatch]);

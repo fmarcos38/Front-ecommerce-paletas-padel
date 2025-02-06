@@ -149,8 +149,8 @@ function InformacionContacto() {
     //me traigo el carrito
     useEffect(() => {
         if(clienteLog){
-            dispatch(getUsuarioById(clienteLog.user.id));
-            dispatch(getCarrito(clienteLog.user.id));
+            dispatch(getUsuarioById(clienteLog.id));
+            dispatch(getCarrito(clienteLog.id));
         }
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [dispatch]);

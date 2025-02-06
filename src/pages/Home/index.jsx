@@ -55,8 +55,8 @@ function Home() {
 
   //efecto para traer los datos del usuario SI hay usuario logueado
   useEffect(() => {
-    if (data?.user?.nombre) {
-      dispatch(getUsuarioById(data?.user?.id));
+    if (data?.nombre) {
+      dispatch(getUsuarioById(data?.id));
     }
   }, [data, dispatch]);
 

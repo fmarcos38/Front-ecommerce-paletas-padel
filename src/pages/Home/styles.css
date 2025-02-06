@@ -190,4 +190,7 @@
     .titulo-ofertas{
         text-align: center;
     }
+    .cont-filtros-home{
+        border-radius: 10px;
+    }
 }

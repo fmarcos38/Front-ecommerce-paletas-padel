@@ -11,7 +11,7 @@ function BotonAgregaalCarrito({id, stock}) {
 
     const onClickAgregarAlCarrito = () => {
         /* si el cliente no está log */
-        if(!dataUsuario?._id){
+        if(!dataUsuario?.id){
             Swal.fire({
                 icon: 'warning',
                 title: 'Oops...',
@@ -29,7 +29,7 @@ function BotonAgregaalCarrito({id, stock}) {
             });
         }else {
             const cantidad = 1;
-            const clienteId = dataUsuario._id;
+            const clienteId = dataUsuario.id;
             dispatch(agregarAlCarrito(clienteId, id, cantidad));
             Swal.fire({
                 icon: 'success',

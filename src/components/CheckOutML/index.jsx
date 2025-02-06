@@ -15,8 +15,8 @@ const Checkout =  () => {
     const dispatch = useDispatch();
 
     useEffect(() => {
-        dispatch(getCarrito(cliente.user.id));        
-    }, [cliente.user.id, dispatch]);
+        dispatch(getCarrito(cliente.id));        
+    }, [cliente.id, dispatch]);
 
     let body = {
         items: [
@@ -46,7 +46,7 @@ const Checkout =  () => {
         const createPreference = async () => {
             try {
                 const response = await axios.post('http://localhost:3002/mercadopago/crear-preferencia', {body});
-                console.log('response:', response);
+                //console.log('response:', response);
                 if (response.data.url) {
                     setPreferenceId(response.data.url);
                 }
