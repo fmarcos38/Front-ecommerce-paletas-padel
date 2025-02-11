@@ -54,7 +54,7 @@ export const confirmarEmail = (email) => {
 export const getUsuarioById = (id) => {
     return async function(dispatch) {  
         const resp = await axios.get(`${URL}/usuario/${id}`); 
-        localStorage.setItem('dataUser', JSON.stringify(resp.data));
+        //localStorage.setItem('dataUser', JSON.stringify(resp.data));
         dispatch({type: GET_USER, payload: resp.data});
     }
 }

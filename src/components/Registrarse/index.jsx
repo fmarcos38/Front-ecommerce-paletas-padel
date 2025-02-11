@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
+import React, {useState} from 'react';
 import { useDispatch } from 'react-redux';
 import { registrarse } from '../../redux/actions/actions';
-import FormDatosUsuario from '../FormDatosUsuario';
-import LoginGoogle from '../LoginGoogle';
 import Swal from 'sweetalert2';
+import LoginGoogle from '../LoginGoogle';
+import FormDatosUsuario from '../FormDatosUsuario';
 import './styles.css';
 
 function Registrarse() {
@@ -13,46 +13,72 @@ function Registrarse() {
     const [dni, setDni] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const [telefono, setTelefono] = useState('');
-    const [direccion, setDireccion] = useState('');
-    const [error, setError] = useState(null);
+    const [area, setArea] = useState('');
+    const [numTel, setNumTel] = useState('');
+    const [calle, setCalle] = useState('');
+    const [numero, setNumero] = useState('');
+    const [piso, setPiso] = useState('');
+    const [depto, setDepto] = useState('');
+    const [codigoPostal, setCodigoPostal] = useState('');
+    const [provincia, setProvincia] = useState('');
+    const [localidad, setLocalidad] = useState('');
+    const [comentarios, setComentarios] = useState('');
+    const [errors, setErrors] = useState({});
     const dispatch = useDispatch();
 
-    //función quito los errores
-    const quitarError = (e) => {
-        const newError = { ...error };
-        delete newError[e.target.name];
-        setError(newError);
-    }
-
-    const onChangeNombre = (e) => {
-        setNombre(e.target.value);
-        quitarError(e);
-    }
-    const onChangeApellido = (e) => {
-        setApellido(e.target.value);
-        quitarError(e);
-    }
-    const onChangeDni = (e) => {
-        setDni(e.target.value);
-        quitarError(e);
-    }
-    const onChangeEmail = (e) => {
-        setEmail(e.target.value);
-        quitarError(e);
-    }
-    const onChangePassword = (e) => {
-        setPassword(e.target.value);
-        quitarError(e);
-    }
-    const onChangeTelefono = (e) => {
-        setTelefono(e.target.value);
-        quitarError(e);
-    }
-    const onChangeDireccion = (e) => {
-        setDireccion(e.target.value);
-        quitarError(e);
-    }
+    const handleChange = (e) => {
+            const { id, value } = e.target;
+            setErrors((prev) => ({ ...prev, [id]: null }));
+            switch (id) {
+                case 'nombre':
+                    setNombre(value);
+                    break;
+                case 'apellido':
+                    setApellido(value);
+                    break;
+                case 'dni':
+                    setDni(value);
+                    break;
+                case 'email':
+                    setEmail(value);
+                    break;
+                case 'password':
+                    setPassword(value);
+                    break;
+                case 'area':
+                    setArea(value);
+                    break;
+                case 'numTel':
+                    setNumTel(value);
+                    break;
+                case 'calle':
+                    setCalle(value);
+                    break;
+                case 'numero':
+                    setNumero(value);
+                    break;
+                case 'piso':
+                    setPiso(value);
+                    break;
+                case 'departamento':
+                    setDepto(value);
+                    break;
+                case 'codigoPostal':
+                    setCodigoPostal(value);
+                    break;
+                case 'provincia':
+                    setProvincia(value);
+                    break;
+                case 'localidad':
+                    setLocalidad(value);
+                    break;
+                case 'comentarios':
+                    setComentarios(value);
+                    break;
+                default:
+                    break;
+            }
+    };
     //funcion para ver la password
     const onClickVerContraseña = () => {
         const inputContraseña = document.querySelector('.input-password');
@@ -61,41 +87,33 @@ function Registrarse() {
         }else {
             inputContraseña.type = 'password';
         }
-    }
-    //valida errores
+    }    
     const validar = () => {
-        const newError = {};
+        const campos = {
+            nombre,
+            apellido,
+            dni,
+            area,
+            numTel,
+            calle,
+            numero,
+            piso,
+            depto,
+            codigoPostal,
+            provincia,
+            localidad,
+        };
 
-        if(!nombre) {
-            newError.nombre = 'El campo nombre es obligatorio';
-        }
-        if(!apellido) {
-            newError.apellido = 'El campo apellido es obligatorio';
-        }
-        if(!dni) {
-            newError.dni = 'El campo dni es obligatorio';
-        }
-        if(!email) {
-            newError.email = 'El campo email es obligatorio';
-        }else if (!/\S+@\S+\.\S+/.test(email)) {
-            newError.email = 'El email no es válido';
-        }
-        if(!password) {
-            newError.password = 'El campo password es obligatorio';
-        }
-        if(!telefono) {
-            newError.telefono = 'El campo telefono es obligatorio';
-        }
-        if(!direccion) {
-            newError.direccion = 'El campo direccion es obligatorio';
-        }
-        //actualizo el estado local de errors
-        setError(newError);
+        const nuevosErrores = Object.entries(campos).reduce((acc, [key, value]) => {
+            if (!value || value.trim() === '') {
+                acc[key] = `El campo ${key} es requerido.`;
+            }
+            return acc;
+        }, {});
 
-        //si el objeto newError esta vacio, retorna false
-        if(Object.keys(newError).length) return true;
-        return false;
-    }
+        setErrors(nuevosErrores);
+        return Object.keys(nuevosErrores).length === 0;
+    };
     //limpio los campos
     const limpiarCampos = () => {
         setNombre('');
@@ -103,22 +121,37 @@ function Registrarse() {
         setDni('');
         setEmail('');
         setPassword('');
-        setTelefono('');
-        setDireccion('');
-    };
-    const handleSubmit = async (e) => {
+        setNumTel();
+        setArea();
+        setCalle('');
+        setNumero('');
+        setPiso('');
+        setDepto('');
+        setCodigoPostal('');
+        setProvincia('');
+        setLocalidad('');
+        setComentarios('');
+        setErrors({});
+    }
+    const handleSubmit = (e) => {
         e.preventDefault();
         if (!validar()) {
-            const data = {
+            const data = ({
                 nombre,
                 apellido,
                 dni,
-                email,
-                password,
-                telefono,
-                direccion,
-                isAdmin: false
-            };
+                telefono: { area, numero: numTel },
+                direccion: {
+                    calle,
+                    numero,
+                    piso,
+                    depto,
+                    codigoPostal,
+                    provincia,
+                    localidad,
+                },
+                comentarios,
+            });
             dispatch(registrarse(data))
                 .then((response) => {
                     if (response?.msg === 'success') {
@@ -148,34 +181,37 @@ function Registrarse() {
                     });
                 });
         }
-    }
-    
+    };
+
     return (
-        <form onSubmit={handleSubmit} className='cont-registrarse'>
+        <div className='cont-registrarse'>
             <FormDatosUsuario 
                 nombre={nombre}
                 apellido={apellido}
                 dni={dni}
                 email={email}
                 password={password}
-                telefono={telefono}
-                direccion={direccion}
-                onChangeNombre={onChangeNombre}
-                onChangeApellido={onChangeApellido}
-                onChangeDni={onChangeDni}
-                onChangeEmail={onChangeEmail}
-                onChangePassword={onChangePassword}
-                onChangeTelefono={onChangeTelefono}
-                onChangeDireccion={onChangeDireccion}
-                error={error}
-                handleSubmit={handleSubmit}
+                area={area}
+                numTel={numTel}
+                calle={calle}
+                numero={numero}
+                piso={piso}
+                depto={depto}
+                codigoPostal={codigoPostal}
+                provincia={provincia}
+                localidad={localidad}
+                comentarios={comentarios}
+                errors={errors}
                 onClickVerContraseña={onClickVerContraseña}
+                limpiarCampos={limpiarCampos}
+                handleChange={handleChange}
+                handleSubmit={handleSubmit}
+                registrarse={true}
             />
             <div className='cont-btn-registrarse'>
-                <button type="submit" className='btn-registrarse'>Registrarse</button>
                 <LoginGoogle />
             </div>
-        </form>
+        </div>
     )
 }
 

@@ -1,0 +1,102 @@
+/* estilos contenedores de los inputs */
+.cont-input-field-nombre,
+.cont-input-field-apellido,
+.cont-input-field-dni,
+.cont-input-field-email,
+.cont-input-field-password,
+.cont-input-field-area,
+.cont-input-field-numTel,
+.cont-input-field-calle,
+.cont-input-field-numero,
+.cont-input-field-piso,
+.cont-input-field-depto,
+.cont-input-field-codigoPostal,
+.cont-input-field-localidad,
+.cont-input-field-provincia{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: start;
+}
+.cont-pass{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid var(--gris-bordes);
+}
+.cont-input-field-email{
+    width: 50%;
+    background-color: aqua;
+}
+/* estilos de los inputs */
+.input-nombre,
+.input-apellido,
+.input-dni,
+.input-email,
+.input-password,
+.input-area,
+.input-numTel,
+.input-calle,
+.input-numero,
+.input-piso,
+.input-depto,
+.input-codigoPostal,
+.input-localidad,
+.input-provincia,
+.textarea-contacto{
+    width: 100%;
+    font-size: 20px;
+    padding: 3px 0;
+    border: 1px solid var(--gris-bordes);
+    border-radius: 5px;
+}
+.input-password{
+    border: none;
+}
+.textarea-contacto{
+    width: 100%;
+    min-height: 80px;
+    margin-bottom: 10px;
+}
+.select-nombre-contacto{
+    width: 98%;
+    font-size: 20px;
+    padding: 3px;
+}
+.cont-textarea-contacto{
+    width: 100%;
+}
+.cont-btns-continuar-volver{
+    width: 95%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 20px;
+}
+.btn-volver-compra{
+    width: 50%;
+    padding: 10px;
+    background-color: transparent;
+    color: var(--color-azul);
+    font-size: 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.btn-continuar-compra{
+    width: 50%;
+    padding: 10px;
+    background-color: var(--color-azul);
+    color: white;
+    font-size: 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-bottom: 5px;
+}
+
+/* responsive */
+@media screen and (max-width: 800px) {
+    
+}

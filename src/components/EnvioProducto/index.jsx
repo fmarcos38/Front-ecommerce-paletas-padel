@@ -6,11 +6,10 @@ import LocalShippingIcon from '@mui/icons-material/LocalShipping';
 import imgCorreoArg from '../../imagenes/delivery_correoargentino.png';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import ResumenCompra from '../ResumenCompra';
-import NavCarrito from '../NavCarrito';
 import './styles.css';
 
 function EnvioProducto() {
-    const cliente = userData();
+    const cliente = userData(); console.log('cliente', cliente);
     const carrito = useSelector(state => state.carrito);
     const dispatch = useDispatch();
 
@@ -19,16 +18,15 @@ function EnvioProducto() {
     };
 
     useEffect(() => {
-        if (cliente.id) {
-            dispatch(getUsuarioById(cliente.id));
-            dispatch(getCarrito(cliente.id));
+        if (cliente?.user.id) {
+            dispatch(getUsuarioById(cliente?.user.id));
+            dispatch(getCarrito(cliente?.user.id));
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [dispatch]);
 
     return (
         <div className="cont-miCarrito">
-            <NavCarrito />
             <div className="cont-envio-producto">
                 <div className="cont-envio-producto-col-1">
                     <div className="como-te-entregamos-la-compra">
@@ -93,6 +91,7 @@ function EnvioProducto() {
                         </div>
                     </div>
                 </div>
+
                 <div className="cont-envio-producto-col-2">
                     <ResumenCompra carrito={carrito} />
                     <div className="cont-btns-continuar-volver">

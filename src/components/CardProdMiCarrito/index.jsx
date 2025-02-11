@@ -1,9 +1,11 @@
 import React from 'react'
+import { formatMoney } from '../../utils';
 import Stock from '../Stock';
 import BotonEliminaProdCarrito from '../BotoneliminaProdCarrito';
 import './styles.css';
 
-function CardProdMiCarrito({clienteId, productoId, nombre, precio, imagenes, stock}) {
+
+function CardProdMiCarrito({clienteId, productoId, nombre, precio, imagenes, stock, enPromo, porcentajeDescuento}) {
     
     return (
         <div className={stock === 0 ? 'cont-card-prod-mi-carrito-sin-stock' : 'cont-card-prod-mi-carrito'}>
@@ -18,7 +20,15 @@ function CardProdMiCarrito({clienteId, productoId, nombre, precio, imagenes, sto
                     <Stock clienteId={clienteId} productoId={productoId} stock={stock} />
                 </div>
                 <div className='cont-precio-pala-prod-mi-carrito'>
-                    <p className='precio-pala-prod-mi-carrito'>${precio}</p>
+                    {
+                        enPromo ? (
+                            <>
+                                <p className='precio-pala-prod-mi-carrito-ahora'>${formatMoney((precio - (precio * porcentajeDescuento / 100)))}</p>
+                            </>
+                        ) : (
+                            <p className='precio-pala-prod-mi-carrito'>${formatMoney(precio)}</p>
+                        )
+                    }
                 </div>                
             </div>
             <div>

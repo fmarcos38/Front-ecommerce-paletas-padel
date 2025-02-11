@@ -36,7 +36,7 @@ function App() {
         <Navbar />
       </header>
       
-      <main>
+      <main >
         <Routes>
             <Route path="/" element={<Home/>} />
             <Route path='/registrarse' element={<RegistrarsePage/>} />
@@ -65,7 +65,7 @@ function App() {
         </Routes>
       </main>
       
-      <footer>
+      <footer >
         <Footbar />
       </footer>
     </div>

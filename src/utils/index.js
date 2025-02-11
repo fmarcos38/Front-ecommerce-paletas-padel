@@ -24,7 +24,11 @@ function formatDate(date) {
 const sumaTotalCarrito = (carritoCliente) => {
     let tot = 0;
     carritoCliente?.productos?.map(p => {
-        return tot += p.precio;
+        if(p.enPromo){
+            return tot += (p.precio - (p.precio * p.porcentajeDescuento / 100));
+        } else {
+            return tot += p.precio;
+        }
     });
     return tot;
 }

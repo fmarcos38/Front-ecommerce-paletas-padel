@@ -48,7 +48,7 @@ function Navbar() {
       <NavbarSup />
       {/* nav med */}
       <NavbarMed 
-        usuario={usuario}
+        usuario={usuario?.user}
         isOpen={isOpen}
         /* menuRef={menuRef} 
         menuItemsRef={menuItemsRef} */ 
@@ -58,7 +58,7 @@ function Navbar() {
         itemsFavoritos={favoritos?.length}
       />
       {/* nav inf */}
-      <NavbarInf usuario={usuario}/>
+      <NavbarInf usuario={usuario?.user}/>
     </div>
   )
 }

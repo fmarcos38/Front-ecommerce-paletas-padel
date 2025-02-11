@@ -18,7 +18,7 @@ import './styles.css';
 
 function Home() {
 
-  const data = userData(); 
+  let data = userData(); 
   const [marca, setMarca] = React.useState('');
   const [categoria, setCategoria] = React.useState('');
   const [enPromo, setPromo] = React.useState(false);
@@ -55,8 +55,8 @@ function Home() {
 
   //efecto para traer los datos del usuario SI hay usuario logueado
   useEffect(() => {
-    if (data?.nombre) {
-      dispatch(getUsuarioById(data?.id));
+    if (data?.user?.nombre) {
+      dispatch(getUsuarioById(data?.user?.id));
     }
   }, [data, dispatch]);
 

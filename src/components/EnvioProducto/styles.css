@@ -1,5 +1,4 @@
 .cont-envio-producto{
-    position: relative;
     width: 80%;
     height: 100%;
     display: flex;
@@ -147,7 +146,7 @@
         width: 50%;
     }
 }
-@media screen and (max-width:750px) {
+@media screen and (max-width:800px) {
     .cont-envio-producto{
         width: 80%;
         flex-direction: column;

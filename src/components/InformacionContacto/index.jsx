@@ -4,7 +4,6 @@ import { getCarrito, getUsuarioById, modificaUsuario } from '../../redux/actions
 import { userData } from '../../localStorage';
 import ResumenCompra from '../ResumenCompra';
 import CheckIcon from '@mui/icons-material/Check';
-import NavCarrito from '../NavCarrito';
 import './styles.css';
 
 
@@ -131,7 +130,7 @@ function InformacionContacto() {
             dispatch(modificaUsuario(cliente.id, data));
         }
     };
-
+    //input
     const InputField = ({ id, label, type = 'text', value, onChange, error }) => (
         <div className={`cont-input-contacto-${id}`}>
             <label className="label">{label}</label>
@@ -146,11 +145,11 @@ function InformacionContacto() {
         </div>
     );
 
-    //me traigo el carrito
+    //me traigo el cliente y su carrito
     useEffect(() => {
-        if(clienteLog){
-            dispatch(getUsuarioById(clienteLog.id));
-            dispatch(getCarrito(clienteLog.id));
+        if(clienteLog?.user){
+            dispatch(getUsuarioById(clienteLog.user.id));
+            dispatch(getCarrito(clienteLog.user.id));
         }
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [dispatch]);
@@ -175,7 +174,7 @@ function InformacionContacto() {
 
     return (
         <div className='cont-miCarrito'>
-            <NavCarrito />
+            {/* <NavCarrito /> */}
             <div className='cont-envio-producto'>
                 <div className='cont-envio-producto-col-1'>
                     <div className='como-te-entregamos-la-compra'>
@@ -186,11 +185,11 @@ function InformacionContacto() {
                             <p className='p-texto'>¿COMO TE ENTREGAMOS LA COMPRA?</p>
                         </div>
                         {/* <div className='como-te-entregamos-la-compra-fila-1'>
-                            <p className='numero1'>
-                                <CheckIcon style={{ fontSize: 20, color: 'green' }} />
-                            </p>
-                            <p className='p-texto'>¿COMO QUERES PAGAR?</p>
-                        </div> */}
+                                    <p className='numero1'>
+                                        <CheckIcon style={{ fontSize: 20, color: 'green' }} />
+                                    </p>
+                                    <p className='p-texto'>¿COMO QUERES PAGAR?</p>
+                                </div> */}
                     </div>
 
                     {/* ver de sicronizar con correo argentino */}
@@ -204,8 +203,8 @@ function InformacionContacto() {
                             </div>
                             {/* telefono - datos de factuarión */}
                             <div className='cont-contacto-nomb-ape-dni'>
-                                <InputField id="area" label="Área" value={area} onChange={handleChange} error={errors.area} />
-                                <InputField id="numTel" label="Teléfono" value={numTel} onChange={handleChange} error={errors.numTel} />                                 
+                                <InputField id="area" label="Num de area" value={area} onChange={handleChange} error={errors.area} />
+                                <InputField id="numTel" label="Num de teléfono" value={numTel} onChange={handleChange} error={errors.numTel} />                                 
                             </div>                            
                             {/* calle-num-piso-depto */}
                             <div className='cont-contacto-nomb-ape-dni'>

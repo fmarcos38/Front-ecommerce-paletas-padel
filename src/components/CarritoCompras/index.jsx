@@ -39,6 +39,8 @@ function CarritoCompras() {
                                 precio={p.precio}
                                 imagenes={p.imagenes}
                                 stock={p.stock}
+                                enPromo={p.enPromo}
+                                porcentajeDescuento={p.porcentajeDescuento}
                             />
                         )) : (
                             <p>No hay productos en tu Carrito !!</p>

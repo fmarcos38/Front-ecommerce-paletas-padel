@@ -18,15 +18,24 @@ function BotonAgregaalCarrito({id, stock}) {
                 text: 'Debes estar logueado para agregar productos al carrito',
             });
             //redirijo a login
-            /* setTimeout(() => {
+            setTimeout(() => {
                 window.location.href = '/login';
-            }, 2000); */
-        }else if(dataUsuario?.carrito?.find(prod => prod.productoId === id)){
+            }, 2000);
+        } else if (stock === 0){
             Swal.fire({
                 icon: 'warning',
                 title: 'Oops...',
-                text: 'Este producto ya se encuentra en tu carrito',
+                text: 'No hay stock disponible de este producto',
             });
+        } else if (dataUsuario?.carrito?.length > 0){
+            const buscaProd = dataUsuario?.carrito?.find(prod => prod.productoId === id);
+            if(buscaProd){
+                Swal.fire({
+                    icon: 'warning',
+                    title: 'Oops...',
+                    text: 'Este producto ya se encuentra en tu carrito',
+                });
+            }
         }else {
             const cantidad = 1;
             const clienteId = dataUsuario.id;
@@ -42,7 +51,7 @@ function BotonAgregaalCarrito({id, stock}) {
 
     return (
         <button
-            disabled={stock === 0}
+            /* disabled={stock === 0} */
             className='btn-agrega-carrito'
             onClick={() => { onClickAgregarAlCarrito() }}
         >

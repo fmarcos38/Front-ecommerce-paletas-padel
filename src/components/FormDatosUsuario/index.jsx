@@ -1,116 +1,109 @@
 import React from 'react'
 import VisibilityIcon from '@mui/icons-material/Visibility';
+import './styles.css';
 
-function FormDatosUsuario({
-  nombre, apellido, dni, email, password, telefono, direccion,  
-  onChangeNombre, onChangeApellido, onChangeDni, onChangeEmail, onChangePassword,
-  onChangeTelefono, onChangeDireccion, error, onClickVerContraseña
-}) {
+
+
+function FormDatosUsuario({ 
+  nombre, apellido, email, password, dni, area, numTel, calle, 
+  numero, piso, depto, codigoPostal, provincia, localidad, 
+  comentarios, errors, onClickVerContraseña, handleChange, handleSubmit, registrarse }) {
 
   return (
-    <div className='form-registrarse'>
-      <div className='cont-inputs'>
-        {/* nombre */}
-        <div className='cont-email'>
-          <label className='label-input'>Nombre</label>
-          <input
-            type="text"
-            name='nombre'
-            value={nombre}
-            onChange={(e) => { onChangeNombre(e) }}
-            className='input-nombre'
-          />
-          {error?.nombre && <p className='error'>{error.nombre}</p>}
-        </div>
-        {/* apell */}
-        <div className='cont-apellido'>
-          <label className='label-input'>Apellido</label>
-          <input
-            type="text"
-            name='apellido'
-            value={apellido}
-            onChange={(e) => { onChangeApellido(e) }}
-            className='input-apellido'
-          />
-          {error?.apellido && <p className='error'>{error.apellido}</p>}
-        </div>
-        {/* DNI */}
-        <div className='cont-password'>
-          <label className='label-input'>DNI</label>
-          <input
-            type="number"
-            name='dni'
-            value={dni}
-            onChange={(e) => { onChangeDni(e) }}
-            className='input-apellido'
-          />
-          {error?.dni && <p className='error'>{error.dni}</p>}
-        </div>
-      </div>
-
-      <div className='cont-inputs'>
-        {/* email */}
-        <div className='cont-email'>
-          <label className='label-input'>email</label>
-          <input
-            type="email"
-            name='email'
-            value={email}
-            onChange={(e) => { onChangeEmail(e) }}
-            className='input-email'
-          />
-          {error?.email && <p className='error'>{error.email}</p>}
-        </div>
-        {/* pass */}
-        <div className='cont-password'>
-          <label className='label-input'>Contraseña</label>
-          <div className='cont-pass-viewPass'>
-            <input
-              type="password"
-              name='password'
-              value={password}
-              onChange={(e) => { onChangePassword(e) }}
-              className='input-password'
-            />
-            <button
-              type='button'
-              className='btn-viewPass'
-              onClick={() => { onClickVerContraseña() }}
-            >
-              <VisibilityIcon />
-            </button>
+    <form onSubmit={handleSubmit} className='cont-form-datos-usuario'>      
+        {/* nomb - ape- dni */}
+        <div className='cont-form-datos-usuario-nomb-ape-dni'>
+          <div className='cont-nomb'>
+            <label className='label'>Nombre</label>
+            <input type="text" id="nombre" label="Nombre" value={nombre} onChange={handleChange} error={errors.nombre} className='input-form-usuario'/>
           </div>
-          {error?.password && <p className='error'>{error.password}</p>}
+          <div className='cont-ape'>
+            <label className='label'>Apellido</label>
+            <input type="text" id="apellido" label="Apellido" value={apellido} onChange={handleChange} error={errors.apellido} className='input-form-usuario'/>
+          </div>
+          <div className='cont-dni'>
+            <label className='label'>DNI</label>
+            <input type="number" id="dni" label="DNI" value={dni} onChange={handleChange} error={errors.dni} className='input-form-usuario'/>
+          </div>
         </div>
-      </div>
-
-      <div className='cont-inputs'>
-        {/* tel */}
-        <div className='cont-telefono'>
-          <label className='label-input'>Telefono</label>
-          <input
-            type="number"
-            name='telefono'
-            value={telefono}
-            onChange={(e) => { onChangeTelefono(e) }}
-            className='input-telefono'
-          />
-          {error?.telefono && <p className='error'>{error.telefono}</p>}
+        {/* email - pass */}
+        {
+          registrarse && (
+            <div className='cont-form-datos-usuario-email-pass'>
+              <div className='cont-email'>
+                <label className='label'>Email</label>
+                <input type="email" id="email" label="Email" value={email} onChange={handleChange} error={errors.email} className='input-form-usuario'/>
+              </div>
+              {/* pass */}
+              <div className='cont-password'>
+                <label className='label-input'>Contraseña</label>
+                <div className='cont-pass-viewPass'>
+                  <input type="password" id='password' value={password} onChange={handleChange} error={errors.password} className='input-form-pass' />
+                  <button type='button' className='btn-viewPass' onClick={onClickVerContraseña}>
+                    <VisibilityIcon />
+                  </button>
+                </div>
+              </div>
+          </div>
+          )
+        }
+        {/* telefono - datos de factuarión */}
+        <div className='cont-form-datos-usuario-tel-area'>
+          <div className='cont-area'>
+            <label className='label'>Area</label>
+            <input type="number" id="area" label="Area" value={area} onChange={handleChange} error={errors.area} className='input-form-usuario'/>
+          </div>
+          <div className='cont-tel'>
+            <label className='label'>Num teléfono</label>
+            <input type="number" id="numTel" label="Número de teléfono" value={numTel} onChange={handleChange} error={errors.numTel} className='input-form-usuario'/>
+          </div>
         </div>
-        {/* direcc */}
-        <div className='cont-direccion'>
-          <label className='label-input'>Dirección</label>
-          <input
-            type="text"
-            name='direccion'
-            value={direccion}
-            onChange={(e) => { onChangeDireccion(e) }}
-            className='input-direccion'
-          />
-          {error?.direccion && <p className='error'>{error.direccion}</p>}
+        {/* calle-num-piso-depto */}
+        <div className='cont-form-datos-usuario-calle-num-piso-depto'>
+          <div className='cont-calle'>
+            <label className='label'>Calle</label>
+            <input type="text" id="calle" label="Calle" value={calle} onChange={handleChange} error={errors.calle} className='input-form-usuario'/>
+          </div>
+          <div className='cont-numero'>
+            <label className='label'>Número</label>
+            <input type="number" id="numero" label="Número" value={numero} onChange={handleChange} error={errors.numero} className='input-form-usuario'/>
+          </div>
+          <div className='cont-piso'>
+            <label className='label'>Piso</label>
+            <input type="number" id="piso" label="Piso" value={piso} onChange={handleChange} error={errors.piso} className='input-form-usuario'/>
+          </div>
+          <div className='cont-depto'>
+            <label className='label'>Depto</label>
+            <input type="text" id="depto" label="Depto" value={depto} onChange={handleChange} error={errors.depto} className='input-form-usuario'/>
+          </div>
         </div>
-      </div>
-    </div>
+        {/* provincia - localida - cod postal*/}
+        <div className='cont-form-datos-usuario-prov-loc-cod-postal'>
+          <div className='cont-cod-postal'>
+            <label className='label'>Código postas</label>
+            <input type="number" id="codigoPostal" label="Código Postal" value={codigoPostal} onChange={handleChange} error={errors.codigoPostal} className='input-form-usuario' />
+          </div>
+          <div className='cont-prov'>
+            <label className='label'>Provincia</label>
+            <input type="text" id="provincia" label="Provincia" value={provincia} onChange={handleChange} error={errors.provincia} className='input-form-usuario' />
+          </div>
+          <div className='cont-localidad'>
+            <label className='label'>Localidad</label>
+            <input type="text" id="localidad" label="Localidad" value={localidad} onChange={handleChange} error={errors.localidad} className='input-form-usuario' />
+          </div>
+        </div>
+        {/* comentarios */}
+        <div className='cont-textarea-contacto'>
+          <label className='label'>Comentarios</label>
+          <textarea id='comentarios' value={comentarios} onChange={handleChange} className="textarea-contacto" />
+        </div>
+      
+      <button type='onSubmit' className='btn-continuar-compra'>
+        {
+          registrarse ? 'Registrarse' : 'Modificar datos de entrega'
+        }
+      </button>
+    </form>
   )
 }
 

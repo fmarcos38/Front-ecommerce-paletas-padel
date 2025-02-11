@@ -1,7 +1,7 @@
 import React from 'react';
-import './styles.css';
 import { useDispatch } from 'react-redux';
 import { agregarAlCarrito } from '../../redux/actions/actions';
+import './styles.css';
 
 function Stock({ clienteId, productoId, stock}) {
 

@@ -1,12 +1,13 @@
 .cont-card-prod-carrito{
+    width: 90%;
+    height: auto;
     display: flex;
-    justify-content: center;
+    justify-content: start;
     align-items: center;
     margin: 10px;
     padding: 10px;
     border-bottom: 1px solid var(--gris-bordes);
     border-radius: 10px;
-    width: 80%;
 }
 .cont-img-card-prod-carrito{
     width: 30%;
@@ -22,6 +23,7 @@
 }
 .cont-stock-card-prod-carrito{
     width: 50%;
+    height: auto;
     display: flex;
     flex-direction: column;
     justify-content: center;

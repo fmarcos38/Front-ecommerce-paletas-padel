@@ -5,7 +5,6 @@ import { userData } from '../../localStorage';
 import WarningIcon from '@mui/icons-material/Warning';
 import CardProdMiCarrito from '../CardProdMiCarrito' 
 import ResumenCompra from '../ResumenCompra';
-import NavCarrito from '../NavCarrito';
 import './styles.css';
 
 function MiCarrito() {
@@ -41,8 +40,6 @@ function MiCarrito() {
 
     return (
         <div className='cont-miCarrito'>
-            {/* nav */}
-            <NavCarrito />
             {/* titulo */}
             <div className='cont-titulo-miCarrito'>
                 <p className='p-titulo-mi-carrito'>Mi Carrito</p>
@@ -69,6 +66,8 @@ function MiCarrito() {
                             precio={p.precio}
                             imagenes={p.imagenes}
                             stock={p.stock}
+                            enPromo={p.enPromo}
+                            porcentajeDescuento={p.porcentajeDescuento}
                         />
                     ))
                 }

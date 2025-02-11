@@ -72,6 +72,9 @@
 
 /* responsive */
 @media screen and (max-width: 768px){
+    .cont-footbar{
+        height: auto;
+    }
     .cont-suscripcion{
         width: 90%;
         flex-direction: column;
@@ -92,12 +95,10 @@
         width: 90%;
         margin-top: 5px;
     }
-
     .linea{
         width: 95%;
         margin: 15px 0;
     }
-
     .cont-col-1,
     .cont-col-2,
     .cont-col-3{
