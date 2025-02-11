@@ -4,7 +4,10 @@ import { getCarrito, getUsuarioById, modificaUsuario } from '../../redux/actions
 import { userData } from '../../localStorage';
 import ResumenCompra from '../ResumenCompra';
 import CheckIcon from '@mui/icons-material/Check';
+import FormDatosUsuario from '../FormDatosUsuario';
 import './styles.css';
+import Swal from 'sweetalert2';
+
 
 
 function InformacionContacto() {
@@ -14,6 +17,7 @@ function InformacionContacto() {
     const carrito = useSelector(state => state.carrito);
     const [nombre, setNombre] = useState('');
     const [apellido, setApellido] = useState('');
+    const [email, setEmail] = useState('');
     const [dni, setDni] = useState('');
     const [area, setArea] = useState('');
     const [numTel, setNumTel] = useState('');
@@ -86,6 +90,7 @@ function InformacionContacto() {
             nombre,
             apellido,
             dni,
+            email,
             area,
             numTel,
             calle,
@@ -103,7 +108,6 @@ function InformacionContacto() {
             }
             return acc;
         }, {});
-
         setErrors(nuevosErrores);
         return Object.keys(nuevosErrores).length === 0;
     };
@@ -115,6 +119,7 @@ function InformacionContacto() {
                 nombre,
                 apellido,
                 dni,
+                email,
                 telefono: { area, numero: numTel },
                 direccion: {
                     calle,
@@ -126,25 +131,28 @@ function InformacionContacto() {
                     localidad,
                 },
                 comentarios,
+            }); console.log("data:",data);
+            dispatch(modificaUsuario(cliente.id, data))
+            .then((resp) => {
+                if(resp.msg === 'success'){
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Datos actualizados',
+                        text: 'Tus datos han sido actualizados con éxito',
+                        confirmButtonText: 'Aceptar',
+                    });
+                }else{
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Error',
+                        text: `${resp.msg}`,
+                        confirmButtonText: 'Aceptar',
+                    });
+                }
             });
-            dispatch(modificaUsuario(cliente.id, data));
         }
     };
-    //input
-    const InputField = ({ id, label, type = 'text', value, onChange, error }) => (
-        <div className={`cont-input-contacto-${id}`}>
-            <label className="label">{label}</label>
-            <input
-                type={type}
-                id={id}
-                value={value}
-                onChange={onChange}
-                className={`input-${id}`}
-            />
-            {error && <p className="error">{error}</p>}
-        </div>
-    );
-
+    
     //me traigo el cliente y su carrito
     useEffect(() => {
         if(clienteLog?.user){
@@ -159,6 +167,7 @@ function InformacionContacto() {
             setNombre(cliente.nombre || '');
             setApellido(cliente.apellido || '');
             setDni(cliente.dni || '');
+            setEmail(cliente.email || '');
             setArea(cliente.telefono?.area || '');
             setNumTel(cliente.telefono?.numero || '');
             setCalle(cliente.direccion?.calle || '');
@@ -175,8 +184,8 @@ function InformacionContacto() {
     return (
         <div className='cont-miCarrito'>
             {/* <NavCarrito /> */}
-            <div className='cont-envio-producto'>
-                <div className='cont-envio-producto-col-1'>
+            <div className='cont-envio-producto modoColumna'>
+                <div className='cont-envio-producto-col-1 modoColumna'>
                     <div className='como-te-entregamos-la-compra'>
                         <div className='como-te-entregamos-la-compra-fila-1'>
                             <p className='numero1'>
@@ -192,49 +201,34 @@ function InformacionContacto() {
                                 </div> */}
                     </div>
 
-                    {/* ver de sicronizar con correo argentino */}
-                    <form onSubmit={handleSubmit} className='cont-result-busqueda-codigo-postal'>
-                        <h3 className='titulo-result-busqueda'>INFORMACIÓN DE CONTACTO</h3>
-                        <div className='cont-titulo-y-inputs'>
-                            <div className='cont-contacto-nomb-ape-dni'>
-                                <InputField id="nombre" label="Nombre" value={nombre} onChange={handleChange} error={errors.nombre} />
-                                <InputField id="apellido" label="Apellido" value={apellido} onChange={handleChange} error={errors.apellido} />
-                                <InputField id="dni" label="DNI" value={dni} onChange={handleChange} error={errors.dni} />
-                            </div>
-                            {/* telefono - datos de factuarión */}
-                            <div className='cont-contacto-nomb-ape-dni'>
-                                <InputField id="area" label="Num de area" value={area} onChange={handleChange} error={errors.area} />
-                                <InputField id="numTel" label="Num de teléfono" value={numTel} onChange={handleChange} error={errors.numTel} />                                 
-                            </div>                            
-                            {/* calle-num-piso-depto */}
-                            <div className='cont-contacto-nomb-ape-dni'>
-                                <InputField id="calle" label="Calle" value={calle} onChange={handleChange} error={errors.calle} classNameInput='calle'/>
-                                <InputField id="numero" label="Num" value={numero} onChange={handleChange} error={errors.numero} className='piso'/>
-                                <InputField id="piso" label="Piso" value={piso} onChange={handleChange} error={errors.piso} className='piso'/>
-                                <InputField id="depto" label="Depto" value={depto} onChange={handleChange} error={errors.depto} className='piso'/>
-                            </div>
-                            {/* provincia - localida - cod postal*/}
-                            <div className='cont-contacto-nomb-ape-dni'>
-                                <InputField id="codigoPostal" label="Código Postal" value={codigoPostal} onChange={handleChange} error={errors.codigoPostal} />
-                                <InputField id="provincia" label="Provincia" value={provincia} onChange={handleChange} error={errors.provincia} />
-                                <InputField id="localidad" label="Localidad" value={localidad} onChange={handleChange} error={errors.localidad} />
-                            </div>
-                            {/* comentarios */}
-                            <div className='cont-textarea-contacto'>
-                                <label className='label'>Comentarios</label>
-                                <textarea
-                                    id='comentarios'
-                                    value={comentarios}
-                                    onChange={handleChange}
-                                    className="textarea-contacto"
-                                />
-                            </div>
-                        </div>
-                        <button type='onSubmit' className='btn-continuar-compra'>Modificar datos de entrega</button>
-                    </form>
+                    {/* formulario de contacto para la entrega */}
+                    <div>
+                        <p className='titulo-datos-usuario'>Datos de contacto</p>
+                        <p className='subtitulo-datos-usuario'>Completa los siguientes campos para que podamos contactarte</p>
+                        <FormDatosUsuario
+                            nombre={nombre}
+                            apellido={apellido}
+                            dni={dni}
+                            email={email}
+                            area={area}
+                            numTel={numTel}
+                            calle={calle}
+                            numero={numero}
+                            piso={piso}
+                            depto={depto}
+                            codigoPostal={codigoPostal}
+                            provincia={provincia}
+                            localidad={localidad}
+                            comentarios={comentarios}
+                            errors={errors}
+                            handleChange={handleChange}
+                            handleSubmit={handleSubmit}
+                            registrarse={false}
+                        />
+                    </div>
                 </div>
 
-                <div className='cont-envio-producto-col-2'>
+                <div className='cont-envio-producto-col-2 modoColumna'>
                     <ResumenCompra carrito={carrito} />
                     {/* btns continuar y volver */}
                     <div className='cont-btns-continuar-volver'>

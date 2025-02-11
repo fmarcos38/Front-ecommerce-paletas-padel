@@ -60,6 +60,12 @@ function LoginClasico() {
             dispatch(login(data));
         }
     };
+    // Función para manejar la tecla Enter
+    const handleKeyDown = (e) => {
+        if (e.key === 'Enter') {
+            e.preventDefault(); // Prevenir el comportamiento predeterminado
+        }
+    };
 
     //efecto para disparar msj de error q viene del back
     useEffect(() => {
@@ -87,7 +93,7 @@ function LoginClasico() {
     return (
         <div className="login-container">
             <h2 className="login-title">Iniciar Sesión</h2>
-            <form onSubmit={handleLogin} className="login-form">
+            <form onSubmit={handleLogin} onKeyDown={handleKeyDown} className="login-form">
                 <div className="form-group">
                     <label htmlFor="email">Email</label>
                     <div className='cont-inputPass-Y-btnVer'>

@@ -60,7 +60,7 @@ function Registrarse() {
                 case 'piso':
                     setPiso(value);
                     break;
-                case 'departamento':
+                case 'depto':
                     setDepto(value);
                     break;
                 case 'codigoPostal':
@@ -93,12 +93,12 @@ function Registrarse() {
             nombre,
             apellido,
             dni,
+            email,
+            password,
             area,
             numTel,
             calle,
             numero,
-            piso,
-            depto,
             codigoPostal,
             provincia,
             localidad,
@@ -106,7 +106,7 @@ function Registrarse() {
 
         const nuevosErrores = Object.entries(campos).reduce((acc, [key, value]) => {
             if (!value || value.trim() === '') {
-                acc[key] = `El campo ${key} es requerido.`;
+                acc[key] = ` es requerido.`;
             }
             return acc;
         }, {});
@@ -135,11 +135,13 @@ function Registrarse() {
     }
     const handleSubmit = (e) => {
         e.preventDefault();
-        if (!validar()) {
+        if (validar()) {
             const data = ({
                 nombre,
                 apellido,
                 dni,
+                email,
+                password,
                 telefono: { area, numero: numTel },
                 direccion: {
                     calle,

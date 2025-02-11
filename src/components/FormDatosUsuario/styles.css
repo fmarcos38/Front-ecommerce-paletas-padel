@@ -55,14 +55,23 @@
 .cont-tel{
     width: 50%;
 }
-
+.cont-calle{
+    width: 70%;
+}
+.cont-numero{
+    width: 14%;
+}
+.cont-piso,
+.cont-depto{
+    width: 8%;
+}
 /* inputs */
 .input-form-usuario,
 .input-form-pass,
 .textarea-contacto{
     width: 100%;
     font-size: 20px;
-    padding: 3px 0;
+    padding: 3px;
     border: 1px solid var(--gris-bordes);
     border-radius: 5px;
 }

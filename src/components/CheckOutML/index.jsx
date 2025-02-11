@@ -5,7 +5,6 @@ import { getCarrito } from '../../redux/actions/actions';
 import axios from 'axios';
 import MercadoPagoButton from '../MercadoPagoButton';
 import ResumenCompra from '../ResumenCompra';
-import NavCarrito from '../NavCarrito';
 import './styles.css';
 
 const Checkout =  () => {
@@ -15,8 +14,8 @@ const Checkout =  () => {
     const dispatch = useDispatch();
 
     useEffect(() => {
-        dispatch(getCarrito(cliente.id));        
-    }, [cliente.id, dispatch]);
+        dispatch(getCarrito(cliente?.user.id));        
+    }, [cliente.user.id, dispatch]);
 
     let body = {
         items: [
@@ -62,7 +61,6 @@ const Checkout =  () => {
 
     return (
         <div className='cont-miCarrito'>
-            <NavCarrito />
             <div className='cont-checkout'>
                 <h1>Realizar pago</h1>
                 <ResumenCompra carrito={carrito} />
