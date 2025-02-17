@@ -2,7 +2,7 @@ import React from 'react'
 import { NavLink } from 'react-router-dom';
 import './styles.css';
 
-function NavbarInf({usuario}) {
+function NavbarInf({usuario}) { 
 
     const [muestraMenuAdmin, setMuestraMenuAdmin] = React.useState(false); //menu admin
 

@@ -2,11 +2,13 @@ import {
     LOADING, GET_PRODUCTOS, GET_PRODUCTO_BY_ID, RESET_PRODUCTO, GET_PRODS_RANGO_PRECIO, 
     OPEN_CLOSE_MODAL, LOGIN, RESET_LOGIN, GET_USER, GET_FAVORITOS, RESET_USER,
     GET_PRODUTOS_OFERTA, GET_CARRITO, GET_PRODUCTO_POR_NOMBRE,
-    GET_USER_BY_DNI
+    GET_USER_BY_DNI,
+    MODIFICA_CONTRASEÑA
 } from '../actions/actionTypes'
 
 const initialStore = {
     dataUsuario: null,
+    modifContraseña:{},
     favoritos: [],
     carrito: {},
     productos: [],
@@ -100,6 +102,11 @@ export default function rootReducer (state = initialStore, action) {
             return {
                 ...state,
                 carrito: action.payload,
+            }
+        case MODIFICA_CONTRASEÑA:
+            return {
+                ...state,
+                modifContraseña: action.payload,
             }
         default:
             return state

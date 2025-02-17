@@ -51,7 +51,7 @@ function Card({id, nombre, precio, imagenes, agotado, enPromo, porcentajeDescuen
                             </>
                         ) :
                         (
-                            <p className='precio-pala'>${precio}</p>
+                            <p className='precio-pala'>${formatMoney(precio)}</p>
                         )
                     }
                 </div>

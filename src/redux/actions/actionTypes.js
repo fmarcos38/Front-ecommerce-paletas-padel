@@ -17,6 +17,7 @@ export const OPEN_CLOSE_MODAL = "OPEN_CLOSE_MODAL";
 export const GET_USER = "GET_USER";
 export const GET_USER_BY_DNI = "GET_USER_BY_DNI";
 export const RESET_USER = "RESET_USER";
+export const MODIFICA_CONTRASEÑA = "MODIFICA_CONTRASEÑA";
 //favoritos
 export const GET_FAVORITOS = "GET_FAVORITOS";
 export const AGREGA_FAVORITO = "AGREGA_FAVORITO";

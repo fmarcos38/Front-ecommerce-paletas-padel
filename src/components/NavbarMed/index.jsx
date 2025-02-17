@@ -11,9 +11,18 @@ import './styles.css';
 function NavbarMed({usuario, isOpen, menuRef, menuItemsRef, toggleMenu, handleLogOut, itemsCarrito=0, itemsFavoritos=0}) {
 
     const context = useContext(AppContext);
+    const [muestraMenuAdmin, setMuestraMenuAdmin] = React.useState(false); //menu admin
     const handleOnClickCarrito = () => {
         context.onClickCarrito();
     }
+    //función para posar sobre el menú admin y mostrarlo
+    const handleMouseEnterAdmin = () => {
+        setMuestraMenuAdmin(true);
+    };
+    //función para sacar el mouse del menú admin y ocultarlo
+    const handleMouseLeaveAdmin = () => {
+        setMuestraMenuAdmin(false);
+    };
 
     return (
         <div className='fila-med'>
@@ -168,7 +177,26 @@ function NavbarMed({usuario, isOpen, menuRef, menuItemsRef, toggleMenu, handleLo
                 <div className='cont-registrate'>
                     {
                         usuario?.nombre ? 
-                        <p>Hola {usuario.nombre}</p> :
+                            <ul className='ul-nav-med'>
+                                <li 
+                                    className='navbar-item-admin'
+                                    onMouseEnter={handleMouseEnterAdmin}
+                                    onMouseLeave={handleMouseLeaveAdmin}
+                                >
+                                    <p className='nombreUsuario'>{usuario.nombre}</p>
+                                    {/* menú admin */}
+                                    {
+                                        muestraMenuAdmin && (
+                                            <ul className='dropdown-menu-usuario'>
+                                                <li className='dropdown-item-admin'>
+                                                    <NavLink to='/actualizarContraseña' className='link-navbar-usuario'>Cambiar contraseña</NavLink>
+                                                </li>
+                                            </ul>
+                                        )
+                                    }
+                                </li>
+                            </ul>
+                        :
                         <NavLink to='/registrarse' className='link-navbar'>Registrate</NavLink>
                     }
                 </div>

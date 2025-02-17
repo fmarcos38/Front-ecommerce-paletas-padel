@@ -27,6 +27,7 @@ import ListaBolzosPage from './pages/ListaBolzosPage';
 import ListaPelotasPage from './pages/ListaPelotasPage';
 import ListaZapatillasPage from './pages/ListaZapatillasPage';
 import './App.css';
+import ActualizarContraseña from './pages/ActualizarContraseña';
 
 function App() {
   return (
@@ -58,6 +59,7 @@ function App() {
             <Route path='/comoMeLlega' element={<ComoMeLlega/>} />
             <Route path='/infoContacto' element={<InformacionContactoPage />} />
             <Route path='/checkout' element={<CheOutML />}/>
+            <Route path='/actualizarContraseña' element={<ActualizarContraseña />} />
             <Route path='/admin/creaProd' element={<CreaProducto />} />
             <Route path='/admin/listaProdsAdmin' element={<ListaProdsAdminPage />} />
             <Route path='/admin/editaProd/:id' element={<EditaProd />} />            

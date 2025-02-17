@@ -83,6 +83,14 @@ export const modificaUsuario = (id, data) => { console.log('id', id);
     }
 }
 
+//modifica contraseña
+export const modificaContraseña = (id, password) => { 
+    return async function(dispatch) {
+        const resp = await axios.put(`${URL}/usuario/modificaPass/${id}`, {password});
+        console.log('resp.data', resp.data);
+        dispatch({type: 'MODIFICA_CONTRASEÑA', payload: resp.data}); 
+    }
+}
 //-----------------favoritos---------------------
 export const getFavoritos = (id) => {
     return async function(dispatch) { 

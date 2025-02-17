@@ -22,7 +22,7 @@ function Home() {
   const [marca, setMarca] = React.useState('');
   const [categoria, setCategoria] = React.useState('');
   const [enPromo, setPromo] = React.useState(false);
-  const [precioMin, setPrecioMin] = React.useState(1000);
+  const [precioMin, setPrecioMin] = React.useState(10);
   const [precioMax, setPrecioMax] = React.useState(1000000);
   const arrImgsMostrar = [imgPChica1, imgPChica2, imgPChica3, imgPChica4]; //array de imagenes a mostrar en el carrusel
   const productos = useSelector((state) => state.productos);
